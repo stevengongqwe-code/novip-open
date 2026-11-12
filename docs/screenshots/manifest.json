@@ -1,0 +1,87 @@
+{
+  "capturedAt": "2026-11-10T12:24:46.530Z",
+  "base": "https://novip.site",
+  "screenshots": [
+    {
+      "label": "desktop-home",
+      "url": "https://novip.site/",
+      "filename": "desktop-home.png",
+      "width": 3200,
+      "height": 2000,
+      "bytes": 2100585
+    },
+    {
+      "label": "desktop-pdf",
+      "url": "https://novip.site/tools/pdf-merge-split",
+      "filename": "desktop-pdf.png",
+      "width": 3200,
+      "height": 2000,
+      "bytes": 1393245
+    },
+    {
+      "label": "desktop-grades",
+      "url": "https://novip.site/tools/grades",
+      "filename": "desktop-grades.png",
+      "width": 3200,
+      "height": 2000,
+      "bytes": 1534181
+    },
+    {
+      "label": "desktop-timetable",
+      "url": "https://novip.site/tools/timetable",
+      "filename": "desktop-timetable.png",
+      "width": 3200,
+      "height": 2000,
+      "bytes": 1189109
+    },
+    {
+      "label": "desktop-photo",
+      "url": "https://novip.site/tools/id-photo",
+      "filename": "desktop-photo.png",
+      "width": 3200,
+      "height": 2000,
+      "bytes": 1555283
+    },
+    {
+      "label": "mobile-home",
+      "url": "https://novip.site/",
+      "filename": "mobile-home.png",
+      "width": 1170,
+      "height": 2532,
+      "bytes": 1226666
+    },
+    {
+      "label": "mobile-pdf",
+      "url": "https://novip.site/tools/pdf-merge-split",
+      "filename": "mobile-pdf.png",
+      "width": 1170,
+      "height": 2532,
+      "bytes": 649824
+    },
+    {
+      "label": "mobile-grades",
+      "url": "https://novip.site/tools/grades",
+      "filename": "mobile-grades.png",
+      "width": 1170,
+      "height": 2532,
+      "bytes": 595401
+    },
+    {
+      "label": "mobile-timetable",
+      "url": "https://novip.site/tools/timetable",
+      "filename": "mobile-timetable.png",
+      "width": 1170,
+      "height": 2532,
+      "bytes": 449799
+    },
+    {
+      "label": "mobile-photo",
+      "url": "https://novip.site/tools/id-photo",
+      "filename": "mobile-photo.png",
+      "width": 1170,
+      "height": 2532,
+      "bytes": 755690
+    }
+  ],
+  "failures": 0
+}

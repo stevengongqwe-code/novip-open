@@ -1,0 +1,1114 @@
+/* ==========================================================================
+   NOVIP Motion Design System v4.0 — Unified Component & Micro-Interaction Styles
+   Integrates researched patterns from Motion Sites, React Bits, Uiverse,
+   Anime.js v4, and Aceternity UI into one cohesive NOVIP experience.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Global Keyboard Focus & Touch-First Foundations (Requirement 六.2 & 六.8)
+   -------------------------------------------------------------------------- */
+a,
+button,
+input,
+select,
+textarea,
+summary,
+[role='button'],
+[role='tab'] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[role='button']:focus-visible,
+[role='tab']:focus-visible {
+  outline: none !important;
+  box-shadow:
+    0 0 0 2px var(--novip-bg-elevated, #ffffff),
+    0 0 0 4px var(--novip-focus-color, #0071e3) !important;
+  transition: box-shadow var(--novip-dur-fast) var(--novip-ease-out-expo);
+}
+
+/* 关键操作按钮与导航触控热区 >= 44×44 CSS px */
+.novip-btn-tactile,
+.apple-hero-primary-btn,
+.apple-hero-link,
+.study-btn,
+.button.primary,
+.ios-dock-item,
+.ios-subpage-back,
+.ios-subpage-action-btn,
+.ios-segmented-btn,
+.ios-scenario-pill,
+.novip-showcase-tab,
+.grok-intent-cta-btn {
+  min-height: var(--novip-touch-min, 44px);
+}
+
+/* --------------------------------------------------------------------------
+   2. Hero Typography: BlurSplitText, HeroHighlight & ShinyBadge (M-01, M-02)
+   -------------------------------------------------------------------------- */
+.novip-blur-split-root {
+  display: inline;
+}
+
+.novip-blur-split-chunk {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+  animation: novip-blur-reveal var(--novip-dur-slow, 520ms) var(--novip-ease-out-expo) both;
+  animation-delay: calc(var(--chunk-index, 0) * 55ms);
+}
+
+@keyframes novip-blur-reveal {
+  0% {
+    opacity: 0.01;
+    transform: translate3d(0, var(--novip-dist-reveal, 10px), 0) scale(0.985);
+    filter: blur(7px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .novip-blur-split-chunk {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+html[data-novip-visual-mode='minimal'] .novip-blur-split-chunk {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Aceternity HeroHighlight inspired animated marker */
+.novip-hero-highlight {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: 6px;
+  font-weight: 700;
+  color: inherit;
+  background-image: linear-gradient(
+    120deg,
+    rgba(0, 113, 227, 0.16) 0%,
+    rgba(56, 189, 248, 0.24) 100%
+  );
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: 100% 100%;
+  animation: novip-highlight-sweep 680ms var(--novip-ease-out-expo) 140ms both;
+}
+
+html[data-novip-visual-mode='immersive'] .novip-hero-highlight {
+  background-image: linear-gradient(
+    120deg,
+    rgba(56, 189, 248, 0.26) 0%,
+    rgba(99, 102, 241, 0.32) 100%
+  );
+  color: #f8fafc;
+}
+
+@keyframes novip-highlight-sweep {
+  0% {
+    background-size: 0% 100%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+
+/* React Bits ShinyText inspired metallic sweep on trust tags */
+.ios-island-tag,
+.novip-flagship-tag,
+.novip-showcase-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.ios-island-tag::after,
+.novip-flagship-tag::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  animation: novip-shiny-sweep 5.5s var(--novip-ease-in-out) infinite;
+  pointer-events: none;
+}
+
+@keyframes novip-shiny-sweep {
+  0%,
+  72% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+/* CountUp Telemetry Strip */
+.novip-hero-metrics-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 18px;
+  margin: 14px auto 4px;
+  padding: 8px 16px;
+  max-width: 720px;
+  border-radius: var(--novip-radius-pill);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: var(--novip-shadow-resting);
+  font-variant-numeric: tabular-nums;
+}
+
+html[data-novip-visual-mode='immersive'] .novip-hero-metrics-bar {
+  background: rgba(15, 23, 42, 0.78);
+  border-color: rgba(148, 163, 184, 0.22);
+  color: #f8fafc;
+}
+
+.novip-metric-pill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  font-size: 12.5px;
+  color: var(--novip-muted, #334155);
+}
+
+html[data-novip-visual-mode='immersive'] .novip-metric-pill {
+  color: #cbd5e1;
+}
+
+.novip-metric-value {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--novip-blue, #0071e3);
+  font-variant-numeric: tabular-nums;
+}
+
+html[data-novip-visual-mode='immersive'] .novip-metric-value {
+  color: #38bdf8;
+}
+
+.novip-metric-divider {
+  width: 1px;
+  height: 12px;
+  background: rgba(148, 163, 184, 0.35);
+}
+
+/* --------------------------------------------------------------------------
+   3. Tactile Buttons & Hover Border Gradient (M-06)
+   -------------------------------------------------------------------------- */
+.novip-btn-tactile,
+.study-btn,
+.button.primary,
+.convert-button,
+.apple-hero-primary-btn,
+.grok-intent-cta-btn {
+  position: relative;
+  transition:
+    transform var(--novip-dur-base) var(--novip-ease-spring),
+    box-shadow var(--novip-dur-base) var(--novip-ease-spring),
+    background-color var(--novip-dur-fast) ease,
+    border-color var(--novip-dur-fast) ease !important;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .novip-btn-tactile:hover,
+  .study-btn:hover:not(:disabled),
+  .button.primary:hover:not(:disabled),
+  .convert-button:hover:not(:disabled),
+  .apple-hero-primary-btn:hover,
+  .grok-intent-cta-btn:hover {
+    transform: translate3d(0, calc(-1 * var(--novip-dist-micro, 2px)), 0);
+    box-shadow: var(--novip-shadow-hover);
+  }
+}
+
+.novip-btn-tactile:active,
+.study-btn:active:not(:disabled),
+.button.primary:active:not(:disabled),
+.convert-button:active:not(:disabled),
+.apple-hero-primary-btn:active,
+.grok-intent-cta-btn:active,
+.ios-open-btn:active {
+  transform: translate3d(0, 1px, 0) scale(0.965) !important;
+  transition-duration: var(--novip-dur-instant, 75ms) !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. Tool Cards: Affordance, Spotlight, 3D Icon Lift & Touch Press (M-04)
+   -------------------------------------------------------------------------- */
+.novip-flagship-card,
+.novip-scenario-card,
+.novip-highfreq-card,
+.x-foryou-card,
+.ios-spotlight-quick-item,
+.ios-list-row {
+  position: relative;
+  transition:
+    transform var(--novip-dur-base) var(--novip-ease-out-expo),
+    box-shadow var(--novip-dur-base) var(--novip-ease-out-expo),
+    border-color var(--novip-dur-fast) ease,
+    background-color var(--novip-dur-fast) ease !important;
+}
+
+/* 行动箭头与打开按钮联动反馈，明确传达「卡片可点击操作」 */
+.novip-flagship-cta,
+.novip-scenario-arrow,
+.x-foryou-arrow,
+.ios-chevron,
+.ios-open-btn,
+.home-ai-cta {
+  display: inline-flex;
+  align-items: center;
+  transition:
+    transform var(--novip-dur-base) var(--novip-ease-spring),
+    color var(--novip-dur-fast) ease,
+    background-color var(--novip-dur-fast) ease;
+}
+
+.novip-flagship-icon-box,
+.novip-scenario-icon {
+  transition: transform var(--novip-dur-base) var(--novip-ease-bounce);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .novip-flagship-card:hover,
+  .novip-scenario-card:hover,
+  .novip-highfreq-card:hover,
+  .x-foryou-card:hover,
+  .ios-spotlight-quick-item:hover {
+    transform: translate3d(0, calc(-1 * var(--novip-dist-card, 3px)), 0);
+    box-shadow: var(--novip-shadow-hover) !important;
+  }
+
+  .novip-flagship-card:hover .novip-flagship-icon-box,
+  .novip-scenario-card:hover .novip-scenario-icon {
+    transform: translate3d(0, -2px, 0) scale(1.06);
+  }
+
+  .novip-flagship-card:hover .novip-flagship-cta,
+  .novip-scenario-card:hover .novip-scenario-arrow,
+  .x-foryou-card:hover .x-foryou-arrow,
+  .ios-list-row:hover .ios-chevron,
+  .home-ai-entry:hover .home-ai-cta {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+/* 移动端与桌面端统一的按压物理回弹 (:active) */
+.novip-flagship-card:active,
+.novip-scenario-card:active,
+.novip-highfreq-card:active,
+.x-foryou-card:active,
+.ios-spotlight-quick-item:active,
+.ios-springboard-item:active,
+.ios-list-row:active {
+  transform: scale(0.975) !important;
+  transition-duration: var(--novip-dur-instant, 75ms) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Spotlight Search Input Halo & Elastic Segmented Control (M-08, M-09)
+   -------------------------------------------------------------------------- */
+.ios-spotlight-box {
+  transition:
+    box-shadow var(--novip-dur-base) var(--novip-ease-out-expo),
+    border-color var(--novip-dur-base) var(--novip-ease-out-expo),
+    transform var(--novip-dur-base) var(--novip-ease-out-expo) !important;
+}
+
+.ios-spotlight-box .ios-spotlight-icon {
+  transition:
+    transform var(--novip-dur-base) var(--novip-ease-bounce),
+    color var(--novip-dur-fast) ease;
+}
+
+.ios-spotlight-box:focus-within {
+  border-color: rgba(129, 236, 254, 0.65) !important;
+  box-shadow:
+    0 0 0 3px rgba(129, 236, 254, 0.28),
+    0 0 28px rgba(129, 236, 254, 0.18),
+    0 16px 36px -8px rgba(0, 113, 227, 0.22) !important;
+  transform: translate3d(0, -2px, 0);
+}
+
+.ios-spotlight-box:focus-within .ios-spotlight-icon {
+  color: var(--novip-holo-cyan, #81ecfe) !important;
+  transform: scale(1.15) rotate(-8deg);
+}
+
+.ios-segmented-btn,
+.ios-scenario-pill,
+.x-feed-tab-btn,
+.novip-showcase-tab {
+  transition:
+    transform var(--novip-dur-fast) var(--novip-ease-bounce),
+    background-color var(--novip-dur-fast) ease,
+    border-color var(--novip-dur-fast) ease,
+    color var(--novip-dur-fast) ease,
+    box-shadow var(--novip-dur-fast) ease !important;
+}
+
+.ios-scenario-pill.active {
+  background: linear-gradient(135deg, rgba(129, 236, 254, 0.24) 0%, rgba(198, 77, 255, 0.2) 100%) !important;
+  border-color: rgba(129, 236, 254, 0.55) !important;
+  box-shadow: 0 4px 18px rgba(129, 236, 254, 0.25) !important;
+  transform: scale(1.02);
+}
+
+.ios-segmented-btn.active {
+  box-shadow: 0 4px 16px rgba(0, 113, 227, 0.28) !important;
+  transform: scale(1.015);
+}
+
+.ios-segmented-btn:active,
+.ios-scenario-pill:active,
+.x-feed-tab-btn:active,
+.novip-showcase-tab:active {
+  transform: scale(0.96) !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Navigation System & Quick Command Button (M-07)
+   -------------------------------------------------------------------------- */
+.novip-nav-quick-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 34px;
+  padding: 4px 11px;
+  border-radius: var(--novip-radius-pill);
+  border: 1px solid rgba(0, 113, 227, 0.24);
+  background: rgba(0, 113, 227, 0.08);
+  color: var(--novip-blue, #0071e3);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    transform var(--novip-dur-fast) var(--novip-ease-spring),
+    background-color var(--novip-dur-fast) ease,
+    border-color var(--novip-dur-fast) ease;
+}
+
+html[data-novip-visual-mode='immersive'] .novip-nav-quick-btn {
+  background: rgba(56, 189, 248, 0.14);
+  border-color: rgba(56, 189, 248, 0.35);
+  color: #38bdf8;
+}
+
+.novip-nav-quick-btn:hover {
+  background: rgba(0, 113, 227, 0.15);
+  transform: translateY(-1px);
+}
+
+.novip-nav-quick-btn:active {
+  transform: scale(0.96);
+}
+
+.ios-dock-item {
+  position: relative;
+  transition:
+    transform var(--novip-dur-fast) var(--novip-ease-bounce),
+    color var(--novip-dur-fast) ease !important;
+}
+
+.ios-dock-item:active {
+  transform: translateY(-2px) scale(0.93) !important;
+}
+
+.ios-dock-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  width: 16px;
+  height: 3px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: translateX(-50%);
+}
+
+/* --------------------------------------------------------------------------
+   7. Tool Operation UI: Shimmer Progress, Success Stroke, Error Shake (M-10, M-11, M-14)
+   -------------------------------------------------------------------------- */
+.study-progress-bar-fill,
+.study-progress-bar-indeterminate {
+  position: relative;
+  overflow: hidden;
+  transition: width var(--novip-dur-base) var(--novip-ease-out-expo);
+}
+
+.study-progress-bar-fill::after,
+.study-progress-bar-indeterminate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: novip-progress-shimmer 1.35s var(--novip-ease-in-out) infinite;
+}
+
+@keyframes novip-progress-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.study-progress-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+  vertical-align: -2px;
+  border: 2px solid rgba(0, 113, 227, 0.22);
+  border-top-color: var(--novip-blue, #0071e3);
+  border-radius: 50%;
+  animation: novip-spin 720ms linear infinite;
+}
+
+@keyframes novip-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* SuccessNotice: Spring entrance + SVG checkmark draw-in */
+.study-success-notice {
+  animation: novip-status-pop var(--novip-dur-moderate, 360ms) var(--novip-ease-bounce) both;
+}
+
+.study-success-icon polyline,
+.study-success-icon path {
+  stroke-dasharray: 28;
+  stroke-dashoffset: 28;
+  animation: novip-check-draw 380ms var(--novip-ease-out-expo) 90ms forwards;
+}
+
+@keyframes novip-status-pop {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes novip-check-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ActionableError: Restrained horizontal shake attention cue */
+.study-actionable-error {
+  animation: novip-error-shake 340ms var(--novip-ease-out-expo) both;
+}
+
+@keyframes novip-error-shake {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 4px, 0);
+  }
+  25% {
+    opacity: 1;
+    transform: translate3d(-5px, 0, 0);
+  }
+  50% {
+    transform: translate3d(5px, 0, 0);
+  }
+  75% {
+    transform: translate3d(-3px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* EmptyState subtle floating illustration */
+.study-empty-illustration-box {
+  animation: novip-status-pop var(--novip-dur-moderate) var(--novip-ease-out-expo) both;
+}
+
+.study-empty-svg {
+  transition: transform var(--novip-dur-moderate) var(--novip-ease-spring);
+}
+
+.study-empty-illustration-box:hover .study-empty-svg {
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* --------------------------------------------------------------------------
+   8. TactileDropzone & Enhanced Upload Area (M-10)
+   -------------------------------------------------------------------------- */
+.novip-tactile-dropzone,
+.convert-drop,
+.dropzone {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform var(--novip-dur-base) var(--novip-ease-spring),
+    border-color var(--novip-dur-fast) ease,
+    box-shadow var(--novip-dur-base) var(--novip-ease-out-expo),
+    background-color var(--novip-dur-fast) ease !important;
+}
+
+.novip-tactile-dropzone:hover,
+.novip-tactile-dropzone.is-drag-active,
+.convert-drop:hover,
+.convert-drop.dragging,
+.dropzone:hover,
+.dropzone.is-dragover {
+  border-color: var(--novip-blue, #0071e3) !important;
+  box-shadow:
+    0 12px 28px -8px rgba(0, 113, 227, 0.16),
+    0 0 0 3px rgba(0, 113, 227, 0.1) !important;
+  transform: translate3d(0, -2px, 0);
+}
+
+.novip-tactile-dropzone:active,
+.convert-drop:active,
+.dropzone:active {
+  transform: scale(0.99) !important;
+}
+
+.novip-dropzone-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 10px;
+  border-radius: 16px;
+  background: rgba(0, 113, 227, 0.1);
+  color: var(--novip-blue, #0071e3);
+  transition: transform var(--novip-dur-base) var(--novip-ease-bounce);
+}
+
+.novip-tactile-dropzone:hover .novip-dropzone-icon-wrap,
+.novip-tactile-dropzone.is-drag-active .novip-dropzone-icon-wrap,
+.dropzone:hover .novip-dropzone-icon-wrap {
+  transform: translate3d(2px, -4px, 0) scale(1.06);
+}
+
+.novip-file-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 6px 12px;
+  border-radius: var(--novip-radius-pill);
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #065f46;
+  font-size: 12.5px;
+  font-weight: 600;
+  animation: novip-status-pop var(--novip-dur-base) var(--novip-ease-bounce) both;
+}
+
+html[data-novip-visual-mode='immersive'] .novip-file-meta-pill {
+  color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.18);
+}
+
+/* --------------------------------------------------------------------------
+   9. Unified AdaptiveDialog (Desktop Modal / Mobile Bottom Sheet) (M-12)
+   -------------------------------------------------------------------------- */
+.novip-adaptive-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(2, 6, 23, 0.58);
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  animation: novip-backdrop-fade var(--novip-dur-base) var(--novip-ease-out-expo) both;
+}
+
+@keyframes novip-backdrop-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.novip-adaptive-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: min(84vh, 680px);
+  overflow-y: auto;
+  padding: 22px 22px 20px;
+  border-radius: var(--novip-radius-dialog, 24px);
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: var(--novip-shadow-dialog);
+  color: #0f172a;
+  animation: novip-dialog-spring var(--novip-dur-moderate, 360ms) var(--novip-ease-spring) both;
+}
+
+html[data-novip-visual-mode='immersive'] .novip-adaptive-dialog {
+  background: rgba(15, 23, 42, 0.94);
+  border-color: rgba(148, 163, 184, 0.24);
+  color: #f8fafc;
+}
+
+@keyframes novip-dialog-spring {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.novip-adaptive-handle-bar {
+  display: none;
+  width: 42px;
+  height: 5px;
+  margin: 0 auto 12px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.45);
+  cursor: grab;
+}
+
+.novip-adaptive-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.novip-adaptive-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.novip-adaptive-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: var(--novip-radius-pill);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: rgba(148, 163, 184, 0.12);
+  color: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--novip-dur-fast) var(--novip-ease-spring), background-color var(--novip-dur-fast) ease;
+}
+
+.novip-adaptive-close:hover {
+  background: rgba(148, 163, 184, 0.22);
+}
+
+.novip-adaptive-close:active {
+  transform: scale(0.94);
+}
+
+/* Mobile Bottom Sheet Transformation (< 640px) */
+@media (max-width: 640px) {
+  .novip-adaptive-backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .novip-adaptive-dialog {
+    max-width: 100%;
+    max-height: 86vh;
+    border-radius: 24px 24px 0 0;
+    padding: 12px 18px calc(20px + env(safe-area-inset-bottom, 0px));
+    animation: novip-sheet-slide-up var(--novip-dur-moderate, 360ms) var(--novip-ease-spring) both;
+  }
+
+  .novip-adaptive-handle-bar {
+    display: block;
+  }
+}
+
+@keyframes novip-sheet-slide-up {
+  0% {
+    opacity: 0.4;
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. Semantic IosHudToast Variants (M-13)
+   -------------------------------------------------------------------------- */
+.ios-hud-toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  animation: novip-toast-drop var(--novip-dur-moderate, 360ms) var(--novip-ease-bounce) both;
+}
+
+.ios-hud-toast--download .ios-hud-toast-dot {
+  background: #38bdf8 !important;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+}
+
+.ios-hud-toast--error .ios-hud-toast-dot {
+  background: #f87171 !important;
+  box-shadow: 0 0 10px rgba(248, 113, 113, 0.8);
+}
+
+.ios-hud-toast--success .ios-hud-toast-dot {
+  background: #34d399 !important;
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.8);
+}
+
+@keyframes novip-toast-drop {
+  0% {
+    opacity: 0;
+    transform: translate3d(-50%, -18px, 0) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. Micro Tooltip Utility [data-novip-tip] (Desktop Only)
+   -------------------------------------------------------------------------- */
+@media (hover: hover) and (pointer: fine) {
+  [data-novip-tip] {
+    position: relative;
+  }
+
+  [data-novip-tip]::after {
+    content: attr(data-novip-tip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translate3d(-50%, 4px, 0) scale(0.96);
+    padding: 5px 10px;
+    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.94);
+    color: #f8fafc;
+    font-size: 11.5px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 8px 20px rgba(2, 6, 23, 0.28);
+    transition:
+      opacity var(--novip-dur-fast) var(--novip-ease-out-expo),
+      transform var(--novip-dur-fast) var(--novip-ease-out-expo);
+    z-index: 200;
+  }
+
+  [data-novip-tip]:hover::after,
+  [data-novip-tip]:focus-visible::after {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0) scale(1);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   12. TactileStepper — Luminous Progress Stepper (M-15)
+   -------------------------------------------------------------------------- */
+.tactile-stepper {
+  position: relative;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: var(--novip-glass-bg, rgba(255, 255, 255, 0.75));
+  border: 1px solid var(--novip-glass-border, rgba(255, 255, 255, 0.6));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--novip-shadow-base, 0 8px 24px rgba(0, 0, 0, 0.04));
+  margin: 14px 0 20px 0;
+}
+
+[data-theme-mode='immersive'] .tactile-stepper {
+  background: rgba(15, 23, 42, 0.65) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35) !important;
+}
+
+[data-theme-mode='minimal'] .tactile-stepper {
+  background: #0f172a !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: none !important;
+}
+
+.tactile-stepper-track {
+  position: absolute;
+  top: 25px;
+  left: 28px;
+  right: 28px;
+  height: 2px;
+  background: rgba(148, 163, 184, 0.22);
+  border-radius: 9999px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+[data-theme-mode='immersive'] .tactile-stepper-track,
+[data-theme-mode='minimal'] .tactile-stepper-track {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.tactile-stepper-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #059669 0%, #0071e3 50%, #81ecfe 100%);
+  border-radius: 9999px;
+  transition: width var(--novip-dur-base) var(--novip-ease-out-expo);
+  box-shadow: 0 0 8px rgba(129, 236, 254, 0.6);
+}
+
+.tactile-stepper-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  gap: 8px;
+}
+
+.tactile-step-item {
+  flex: 1;
+  min-width: 0;
+}
+
+.tactile-step-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 4px 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 10px;
+  text-align: left;
+  transition:
+    transform var(--novip-dur-fast) var(--novip-ease-bounce),
+    opacity var(--novip-dur-fast) ease;
+}
+
+.tactile-step-button:disabled {
+  cursor: default;
+}
+
+.tactile-step-button:not(:disabled):active {
+  transform: scale(0.96);
+}
+
+.tactile-step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 700;
+  transition:
+    background var(--novip-dur-fast) ease,
+    border-color var(--novip-dur-fast) ease,
+    color var(--novip-dur-fast) ease,
+    box-shadow var(--novip-dur-fast) ease;
+}
+
+.tactile-step-item.is-pending .tactile-step-badge {
+  background: rgba(148, 163, 184, 0.18);
+  color: #64748b;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+}
+
+[data-theme-mode='immersive'] .tactile-step-item.is-pending .tactile-step-badge,
+[data-theme-mode='minimal'] .tactile-step-item.is-pending .tactile-step-badge {
+  background: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.tactile-step-item.is-current .tactile-step-badge {
+  background: linear-gradient(135deg, #0071e3 0%, #81ecfe 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 14px rgba(129, 236, 254, 0.55);
+}
+
+.tactile-step-item.is-completed .tactile-step-badge {
+  background: linear-gradient(135deg, #059669 0%, #34d399 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
+}
+
+.tactile-step-check {
+  width: 13px;
+  height: 13px;
+}
+
+.tactile-step-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.tactile-step-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color var(--novip-dur-fast) ease;
+}
+
+[data-theme-mode='immersive'] .tactile-step-label,
+[data-theme-mode='minimal'] .tactile-step-label {
+  color: #f8fafc !important;
+}
+
+.tactile-step-item.is-pending .tactile-step-label {
+  color: #94a3b8;
+}
+
+.tactile-step-desc {
+  font-size: 10.5px;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-theme-mode='immersive'] .tactile-step-desc,
+[data-theme-mode='minimal'] .tactile-step-desc {
+  color: #94a3b8 !important;
+}
+
+@media (max-width: 640px) {
+  .tactile-stepper {
+    padding: 10px 10px;
+  }
+  .tactile-stepper-track {
+    top: 22px;
+    left: 20px;
+    right: 20px;
+  }
+  .tactile-step-desc {
+    display: none;
+  }
+  .tactile-step-badge {
+    width: 22px;
+    height: 22px;
+    font-size: 11px;
+  }
+  .tactile-step-label {
+    font-size: 11.5px;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   13. Glare Sheen Reflex & Pinned Tools Styling (M-94, M-98, M-110)
+   -------------------------------------------------------------------------- */
+.novip-pinned-chip {
+  position: relative;
+  overflow: hidden;
+}
+
+.novip-pinned-chip:hover {
+  transform: translateY(-2px);
+  border-color: #0071e3 !important;
+  box-shadow: 0 4px 14px rgba(0, 113, 227, 0.25) !important;
+}
+
+[data-theme-mode='immersive'] .novip-pinned-chip {
+  background: rgba(15, 23, 42, 0.7) !important;
+  border-color: rgba(129, 236, 254, 0.3) !important;
+  color: #f8fafc !important;
+}
+
+/* Glare dynamic sheen overlay */
+.novip-flagship-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle 220px at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(255, 255, 255, 0.12),
+    transparent 70%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: overlay;
+}
+
+.novip-flagship-card:hover::after,
+.novip-flagship-card[data-spatial-hover='true']::after {
+  opacity: 1;
+}
+
+/* Offline Ready Button Pulse */
+.novip-offline-ready-btn:hover {
+  transform: scale(1.02);
+}
+
+.novip-offline-ready-btn:active {
+  transform: scale(0.97);
+}

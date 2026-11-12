@@ -1,0 +1,160 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": "NOVIP 大学生免费工具站",
+  "siteUrl": "https://novip.site",
+  "scoringWeights": {
+    "frequency": 0.22,
+    "searchDemand": 0.18,
+    "frontendFeasibility": 0.20,
+    "privacyAdvantage": 0.15,
+    "lowMaintenanceCost": 0.10,
+    "uniqueness": 0.15
+  },
+  "candidates": [
+    {
+      "id": "ppt-extract",
+      "title": "PPT图片提取",
+      "category": "文件与图片",
+      "status": "implemented",
+      "implementedAt": "2026-10-28",
+      "summary": "纯本地无损提取 PPTX 课件全部内嵌原图，自动识别页码、智能去重并打包导出 ZIP",
+      "painPoint": "大学生复习期末课件、整理汇报素材或撰写实验报告时，右键另存图片不仅繁琐且会被 PowerPoint 二次压缩模糊；直接解压 .pptx 又无法区分图片属于哪一页且混杂大量重复母版 Logo。",
+      "targetScenarios": [
+        "期末复习提取老师 PPTX 课件中的高清架构图与公式配图",
+        "课程汇报与大作业复用往届 PPT 幻灯片高清原图素材",
+        "批量剔除每页重复出现的学校校徽、页眉装饰小图标"
+      ],
+      "inputFormats": [".pptx"],
+      "outputFormats": [".zip", ".png", ".jpg", ".svg", ".webp", ".csv"],
+      "privacyGuarantee": "100% 浏览器内存解压与去重，未发表课题组课件与内部讲义零上传服务器。",
+      "scores": {
+        "frequency": 9.5,
+        "searchDemand": 9.4,
+        "frontendFeasibility": 9.8,
+        "privacyAdvantage": 9.6,
+        "lowMaintenanceCost": 9.5,
+        "uniqueness": 9.6
+      }
+    },
+    {
+      "id": "pdf-compress",
+      "title": "PDF体积压缩",
+      "category": "PDF 与文档",
+      "status": "queued",
+      "summary": "本地智能重采样与对象流精简，快速将超限 PDF 压缩至教务系统/獎学金附件限制（如 2MB/5MB/10MB）以内",
+      "painPoint": "教务网、国奖申报、保研夏令营及挑战杯系统常限制 PDF 附件不超过 2MB 或 5MB，扫描版证明材料经常超标，而线上压缩工具普遍收费或上传隐私材料。",
+      "targetScenarios": [
+        "保研夏令营证明材料 PDF 压缩至 5MB 内",
+        "奖学金申请扫描件 PDF 体积精简",
+        "毕业论文开题报告提交体积达标处理"
+      ],
+      "inputFormats": [".pdf"],
+      "outputFormats": [".pdf"],
+      "privacyGuarantee": "本地 Canvas 渲染与 PDF 重建，成绩单与获奖证书不经过任何外部服务器。",
+      "scores": {
+        "frequency": 9.4,
+        "searchDemand": 9.5,
+        "frontendFeasibility": 9.0,
+        "privacyAdvantage": 9.7,
+        "lowMaintenanceCost": 9.0,
+        "uniqueness": 9.1
+      }
+    },
+    {
+      "id": "image-grid-split",
+      "title": "九宫格切图与长图拼接",
+      "category": "文件与图片",
+      "status": "queued",
+      "summary": "支持校园公众号推文/朋友圈 3×3 九宫格无损切图，以及多张手机截图/实验长图纵向或横向无缝拼接",
+      "painPoint": "社团招新宣传、朋友圈晒图需要无白边高清九宫格切图，而实验记录、聊天记录或网页多屏截图需要快速拼接成一张长图提交。",
+      "targetScenarios": [
+        "校园社团活动海报九宫格切图",
+        "实验运行截图与多页成绩单纵向长图拼接",
+        "自定义间距、圆角与背景色的对比图排版"
+      ],
+      "inputFormats": [".png", ".jpg", ".jpeg", ".webp"],
+      "outputFormats": [".png", ".jpg", ".zip"],
+      "privacyGuarantee": "纯本地 Canvas 切图与拼图，无平台强制角标水印。",
+      "scores": {
+        "frequency": 8.9,
+        "searchDemand": 8.8,
+        "frontendFeasibility": 9.6,
+        "privacyAdvantage": 8.8,
+        "lowMaintenanceCost": 9.5,
+        "uniqueness": 9.2
+      }
+    },
+    {
+      "id": "exam-countdown",
+      "title": "考试倒计时与复习大纲看板",
+      "category": "学习与考试",
+      "status": "queued",
+      "summary": "考研/四六级/期末多科目倒计时管理，支持章节进度打卡、紧迫度分级与高清桌面壁纸/ICS导出",
+      "painPoint": "期末考试周多门专业课扎堆或备战四六级、考研时，缺少轻量无广告的科目倒计时与复习轮次进度追踪工具。",
+      "targetScenarios": [
+        "期末周 5~8 门考试科目倒计时与考场备忘",
+        "考研/六级/教资多节点复习进度追踪",
+        "一键导出复习里程碑至系统日历（.ics）"
+      ],
+      "inputFormats": [".json"],
+      "outputFormats": [".ics", ".png", ".json"],
+      "privacyGuarantee": "纯浏览器 localStorage 持久化，无需注册账号。",
+      "scores": {
+        "frequency": 8.8,
+        "searchDemand": 8.6,
+        "frontendFeasibility": 9.7,
+        "privacyAdvantage": 8.5,
+        "lowMaintenanceCost": 9.6,
+        "uniqueness": 9.0
+      }
+    },
+    {
+      "id": "markdown-cleaner",
+      "title": "AI文本与Markdown格式清洗",
+      "category": "文本与写作",
+      "status": "queued",
+      "summary": "一键清理大模型复制文本中的冗余星号、乱码公式定界符、中英文混排空格与多余空行，快速粘贴进 Word",
+      "painPoint": "从 AI 对话或技术博客复制内容到课程报告/Word 文档时，满屏的 `**`、`###`、不规范 LaTeX 定界符与残缺空行手工清理极慢。",
+      "targetScenarios": [
+        "将 Markdown 笔记一键转为干净的纯文本或规范排版",
+        "修复中英文、数字之间的盘古之白（自动加空格）",
+        "统一转换 `$...$` 与 `\\(...\\)` 公式定界符"
+      ],
+      "inputFormats": [".md", ".txt"],
+      "outputFormats": [".txt", ".md", ".html"],
+      "privacyGuarantee": "本地正则与 AST 清洗，未发表论文段落零上传。",
+      "scores": {
+        "frequency": 9.1,
+        "searchDemand": 8.9,
+        "frontendFeasibility": 9.8,
+        "privacyAdvantage": 9.2,
+        "lowMaintenanceCost": 9.7,
+        "uniqueness": 8.9
+      }
+    },
+    {
+      "id": "qrcode-studio",
+      "title": "校园问卷与高清二维码生成",
+      "category": "开发与数据",
+      "status": "queued",
+      "summary": "纯本地生成高容错率 SVG/PNG 二维码，支持嵌入社团 Logo、自定义配色、Wi-Fi 连接码与批量编号导出",
+      "painPoint": "网上免费二维码生成器常把直接链接替换为短链跳转（过期即失效或插广告），导致印在社团招新海报或毕业答辩 PPT 上的二维码失效。",
+      "targetScenarios": [
+        "课程问卷星/腾讯问卷原生直链永久二维码生成",
+        "社团招新海报带中心 Logo 的高清矢量 SVG 二维码",
+        "实验室设备标签批量二维码生成与 ZIP 下载"
+      ],
+      "inputFormats": [".txt", ".csv"],
+      "outputFormats": [".svg", ".png", ".zip"],
+      "privacyGuarantee": "编码完全在本地生成原生码图，绝不劫持短链或统计扫码隐私。",
+      "scores": {
+        "frequency": 8.7,
+        "searchDemand": 9.0,
+        "frontendFeasibility": 9.4,
+        "privacyAdvantage": 9.5,
+        "lowMaintenanceCost": 9.4,
+        "uniqueness": 9.4
+      }
+    }
+  ]
+}

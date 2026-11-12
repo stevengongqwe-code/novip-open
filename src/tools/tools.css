@@ -1,0 +1,309 @@
+.tool-main{max-width:1120px;margin:auto;padding:28px 24px}.tool-main h1{font-size:27px}.tool-main h2{font-size:18px}.tool-main>.study-card{margin:20px 0}.tool-main fieldset{min-width:0;border:1px solid #cbd5e1;border-radius:10px;padding:16px}.tool-main input[type=file]{margin:15px 0}.tool-main textarea{min-height:150px}.tool-main pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#fafafa;border-radius:8px;padding:14px;color:#202024}.tool-main button:disabled{opacity:.5}.tool-main .study-fields input,.tool-main .study-fields select{font-size:16px}.tool-main input[type=number]{max-width:100%}.tool-main ins{background:#f4f4f5;text-decoration:none}.tool-main del{background:#ffe4e4}.tool-main canvas{max-width:100%;height:auto}.tool-main img{max-width:100%;max-height:400px;object-fit:contain}.tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.tool-queue{list-style:none;padding:0}.tool-queue li{border-bottom:1px solid #cbd5e1;padding:12px 0;display:flex;align-items:center;gap:9px;overflow-wrap:anywhere}.tool-queue li span{flex:1;min-width:0}.tool-queue button{min-width:44px;min-height:44px}.home-search{width:100%;padding:14px;border:1px solid #334155;border-radius:10px;font-size:16px}.home-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.home-card{display:block;padding:20px;border:1px solid #cbd5e1;border-radius:12px;background:white;color:#222;transition:border-color .15s ease,transform .15s ease,box-shadow .15s ease}.home-card:hover{border-color:#2563eb;transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.06)}.home-card:active{transform:scale(.985)}.home-card h3{font-size:18px;margin:0 0 8px;color:#18181b}.home-card p{font-size:13px;color:#334155;margin:0;line-height:1.5}.home-recent{display:flex;gap:8px;flex-wrap:wrap}.home-recent a{padding:10px;border:1px solid #cbd5e1;border-radius:8px;background:white;color:#202024}.home-lead{font-size:36px;color:#c9232c}.tool-error-boundary{padding:30px;background:#fff5f0;color:#713b2d}.resume-preview{background:white;padding:32px;border:1px solid #cbd5e1;border-top:6px solid #c9232c}.resume-preview h2{font-size:27px}.resume-preview h3{border-bottom:1px solid #334155;padding-bottom:8px}.resume-preview p{white-space:pre-wrap}.resume-preview.classic{border-top:1px solid #cbd5e1;color:#222;font-family:serif}.resume-preview.simple{border-top:6px solid #6a7b91}.tool-drop{border:1px dashed #334155;padding:20px;border-radius:10px}.tool-main .study-btn{min-height:44px}@media(max-width:760px){.tool-grid{grid-template-columns:1fr}.home-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tool-main{padding:22px 16px}.tool-main .study-fields{grid-template-columns:1fr}.home-lead{font-size:29px}}@media(max-width:390px){.home-grid{grid-template-columns:1fr}.tool-main h1{font-size:23px}}
+.home-grid .home-card.home-photo-entry{display:block;margin:0;max-width:none;padding:20px;background:#fff}.home-grid .home-photo-entry h3{margin:0 0 8px}
+.sheet-order button,.convert-file-list button{min-width:44px;min-height:44px}.sheet-source-heading label{min-width:0;overflow-wrap:anywhere}.study-btn:focus-visible,.home-card:focus-visible,.tool-navigation a:focus-visible{outline:3px solid #334155;outline-offset:3px}
+.batch-queue li{align-items:flex-start;flex-wrap:wrap}.batch-queue li>div:first-child{flex:1;min-width:160px}.batch-queue p{margin:6px 0;overflow-wrap:anywhere}.batch-queue textarea{width:100%}.tool-main figure{margin:8px;min-width:0}.tool-main input:not([type=checkbox]):not([type=range]),.tool-main select{max-width:100%;min-height:44px;font-size:16px}.tool-main label{overflow-wrap:anywhere}.tool-main fieldset input:not([type=checkbox]):not([type=range]){width:100%}
+.home-search{border-color:#d4d4d8}.home-search:focus{outline:2px solid #2563eb;outline-offset:2px}.home-recent a{border-color:#cbd5e1;color:#292929}
+
+/* 请假理由优化助手 leave-helper */
+.study-lead{font-size:16px;color:#334155;margin:4px 0 0}
+.study-req{color:#c9232c}
+.study-field{display:block;margin:14px 0}
+.study-field-label{display:block;font-size:13px;color:#334155;margin-bottom:8px}
+.study-choices{display:flex;flex-wrap:wrap;gap:8px}
+.study-choices button{min-height:44px;padding:10px 16px;border:1px solid #d4d4d8;border-radius:999px;background:#fff;color:#3f3f46;font-size:14px;cursor:pointer;transition:transform .08s ease}
+.study-choices button:active{transform:scale(.98)}
+.study-choices button.on{background:#fff0f1;border-color:#c9232c;color:#ae1923;font-weight:700}
+.study-choices button:hover{border-color:#c9232c}
+.study-result{border:1px solid #cbd5e1;border-radius:12px;padding:16px;margin:14px 0;background:#fff}
+.study-result h3{font-size:16px;margin:0 0 4px}
+.study-result h3 small{display:block;font-weight:400;color:#334155;font-size:12px;margin-top:4px}
+.study-pre{user-select:text;-webkit-user-select:text}
+.study-faq{border:1px solid #cbd5e1;border-radius:10px;margin:10px 0;overflow:hidden}
+.study-faq>button{width:100%;text-align:left;background:#fafafa;border:0;padding:14px 16px;font-size:15px;font-weight:600;cursor:pointer;min-height:48px;color:#18181b}
+.study-faq>button small{display:block;font-weight:400;color:#334155;font-size:12px;margin-top:4px}
+.study-faq>div{padding:0 16px 16px}
+.study-checklist{list-style:none;padding:0;margin:12px 0}
+.study-checklist li{border:1px solid #cbd5e1;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:14px}
+.study-checklist li strong{display:block;margin-bottom:4px}
+.study-checklist li span{color:#334155}
+.study-checklist li.st-pass{border-left:4px solid #16a34a}
+.study-checklist li.st-warn{border-left:4px solid #c9232c;background:#fff7f7}
+.study-checklist li.st-info{border-left:4px solid #334155}
+
+/* 统一工具页上传区 */
+.tool-drop{border:2px dashed #d4d4d8;padding:24px 18px;border-radius:12px;background:#fafafa;text-align:center;transition:border-color .15s ease-out,background-color .15s ease-out;cursor:pointer}
+.tool-drop:hover,.tool-drop:focus-within{border-color:#2563eb;background:#f8fafc}
+.tool-drop input[type=file]{margin:10px auto;display:block}
+
+/* 首页分类胶囊导航与快捷标签 */
+.home-category-pills{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 12px;margin:14px 0 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.home-category-pills::-webkit-scrollbar{display:none}
+.home-pill{min-height:42px;padding:8px 16px;border:1px solid #cbd5e1;border-radius:9999px;background:#fff;color:#334155;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s ease-out}
+.home-pill:hover{border-color:#334155;color:#18181b}
+.home-pill.active{background:#18181b;border-color:#18181b;color:#fff;font-weight:600}
+.home-quick-tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:12px;color:#334155}
+.home-tag-btn{background:#f4f4f5;border:1px solid #cbd5e1;border-radius:6px;padding:4px 10px;font-size:12px;color:#3f3f46;cursor:pointer;min-height:32px;transition:all .15s ease-out}
+.home-tag-btn:hover{background:#cbd5e1;color:#18181b}
+
+/* 首次访问轻量欢迎横幅 */
+.home-welcome-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:#eff6ff;border:1px solid #bfdbfe;border-left:4px solid #2563eb;border-radius:10px;margin:0 0 16px;color:#1e40af;transition:opacity .2s ease,transform .2s ease}
+.home-welcome-content{display:flex;align-items:center;gap:10px;min-width:0}
+.home-welcome-icon{font-size:18px;flex-shrink:0}
+.home-welcome-text{display:flex;flex-direction:column;gap:2px}
+.home-welcome-text strong{font-size:13px;color:#1e40af}
+.home-welcome-text span{font-size:12px;color:#1d4ed8;line-height:1.4}
+.home-welcome-close{background:none;border:0;color:#1e40af;padding:6px;border-radius:6px;cursor:pointer;font-size:14px;line-height:1;min-width:32px;min-height:32px;display:flex;align-items:center;justify-content:center;transition:background-color .15s}
+.home-welcome-close:hover{background:rgba(37,99,235,.1)}
+
+/* 核心急救专区卡片微交互 */
+.home-hero-card{border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;justify-content:space-between;gap:12px;box-shadow:0 1px 3px rgba(0,0,0,.03);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.home-hero-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.06)}
+.home-hero-card:active{transform:scale(.988)}
+.home-hero-card-blue{background:#eff6ff;border:1px solid #bfdbfe}
+.home-hero-card-blue:hover{border-color:#93c5fd}
+.home-hero-title-blue{color:#1e40af}
+.home-hero-badge-blue{background:#dbeafe;color:#1d4ed8}
+.home-hero-desc-blue{color:#1e40af}
+.home-hero-card-green{background:#f0fdf4;border:1px solid #bbf7d0}
+.home-hero-card-green:hover{border-color:#86efac}
+.home-hero-title-green{color:#166534}
+.home-hero-badge-green{background:#dcfce7;color:#15803d}
+.home-hero-desc-green{color:#166534}
+.home-hero-card-yellow{background:#fefce8;border:1px solid #fef08a}
+.home-hero-card-yellow:hover{border-color:#fde047}
+.home-hero-title-yellow{color:#854d0e}
+.home-hero-badge-yellow{background:#fef9c3;color:#a16207}
+.home-hero-desc-yellow{color:#854d0e}
+.home-hero-card-purple{background:#faf5ff;border:1px solid #e9d5ff}
+.home-hero-card-purple:hover{border-color:#d8b4fe}
+.home-hero-title-purple{color:#6b21a8}
+.home-hero-badge-purple{background:#f3e8ff;color:#7e22ce}
+.home-hero-desc-purple{color:#6b21a8}
+
+/* 工具页按钮微交互 */
+.study-btn{transition:transform .1s ease,background-color .15s ease,box-shadow .15s ease}
+.study-btn:hover:not(:disabled){box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.study-btn:active:not(:disabled){transform:scale(.98)}
+
+/* 工具页文件上限提示与微信环境提示条 */
+.upload-limit-banner{background:#f8fafc;border:1px solid #e2e8f0;border-left:4px solid #3b82f6;border-radius:8px;padding:10px 14px;margin:0 0 14px;font-size:13px;color:#334155;line-height:1.5}
+.upload-limit-banner strong{color:#0f172a}
+.wechat-notice{background:#f0fdf4;border:1px solid #bbf7d0;border-left:4px solid #16a34a;border-radius:8px;padding:10px 14px;margin:12px 0;font-size:13px;color:#14532d;line-height:1.5}
+.wechat-notice-title{font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:6px;color:#15803d}
+
+/* 统一进度条与骨架屏 */
+.study-progress-container{width:100%;margin:12px 0}
+.study-progress-bar-wrapper{width:100%;height:8px;background:#cbd5e1;border-radius:999px;overflow:hidden;position:relative}
+.study-progress-bar-fill{height:100%;background:#2563eb;border-radius:999px;transition:width .2s ease}
+.study-progress-bar-indeterminate{height:100%;background:linear-gradient(90deg,transparent,#2563eb,transparent);background-size:200% 100%;animation:study-shimmer 1.5s infinite linear;border-radius:999px}
+.study-progress-info{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:12px;color:#334155}
+.study-progress-percent{font-weight:600;color:#2563eb}
+
+.study-skeleton-group{display:flex;flex-direction:column;gap:8px;width:100%;margin:10px 0}
+.study-skeleton-line{background:linear-gradient(90deg,#f4f4f5 25%,#cbd5e1 50%,#f4f4f5 75%);background-size:200% 100%;animation:study-shimmer 1.6s infinite ease-in-out;border-radius:6px}
+@keyframes study-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* 处理成功的轻量完成反馈（对勾+文案） */
+.study-success-notice{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#f0fdf4;border:1px solid #bbf7d0;border-left:4px solid #16a34a;border-radius:8px;color:#15803d;margin:12px 0;animation:study-fade-in .25s ease-out}
+.study-success-icon{flex-shrink:0;color:#16a34a}
+.study-success-body{display:flex;flex-direction:column;gap:2px}
+.study-success-title{font-size:13px;font-weight:600;color:#14532d}
+.study-success-sub{font-size:12px;color:#166534}
+@keyframes study-fade-in{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+/* 插画感空状态 */
+.study-empty-illustration-box{display:flex;flex-direction:column;align-items:center;text-align:center;padding:32px 16px;margin:16px 0;border:1px dashed #d4d4d8;border-radius:12px;background:#fafafa}
+.study-empty-art{margin-bottom:12px;color:#334155}
+.study-empty-svg{display:block}
+.study-empty-spark-bg{fill:#f4f4f5}
+.study-empty-heading{font-size:15px;font-weight:600;color:#27272a;margin:0 0 6px}
+.study-empty-text{font-size:13px;color:#334155;margin:0 0 14px;max-width:420px;line-height:1.6}
+.study-empty-action{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
+
+/* 失败态给可行动建议 */
+.study-actionable-error{background:#fff5f5;border:1px solid #fecaca;border-left:4px solid #ef4444;border-radius:8px;padding:12px 14px;color:#991b1b;margin:12px 0}
+.study-error-title-row{display:flex;align-items:center;gap:8px;font-size:13px;color:#991b1b;margin-bottom:8px}
+.study-error-advice{background:#fff;border:1px solid #fee2e2;border-radius:6px;padding:8px 12px;margin-top:6px}
+.study-error-advice-tag{font-size:12px;font-weight:600;color:#b91c1c;display:block;margin-bottom:4px}
+.study-error-advice-list{margin:0;padding-left:18px;font-size:12px;color:#7f1d1d;line-height:1.6}
+
+/* 移动端与微信内安全距离与触控热区 */
+@media(max-width:760px){
+  .tool-main{padding-bottom:max(32px,env(safe-area-inset-bottom,32px))}
+  .study-actions{flex-direction:column;gap:8px}
+  .study-actions>.study-btn{width:100%;min-height:46px}
+  .tool-drop{padding:20px 14px}
+}
+
+/* 尊重减少动态效果设置 */
+@media(prefers-reduced-motion:reduce){
+  .home-card, .home-hero-card, .study-btn, .tool-drop, .study-success-notice, .study-choices button, .home-welcome-banner{
+    transition:none!important;
+    transform:none!important;
+    animation:none!important;
+  }
+  .study-progress-bar-indeterminate, .study-skeleton-line{
+    animation:none!important;
+  }
+}
+
+/* ==================== 分享给同学与分享卡片 ==================== */
+.study-share-box{background:#f8fafc;border:1px solid #cbd5e1;border-radius:10px;padding:16px 18px;margin:16px 0}
+.study-share-header{margin-bottom:12px}
+.study-share-tag{font-size:12px;color:#c9232c;font-weight:700}
+.study-share-title{font-size:15px;color:#18181b;margin-left:4px}
+.study-share-badge{font-size:11px;background:#e0f2fe;color:#0284c7;font-weight:600;padding:1px 6px;border-radius:4px;margin-left:6px}
+.study-share-desc{font-size:13px;color:#334155;margin:4px 0 0;line-height:1.5}
+.study-share-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.study-share-btn{font-size:13px;padding:8px 16px;border-radius:6px}
+.study-share-message{color:#16a34a;font-weight:500}
+
+/* ==================== 首页继续上次使用 ==================== */
+.home-recent-section{margin-bottom:24px}
+.home-resume-badge{font-size:11px;background:#f4f4f5;color:#334155;padding:1px 6px;border-radius:4px}
+.home-recent-card{display:flex;flex-direction:column;justify-content:space-between;padding:14px 16px;border-radius:10px;border:1px solid #cbd5e1;background:#ffffff;text-decoration:none;color:inherit;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.home-recent-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.05);border-color:#2563eb}
+.home-recent-card.primary{border:1.5px solid #2563eb;background:#eff6ff}
+.home-recent-badge{font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;background:#f4f4f5;color:#334155}
+.home-recent-badge.primary{background:#dbeafe;color:#1d4ed8}
+.home-recent-name{font-size:15px;color:#18181b;margin:4px 0;display:block}
+.home-recent-name.primary{color:#1e40af}
+.home-recent-task{font-size:12px;color:#334155;margin:0;line-height:1.4}
+.home-recent-task.primary{color:#1e40af}
+.home-recent-action{font-size:12px;font-weight:600;color:#334155}
+.home-recent-action.primary{color:#2563eb}
+
+/* ==================== 404 / 错误页 ==================== */
+.not-found-main{max-width:840px;margin:auto;padding:32px 20px}
+.not-found-banner{text-align:center;margin-bottom:28px}
+.not-found-code{font-size:48px;font-weight:800;color:#c9232c;line-height:1;display:block;margin-bottom:8px}
+.not-found-title{font-size:26px;font-weight:700;color:#18181b;margin:0 0 10px}
+.not-found-subtitle{font-size:15px;color:#334155;margin:0 0 20px}
+.not-found-attitude-card{background:#fff7f7;border-left:4px solid #c9232c;border-radius:8px;padding:14px 18px;text-align:left;margin:0 auto;max-width:680px}
+.not-found-attitude-tag{font-size:13px;font-weight:700;color:#c9232c;display:block;margin-bottom:4px}
+.not-found-attitude-text{font-size:14px;color:#3f3f46;line-height:1.6;margin:0}
+.not-found-card{padding:16px 18px}
+
+/* ==================== 暗色模式对比度适配 (正文 ≥ 4.5:1) ==================== */
+@media(prefers-color-scheme:dark){
+  :where(html[data-novip-visual-mode]) .study-app{background:#121214;color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .study-header{background:#18181b;border-bottom-color:#27272a}
+  :where(html[data-novip-visual-mode]) .study-card{background:#18181b;border-color:#27272a;color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .tool-main h1,:where(html[data-novip-visual-mode]) .tool-main h2{color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .tool-main p{color:#d4d4d8}
+  :where(html[data-novip-visual-mode]) .tool-main pre{background:#1f1f23;color:#cbd5e1}
+  :where(html[data-novip-visual-mode]) .tool-main fieldset{border-color:#3f3f46}
+  :where(html[data-novip-visual-mode]) .tool-main input:not([type=checkbox]),:where(html[data-novip-visual-mode]) .tool-main select,:where(html[data-novip-visual-mode]) .tool-main textarea{background:#1f1f23;color:#f4f4f5;border-color:#3f3f46}
+
+  /* 首页卡片与搜索 */
+  :where(html[data-novip-visual-mode]) .home-card{background:#18181b;border-color:#27272a;color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .home-card:hover{border-color:#3b82f6;box-shadow:0 6px 16px rgba(0,0,0,.4)}
+  :where(html[data-novip-visual-mode]) .home-card h3{color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .home-card p{color:#475569}
+  :where(html[data-novip-visual-mode]) .home-search{background:#1f1f23;border-color:#3f3f46;color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .home-recent a{background:#1f1f23;border-color:#27272a;color:#cbd5e1}
+
+  /* 胶囊标签与热搜词 */
+  :where(html[data-novip-visual-mode]) .home-pill{background:#1f1f23;border-color:#27272a;color:#d4d4d8}
+  :where(html[data-novip-visual-mode]) .home-pill:hover{border-color:#334155;color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .home-pill.active{background:#f4f4f5;border-color:#f4f4f5;color:#18181b}
+  :where(html[data-novip-visual-mode]) .home-quick-tags{color:#475569}
+  :where(html[data-novip-visual-mode]) .home-tag-btn{background:#27272a;border-color:#3f3f46;color:#cbd5e1}
+  :where(html[data-novip-visual-mode]) .home-tag-btn:hover{background:#3f3f46;color:#fff}
+
+  /* 首次访问轻量横幅暗色 */
+  :where(html[data-novip-visual-mode]) .home-welcome-banner{background:#1e293b;border-color:#334155;color:#bfdbfe}
+  :where(html[data-novip-visual-mode]) .home-welcome-text strong{color:#bfdbfe}
+  :where(html[data-novip-visual-mode]) .home-welcome-text span{color:#93c5fd}
+  :where(html[data-novip-visual-mode]) .home-welcome-close{color:#bfdbfe}
+
+  /* 急救卡片暗色 */
+  :where(html[data-novip-visual-mode]) .home-hero-card-blue{background:#0f172a;border-color:#1e3a8a}
+  :where(html[data-novip-visual-mode]) .home-hero-title-blue{color:#93c5fd}
+  :where(html[data-novip-visual-mode]) .home-hero-badge-blue{background:#1e3a8a;color:#bfdbfe}
+  :where(html[data-novip-visual-mode]) .home-hero-desc-blue{color:#bfdbfe}
+
+  :where(html[data-novip-visual-mode]) .home-hero-card-green{background:#052e16;border-color:#14532d}
+  :where(html[data-novip-visual-mode]) .home-hero-title-green{color:#86efac}
+  :where(html[data-novip-visual-mode]) .home-hero-badge-green{background:#14532d;color:#bbf7d0}
+  :where(html[data-novip-visual-mode]) .home-hero-desc-green{color:#bbf7d0}
+
+  :where(html[data-novip-visual-mode]) .home-hero-card-yellow{background:#1c1917;border-color:#78350f}
+  :where(html[data-novip-visual-mode]) .home-hero-title-yellow{color:#fde047}
+  :where(html[data-novip-visual-mode]) .home-hero-badge-yellow{background:#78350f;color:#fef08a}
+  :where(html[data-novip-visual-mode]) .home-hero-desc-yellow{color:#fef08a}
+
+  :where(html[data-novip-visual-mode]) .home-hero-card-purple{background:#1e1035;border-color:#581c87}
+  :where(html[data-novip-visual-mode]) .home-hero-title-purple{color:#d8b4fe}
+  :where(html[data-novip-visual-mode]) .home-hero-badge-purple{background:#581c87;color:#e9d5ff}
+  :where(html[data-novip-visual-mode]) .home-hero-desc-purple{color:#e9d5ff}
+
+  /* 上传区与横幅暗色 */
+  :where(html[data-novip-visual-mode]) .tool-drop{background:#18181b;border-color:#3f3f46;color:#cbd5e1}
+  :where(html[data-novip-visual-mode]) .upload-limit-banner{background:#0f172a;border-color:#1e3a8a;color:#bfdbfe}
+  :where(html[data-novip-visual-mode]) .upload-limit-banner strong{color:#93c5fd}
+  :where(html[data-novip-visual-mode]) .wechat-notice{background:#052e16;border-color:#14532d;color:#bbf7d0}
+  :where(html[data-novip-visual-mode]) .wechat-notice-title{color:#86efac}
+
+  /* 空状态暗色 */
+  :where(html[data-novip-visual-mode]) .study-empty-illustration-box{background:#18181b;border-color:#3f3f46}
+  :where(html[data-novip-visual-mode]) .study-empty-art{color:#475569}
+  :where(html[data-novip-visual-mode]) .study-empty-spark-bg{fill:#27272a}
+  :where(html[data-novip-visual-mode]) .study-empty-heading{color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .study-empty-text{color:#d4d4d8}
+
+  /* 成功态暗色 */
+  :where(html[data-novip-visual-mode]) .study-success-notice{background:#052e16;border-color:#14532d;color:#86efac}
+  :where(html[data-novip-visual-mode]) .study-success-icon{color:#86efac}
+  :where(html[data-novip-visual-mode]) .study-success-title{color:#bbf7d0}
+  :where(html[data-novip-visual-mode]) .study-success-sub{color:#86efac}
+
+  /* 失败态暗色 */
+  :where(html[data-novip-visual-mode]) .study-actionable-error{background:#2a1215;border-color:#7f1d1d;color:#fca5a5}
+  :where(html[data-novip-visual-mode]) .study-error-title-row{color:#fca5a5}
+  :where(html[data-novip-visual-mode]) .study-error-advice{background:#1c0d0e;border-color:#4c1d1d}
+  :where(html[data-novip-visual-mode]) .study-error-advice-tag{color:#fca5a5}
+  :where(html[data-novip-visual-mode]) .study-error-advice-list{color:#fecaca}
+
+  /* 骨架屏与进度条暗色 */
+  :where(html[data-novip-visual-mode]) .study-progress-bar-wrapper{background:#27272a}
+  :where(html[data-novip-visual-mode]) .study-progress-bar-fill{background:#3b82f6}
+  :where(html[data-novip-visual-mode]) .study-progress-info{color:#475569}
+  :where(html[data-novip-visual-mode]) .study-skeleton-line{background:linear-gradient(90deg,#1f1f23 25%,#27272a 50%,#1f1f23 75%);background-size:200% 100%}
+
+  /* 按钮与次要操作暗色 */
+  :where(html[data-novip-visual-mode]) .study-btn.alt{background:#27272a;border-color:#3f3f46;color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .study-btn.alt:hover{background:#3f3f46}
+  :where(html[data-novip-visual-mode]) .study-choices button{background:#1f1f23;border-color:#3f3f46;color:#cbd5e1}
+  :where(html[data-novip-visual-mode]) .study-choices button.on{background:#3b1219;border-color:#ef4444;color:#fca5a5}
+  :where(html[data-novip-visual-mode]) .study-faq>button{background:#1f1f23;color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .study-faq{border-color:#27272a}
+  :where(html[data-novip-visual-mode]) .study-result{background:#18181b;border-color:#27272a}
+  :where(html[data-novip-visual-mode]) .study-result h3 small{color:#475569}
+  :where(html[data-novip-visual-mode]) .study-checklist li{border-color:#27272a;background:#18181b}
+  :where(html[data-novip-visual-mode]) .study-checklist li span{color:#475569}
+  :where(html[data-novip-visual-mode]) .home-secondary-tools{background:#18181b!important;border-color:#27272a!important}
+  :where(html[data-novip-visual-mode]) .home-secondary-tools summary{color:#cbd5e1!important}
+
+  /* 分享与继续上次暗色 */
+  :where(html[data-novip-visual-mode]) .study-share-box{background:#18181b;border-color:#27272a}
+  :where(html[data-novip-visual-mode]) .study-share-title{color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .study-share-desc{color:#475569}
+  :where(html[data-novip-visual-mode]) .study-share-badge{background:#082f49;color:#7dd3fc}
+  :where(html[data-novip-visual-mode]) .home-recent-card{background:#18181b;border-color:#27272a;color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .home-recent-card.primary{background:#172554;border-color:#2563eb}
+  :where(html[data-novip-visual-mode]) .home-recent-badge{background:#27272a;color:#475569}
+  :where(html[data-novip-visual-mode]) .home-recent-badge.primary{background:#1e3a8a;color:#93c5fd}
+  :where(html[data-novip-visual-mode]) .home-recent-name{color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .home-recent-name.primary{color:#bfdbfe}
+  :where(html[data-novip-visual-mode]) .home-recent-task{color:#475569}
+  :where(html[data-novip-visual-mode]) .home-recent-task.primary{color:#bfdbfe}
+  :where(html[data-novip-visual-mode]) .home-recent-action{color:#475569}
+  :where(html[data-novip-visual-mode]) .home-recent-action.primary{color:#60a5fa}
+  :where(html[data-novip-visual-mode]) .not-found-title{color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .not-found-subtitle{color:#475569}
+  :where(html[data-novip-visual-mode]) .not-found-code{color:#ef4444}
+  :where(html[data-novip-visual-mode]) .not-found-attitude-card{background:#271318;border-left-color:#ef4444}
+  :where(html[data-novip-visual-mode]) .not-found-attitude-tag{color:#fca5a5}
+  :where(html[data-novip-visual-mode]) .not-found-attitude-text{color:#fecaca}
+}

@@ -1,0 +1,157 @@
+.ppt-ex-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.ppt-ex-stat {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.ppt-ex-stat span {
+  display: block;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.ppt-ex-stat strong {
+  display: block;
+  font-size: 20px;
+  font-weight: 750;
+  color: #0f172a;
+  margin-top: 2px;
+}
+
+.ppt-ex-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.ppt-ex-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.ppt-ex-thumb {
+  height: 148px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: repeating-conic-gradient(#f1f5f9 0% 25%, #ffffff 0% 50%) 50% / 14px 14px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ppt-ex-thumb img {
+  max-width: 100%;
+  max-height: 124px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.ppt-ex-thumb-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ppt-ex-thumb-placeholder small {
+  font-size: 11px;
+  font-weight: 400;
+  color: #64748b;
+}
+
+.ppt-ex-body {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ppt-ex-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.ppt-ex-title strong {
+  font-size: 13px;
+  color: #0f172a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ppt-ex-badge {
+  flex: none;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: #f1f5f9;
+  color: #334155;
+  text-transform: uppercase;
+}
+
+.ppt-ex-meta {
+  font-size: 11px;
+  color: #64748b;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ppt-ex-slides {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.ppt-ex-slide-pill {
+  font-size: 11px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: #fff1f2;
+  color: #c9232c;
+  font-weight: 600;
+}
+
+.ppt-ex-dup-pill {
+  font-size: 11px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #b45309;
+}
+
+@media (max-width: 860px) {
+  .ppt-ex-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ppt-ex-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .ppt-ex-grid {
+    grid-template-columns: 1fr;
+  }
+}

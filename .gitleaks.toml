@@ -1,0 +1,21 @@
+# Gitleaks 配置文件 - NOVIP 专属安全扫描基线
+# 目标：拦截泄露凭证、API Key 与私钥，同时过滤前端本地存储键名与单元测试 Mock 误报。
+
+title = "NOVIP Gitleaks Config"
+
+[extend]
+# 继承官方最新默认探测规则库
+
+[allowlist]
+description = "NOVIP 误报与测试用例白名单"
+paths = [
+  '''tests/.*\.test\.(ts|js|mjs)$''',
+  '''package-lock\.json$''',
+  '''vendor/.*'''
+]
+regexes = [
+  '''NAV_FAVORITES_KEY''',
+  '''mock_key''',
+  '''test_key''',
+  '''novip_mock_.*'''
+]

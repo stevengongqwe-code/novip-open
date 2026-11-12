@@ -1,0 +1,89 @@
+name: NOVIP build gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: novip-build-gate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Gitleaks
+        run: |
+          set -euo pipefail
+          curl -fsSL https://github.com/gitleaks/gitleaks/releases/download/v8.24.3/gitleaks_8.24.3_linux_x64.tar.gz | sudo tar -xz -C /usr/local/bin gitleaks
+          gitleaks version
+
+      - name: Code Security & Secret Scan (Gitleaks)
+        run: npm run security:scan
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Recover vendor/xlsx from official CDN (sha512 pinned in package-lock.json)
+        run: |
+          set -euo pipefail
+          mkdir -p vendor
+          curl -fsSL https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz -o vendor/xlsx-0.20.3.tgz
+          expected="$(node -p "require('./package-lock.json').packages['node_modules/xlsx'].integrity")"
+          actual="sha512-$(openssl dgst -sha512 -binary vendor/xlsx-0.20.3.tgz | base64 -w0)"
+          echo "expected=$expected"
+          echo "actual  =$actual"
+          test "$expected" = "$actual"
+
+      - name: Install
+        run: npm ci
+
+      - name: Dependency Security Audit
+        run: npm run security:audit || true
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Unit tests
+        run: npm test
+
+      # 手动管线：应用运行时从 /pdfjs/cmaps、/pdfjs/standard_fonts、/pdfjs/wasm 加载
+      - name: Prepare pdf.js assets
+        run: node scripts/prepare-pdfjs.mjs
+
+      - name: Build
+        run: npm run build
+
+      # SEO 预渲染门禁：深链页面、canonical、sitemap、EdgeOne 规则、启动兜底
+      - name: Verify SEO build
+        run: npm run verify:seo
+
+      # 生产静态资源（fonts / logo / 二维码）当前不入库，由 recover-assets 在本地或部署工作流中回收。
+      # 只有仓库内已提交或回收这些完整资源时才执行发布门禁，避免常规 CI 门禁误触发缺失全量生产字体的全包校验。
+      - name: Release gate (only when production assets are committed)
+        if: ${{ hashFiles('public/novip-logo.jpg', 'public/author-wechat-qr.png') != '' }}
+        run: node scripts/verify-build.mjs dist
+
+      - name: CI Summary Report
+        if: always()
+        run: |
+          echo "### NOVIP Build & Security Gate Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Ref**: \`${{ github.ref }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ${{ job.status == 'success' && '✅ All Checks Passed' || '❌ Build/Test Failed' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Node**: 22" >> $GITHUB_STEP_SUMMARY
+          echo "- **Secret Scan**: Gitleaks Enforced (.gitleaks.toml)" >> $GITHUB_STEP_SUMMARY
+          echo "- **SEO & Security Gate**: Automated" >> $GITHUB_STEP_SUMMARY

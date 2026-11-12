@@ -1,0 +1,79 @@
+/* The campus desk is its own canvas; legacy tool styles stay on their routes. */
+.campus-desk{--ink:#262942;--muted:#565c70;--blue:#444883;--line:#d9dce5;color-scheme:light;background:#f8f9fc;color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh}
+.campus-desk *, .campus-desk *::after,.campus-desk *::before{box-sizing:border-box}
+.campus-desk h1,.campus-desk h2,.campus-desk h3,.campus-desk p{color:inherit;margin:0;line-height:1.35}
+.campus-desk button,.desk-return{appearance:none;font:inherit;cursor:pointer}
+.campus-desk button,.campus-desk a{color:inherit;text-decoration:none;letter-spacing:normal}
+.campus-desk button{background:transparent;border:0;padding:0;box-shadow:none}
+.campus-desk :is(a,button,input,section):focus-visible,.desk-contact summary:focus-visible{outline:3px solid #485ab2;outline-offset:3px}
+.campus-desk .desk-wrap,.desk-contact{width:min(1160px,calc(100% - 80px));margin-inline:auto}
+.desk-bar{border-bottom:1px solid var(--line);background:#fff}
+.desk-bar-in{display:flex;align-items:center;gap:44px;min-height:70px}
+.desk-brand{display:inline-flex;align-items:center;gap:10px;font:900 22px/1 Arial,sans-serif;letter-spacing:-1.2px!important}
+.desk-brand>span{background:#30365e;color:white;border-radius:7px;width:33px;height:33px;display:grid;place-items:center;transform:rotate(-4deg)}
+.desk-bar nav{display:flex;gap:25px;align-items:center}
+.desk-bar nav :is(a,button),.desk-foot nav :is(a,button){font-size:14px;font-weight:600}
+.desk-bar nav :is(a,button):hover,.desk-foot nav :is(a,button):hover,.desk-saved a:hover{text-decoration:underline;text-underline-offset:4px}
+.campus-desk .novip-lang-switcher{margin-left:auto;display:inline-flex;gap:2px;background:#edf0f6;border:0;border-radius:7px;padding:3px;box-shadow:none}
+.campus-desk .novip-lang-segment{color:#51576c;background:none;border:0;border-radius:5px;padding:6px 10px;line-height:1.1;font-size:12px;min-height:28px;text-shadow:none}
+.campus-desk .novip-lang-segment.active{color:#252a51;background:white;box-shadow:0 1px 3px #22224420}
+.campus-desk .novip-lang-divider{display:none}
+.campus-desk main.desk-wrap{padding:28px 0 0!important;display:block;background:transparent}
+.desk-cover{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;position:relative;isolation:isolate;overflow:hidden;background:#e1e5fb;border:1px solid #c5cce8;border-radius:16px;padding:clamp(28px,3.6vw,52px);gap:12px}
+.desk-intro{position:relative;z-index:1}
+.desk-edition{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:#474e76}
+.desk-edition span{width:20px;height:3px;background:#535b91}
+.campus-desk h1{font-size:clamp(44px,5vw,75px);font-weight:820;letter-spacing:-.055em;line-height:1.15;margin:12px 0 12px;color:#252944}
+.desk-intro p{font-size:clamp(14px,1.3vw,17px);color:#48506b;line-height:1.7;max-width:39em}
+.desk-folio{width:100%;height:auto;display:block}
+.desk-search{display:flex;gap:10px;align-items:center;margin-top:22px;max-width:480px;background:#fff;border:1px solid #a9b1d1;border-radius:9px;padding:6px 6px 6px 15px;color:#515a83;box-shadow:0 3px 0 #b1b8da65}
+.desk-search:focus-within{outline:2px solid var(--blue);outline-offset:1px}
+.desk-search input{font:inherit;font-size:15px;flex:1;min-width:0;color:#252944;border:0;background:transparent;border-radius:0;padding:5px 0;box-shadow:none;outline:0!important}
+.desk-search input::placeholder{color:#646b80}
+.desk-search button{display:grid;place-items:center;background:#353b66;color:white;width:39px;height:37px;border-radius:6px;flex:none}
+.desk-search button:hover{background:#4b528c}
+.desk-shortcuts,.desk-index{margin-top:32px}
+.campus-desk h2{font-weight:750;font-size:clamp(22px,2.2vw,30px);letter-spacing:-.04em}
+.desk-picks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+.desk-pick{display:flex;align-items:center;gap:16px;padding:20px 16px;border:1px solid #d7dae5;border-radius:10px;background:#fff}
+.desk-tool-stamp{display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;width:46px;height:55px;flex:none;color:#494b81;background:#e7e7f8;border-radius:5px 10px 5px 5px;transform:rotate(-4deg)}
+.pick-1 .desk-tool-stamp{color:#83542c;background:#f8e4cd;transform:rotate(4deg)}
+.pick-2 .desk-tool-stamp{color:#315e56;background:#d9eae2}
+.desk-tool-stamp small{font:700 9px/1.4 ui-monospace,monospace;letter-spacing:.1em}
+.desk-pick h3,.desk-list h3{font-weight:730;font-size:17px;letter-spacing:-.02em}
+.desk-pick p{color:var(--muted);font-size:13px;line-height:1.5;margin-top:4px}
+.desk-arrow,.desk-list a>svg{margin-left:auto;flex:none;color:#767c92}
+.desk-pick:hover,.desk-list a:hover{border-color:#969fcb;background:#f1f3ff}
+.desk-heading{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.desk-heading span,.desk-foot>span{font-size:13px;color:var(--muted)}
+.desk-index{scroll-margin:16px}.desk-index:focus:not(:focus-visible){outline:0}
+.desk-filters{display:flex;gap:6px;flex-wrap:wrap;margin:15px 0}
+.desk-filters button,.desk-empty button{padding:7px 12px;line-height:1.35;border:1px solid var(--line);border-radius:6px;font-size:13px;background:white;color:#4d5369}
+.desk-filters button[aria-pressed=true]{background:#323655;border-color:#323655;color:white}
+.desk-saved{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px;margin-bottom:15px;color:#505972;font-size:13px}
+.desk-saved span{font-weight:700}.desk-saved a{text-decoration:underline;text-decoration-color:#c0c5d9;text-underline-offset:4px}
+.desk-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.desk-list a{min-width:0;display:flex;align-items:flex-start;gap:10px;padding:15px 17px 16px;background:white;border:1px solid var(--line);border-radius:7px}
+.desk-list small{display:block;color:#626986;font-size:11px;font-weight:600;margin-bottom:5px}
+.desk-list h3{font-size:16px}
+.desk-list p{color:var(--muted);font-size:13px;line-height:1.55;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.desk-empty{padding:28px;text-align:center;background:white;border:1px dashed var(--line);border-radius:8px}
+.desk-empty button{display:inline-flex;align-items:center;gap:5px;margin-top:12px}
+.desk-foot{display:flex;align-items:center;gap:14px;margin-top:40px;padding:22px 0;border-top:1px solid var(--line)}
+.desk-foot nav{margin-left:auto;display:flex;gap:17px}
+.desk-contact{font-size:14px;color:#424963;padding:10px 0 24px}.desk-contact summary{cursor:pointer}
+body:has(.desk-contact),body:has(.desk-contact) #root{background:#f8f9fc!important;padding-bottom:0!important}
+.desk-return{display:block;padding:8px 16px;border:0;border-radius:4px;background:#e1e5fb;color:#252944;margin:6px auto}
+@media(max-width:900px){.desk-pick{gap:9px;padding:14px 12px}.desk-list{grid-template-columns:repeat(2,minmax(0,1fr))}.desk-pick .desk-arrow{display:none}}
+@media(max-width:680px){.campus-desk .desk-wrap,.desk-contact{width:calc(100% - 32px)}.desk-bar-in{min-height:55px;gap:18px}.desk-bar nav{gap:12px}.desk-bar nav :is(a,button){font-size:12px}.desk-brand{font-size:19px;gap:5px}.desk-brand>span{width:27px;height:27px}.campus-desk .novip-lang-segment{padding:5px 6px}.campus-desk main.desk-wrap{padding:15px 0 0!important}.desk-cover{display:block;padding:24px 18px 19px;border-radius:12px}.desk-folio{position:absolute;width:135px;right:-25px;top:-8px;opacity:.95;z-index:0}.desk-intro h1{font-size:42px;margin-top:16px}.desk-intro p{max-width:29em}.desk-intro h1,.desk-edition{max-width:calc(100% - 64px)}.desk-search{margin-top:16px}.desk-picks{grid-template-columns:1fr;gap:7px}.desk-pick{padding:10px 13px;gap:13px}.desk-tool-stamp{width:39px;height:41px}.desk-tool-stamp svg{width:19px}.desk-pick .desk-arrow{display:block}.desk-pick p{margin-top:1px}.desk-list{grid-template-columns:1fr}.desk-index,.desk-shortcuts{margin-top:23px}.desk-filters{gap:6px}.desk-filters button{padding:7px 10px}.desk-foot{flex-wrap:wrap}.desk-foot nav{width:100%;margin-left:0}.novip-route-stage:has(>.campus-desk){padding-bottom:0!important}}
+@media(max-width:370px){.desk-bar-in{gap:9px}.desk-bar nav{gap:8px}.desk-folio{width:105px;top:-4px}.desk-intro h1{font-size:35px}}
+.campus-desk.desk-tool-bar{position:sticky;top:0;z-index:50;min-height:0;background:white;border-bottom:1px solid #d9dce5}
+.desk-tool-bar nav{display:flex;align-items:center;gap:20px}.desk-tool-bar nav :is(a,button){font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:5px;min-height:36px;white-space:nowrap}
+body:has(.desk-tool-bar) .study-header:has(>.novip-brand:first-child + span:last-child){display:none!important}
+@media(max-width:680px){.desk-tool-bar .desk-bar-in{gap:12px}.desk-tool-bar nav{gap:12px}.desk-tool-bar nav a{display:none}}
+
+/* Desk tools use a light canvas even when the OS requests dark controls. */
+html:has(.desk-tool-bar){color-scheme:light}
+body:has(.desk-tool-bar) .zj-photo__placeholder{color:#475569}
+body:has(.desk-tool-bar) :is(input,textarea)::placeholder{color:#526075;opacity:1}
+body:has(.desk-tool-bar) .dorm-pl-stat-label{color:#475569}

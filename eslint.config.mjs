@@ -1,0 +1,2 @@
+import tseslint from 'typescript-eslint';
+export default [{ignores:['dist/**','test-artifacts/**','node_modules/**']},{files:['**/*.ts','**/*.tsx'],languageOptions:{parser:tseslint.parser,parserOptions:{ecmaVersion:'latest',sourceType:'module',ecmaFeatures:{jsx:true}}},rules:{'no-debugger':'error','no-dupe-args':'error','no-dupe-keys':'error','no-unreachable':'error','valid-typeof':'error','constructor-super':'error','no-unsafe-finally':'error'}}];

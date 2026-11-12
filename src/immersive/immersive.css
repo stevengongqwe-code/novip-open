@@ -1,0 +1,1835 @@
+/* ==========================================================================
+   OPERATION IMMERSION — NOVIP Full-Site Spatial & WebGL Visual System
+   Inspired by Active Theory (Hydra / GLUI / workInOut), engineered for NOVIP.
+   ========================================================================== */
+
+:root {
+  --novip-work-inout: cubic-bezier(0.29, 0.05, 0.06, 0.92);
+  --novip-ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --novip-tech-mono: "SF Mono", "JetBrains Mono", "Fira Code", "Menlo", "Consolas", monospace;
+  --novip-holo-cyan: #81ecfe;
+  --novip-holo-mint: #e0fff6;
+  --novip-holo-violet: #c64dff;
+  --novip-holo-crimson: #ff2a4b;
+  --novip-space-void: #040711;
+  --novip-space-surface: rgba(10, 16, 34, 0.76);
+  --novip-space-surface-elevated: rgba(14, 22, 46, 0.84);
+  --novip-space-border: rgba(129, 236, 254, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   1. Global Full-Viewport WebGL Stage & Hero Spatial Layer
+   -------------------------------------------------------------------------- */
+.novip-global-immersion-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.novip-immersion-stage-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Phase 4: 全站级全视口 (100vw × 100vh) 固定 WebGL 3D 体积星云与粒子背景 */
+.novip-immersion-stage-wrap.is-global-stage {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 0 !important;
+  border-radius: 0 !important;
+  pointer-events: none !important;
+}
+
+.novip-immersion-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.novip-immersion-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 34%, transparent 0%, rgba(4, 7, 17, 0.28) 62%, rgba(4, 7, 17, 0.72) 100%),
+    linear-gradient(180deg, rgba(4, 7, 17, 0.14) 0%, rgba(4, 7, 17, 0.36) 55%, rgba(4, 7, 17, 0.76) 100%);
+  pointer-events: none;
+}
+
+.novip-hero-evolution.is-immersive-hero,
+html[data-novip-visual-mode="immersive"] .novip-hero-evolution,
+html[data-novip-visual-mode="minimal"] .novip-hero-evolution {
+  background: radial-gradient(
+    circle at 50% 24%,
+    rgba(16, 25, 53, 0.68) 0%,
+    rgba(7, 11, 24, 0.74) 62%,
+    rgba(4, 6, 14, 0.82) 100%
+  ) !important;
+  backdrop-filter: blur(14px) saturate(165%);
+  -webkit-backdrop-filter: blur(14px) saturate(165%);
+  border: 1px solid rgba(129, 236, 254, 0.28) !important;
+  box-shadow:
+    0 24px 64px rgba(2, 5, 14, 0.55),
+    0 0 0 1px rgba(198, 77, 255, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+  color: #f8fafc;
+  isolation: isolate;
+}
+
+.novip-hero-evolution.is-immersive-hero::before,
+html[data-novip-visual-mode="immersive"] .novip-hero-evolution::before,
+html[data-novip-visual-mode="minimal"] .novip-hero-evolution::before {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #ff2a4b 0%,
+    #c64dff 35%,
+    #81ecfe 70%,
+    #e0fff6 100%
+  ) !important;
+  z-index: 3;
+}
+
+.novip-hero-evolution > *:not(.novip-immersion-stage-wrap) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Status bar & Dynamic Island inside Immersive Hero */
+.novip-hero-evolution.is-immersive-hero .ios-status-left,
+.novip-hero-evolution.is-immersive-hero .ios-status-right,
+.novip-hero-evolution.is-immersive-hero .ios-status-loc,
+html[data-novip-visual-mode="immersive"] .novip-hero-evolution .ios-status-left,
+html[data-novip-visual-mode="immersive"] .novip-hero-evolution .ios-status-right,
+html[data-novip-visual-mode="minimal"] .novip-hero-evolution .ios-status-left,
+html[data-novip-visual-mode="minimal"] .novip-hero-evolution .ios-status-right {
+  color: #f1f5f9 !important;
+}
+
+.novip-hero-evolution.is-immersive-hero .ios-status-battery-body,
+html[data-novip-visual-mode="immersive"] .novip-hero-evolution .ios-status-battery-body,
+html[data-novip-visual-mode="minimal"] .novip-hero-evolution .ios-status-battery-body {
+  border-color: rgba(241, 245, 249, 0.65);
+}
+
+.novip-hero-evolution.is-immersive-hero .ios-status-battery-cap,
+html[data-novip-visual-mode="immersive"] .novip-hero-evolution .ios-status-battery-cap,
+html[data-novip-visual-mode="minimal"] .novip-hero-evolution .ios-status-battery-cap {
+  background: rgba(241, 245, 249, 0.65);
+}
+
+.novip-hero-evolution.is-immersive-hero .ios-dynamic-island,
+html[data-novip-visual-mode="immersive"] .novip-hero-evolution .ios-dynamic-island,
+html[data-novip-visual-mode="minimal"] .novip-hero-evolution .ios-dynamic-island {
+  background: rgba(8, 11, 22, 0.88) !important;
+  border: 1px solid rgba(129, 236, 254, 0.26) !important;
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.45),
+    0 0 20px rgba(129, 236, 254, 0.12) !important;
+}
+
+/* Hero Title & Subtitle in Immersive Mode */
+.novip-hero-evolution.is-immersive-hero .novip-hero-title,
+html[data-novip-visual-mode="immersive"] .novip-hero-evolution .novip-hero-title,
+html[data-novip-visual-mode="minimal"] .novip-hero-evolution .novip-hero-title {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 45%, #81ecfe 78%, #ff758f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  animation: novipHeroTitleReveal 0.72s var(--novip-work-inout) both;
+}
+
+.novip-hero-evolution.is-immersive-hero .novip-hero-subtitle,
+html[data-novip-visual-mode="immersive"] .novip-hero-evolution .novip-hero-subtitle,
+html[data-novip-visual-mode="minimal"] .novip-hero-evolution .novip-hero-subtitle {
+  color: #e2e8f0 !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+  animation: novipHeroSubReveal 0.84s var(--novip-work-inout) 0.06s both;
+}
+
+.novip-hero-evolution.is-immersive-hero .novip-btn-tactile--secondary {
+  background: rgba(15, 23, 42, 0.78);
+  color: #f8fafc !important;
+  border-color: rgba(129, 236, 254, 0.35);
+  box-shadow: 0 4px 0 rgba(15, 23, 42, 0.95), 0 8px 20px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.novip-hero-evolution.is-immersive-hero .novip-btn-tactile--secondary:hover {
+  background: rgba(30, 41, 59, 0.9);
+  border-color: rgba(129, 236, 254, 0.65);
+}
+
+.novip-hero-evolution.is-immersive-hero .novip-trust-strip {
+  background: rgba(11, 17, 32, 0.78);
+  border-color: rgba(148, 163, 184, 0.26);
+  color: #f1f5f9;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.novip-hero-evolution.is-immersive-hero .novip-trust-item svg {
+  color: #34d399;
+}
+
+/* --------------------------------------------------------------------------
+   2. Active Theory Holographic HUD & Subpage Control Strip
+   -------------------------------------------------------------------------- */
+.novip-immersion-hud {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 860px;
+  margin: -4px auto 2px;
+}
+
+.novip-holo-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  width: 100%;
+  padding: 7px 12px 7px 14px;
+  border-radius: 9999px;
+  background: rgba(11, 15, 28, 0.84);
+  border: 1px solid rgba(129, 236, 254, 0.28);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.novip-hero-evolution:not(.is-immersive-hero) .novip-holo-bar {
+  background: rgba(15, 23, 42, 0.92);
+  border-color: rgba(15, 23, 42, 0.15);
+}
+
+/* Subpage Holographic Control Strip (for all 60 tool pages) */
+.novip-subpage-holo-strip {
+  position: relative;
+  z-index: 12;
+  max-width: 1120px;
+  margin: 12px auto 12px;
+  padding: 0 16px;
+}
+
+.novip-subpage-holo-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  background: rgba(8, 13, 28, 0.82);
+  border: 1px solid rgba(129, 236, 254, 0.24);
+  box-shadow:
+    0 10px 28px rgba(2, 6, 18, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+}
+
+.novip-subpage-holo-left,
+.novip-subpage-holo-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.novip-subpage-orb-mini {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(129, 236, 254, 0.55);
+  background: radial-gradient(circle at 35% 35%, rgba(129, 236, 254, 0.38), rgba(198, 77, 255, 0.3), rgba(9, 14, 28, 0.95));
+  color: #ffffff;
+  font-family: var(--novip-tech-mono);
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 14px rgba(129, 236, 254, 0.32);
+  transition: transform 0.2s var(--novip-ease-out-expo), box-shadow 0.2s ease;
+}
+
+.novip-subpage-orb-mini:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(129, 236, 254, 0.55);
+}
+
+.novip-subpage-telemetry-text {
+  font-family: var(--novip-tech-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--novip-holo-mint);
+  letter-spacing: 0.04em;
+}
+
+.novip-holo-telemetry {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-family: var(--novip-tech-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--novip-holo-mint);
+  font-variant-numeric: tabular-nums;
+}
+
+.novip-audio-wave-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px 2px 6px;
+  border-radius: 9999px;
+  border: 1px solid rgba(188, 253, 211, 0.24);
+  background: rgba(188, 253, 211, 0.08);
+  color: var(--novip-holo-mint);
+  font-family: var(--novip-tech-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition:
+    background-color 0.2s var(--novip-work-inout),
+    border-color 0.2s var(--novip-work-inout),
+    transform 0.2s var(--novip-work-inout);
+}
+
+.novip-audio-wave-btn:hover {
+  background: rgba(188, 253, 211, 0.16);
+  border-color: rgba(129, 236, 254, 0.45);
+}
+
+.novip-audio-wave-btn.is-sound-on {
+  background: linear-gradient(135deg, rgba(129, 236, 254, 0.22), rgba(198, 77, 255, 0.22));
+  border-color: rgba(129, 236, 254, 0.55);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(129, 236, 254, 0.25);
+}
+
+.novip-audio-wave-label {
+  font-size: 9.5px;
+  line-height: 1;
+}
+
+.novip-sine-wave {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--novip-holo-mint);
+}
+
+.novip-wave-path {
+  transform-origin: center;
+  transition: transform 0.35s var(--novip-work-inout);
+}
+
+.novip-holo-bar:hover .novip-wave-path.w1,
+.novip-sine-wave.boost .novip-wave-path.w1 {
+  animation: novipSinePulse 1.1s ease-in-out infinite alternate;
+}
+
+.novip-holo-bar:hover .novip-wave-path.w2,
+.novip-sine-wave.boost .novip-wave-path.w2 {
+  animation: novipSinePulse 0.85s ease-in-out 0.15s infinite alternate-reverse;
+}
+
+.novip-telemetry-code {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.novip-telemetry-tier {
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: rgba(129, 236, 254, 0.12);
+  border: 1px solid rgba(129, 236, 254, 0.28);
+  color: var(--novip-holo-cyan);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.novip-holo-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 3px;
+  border-radius: 9999px;
+}
+
+.novip-holo-mode-btn {
+  border: none;
+  background: transparent;
+  color: #cbd5e1;
+  font-family: var(--novip-font);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition:
+    background-color 0.22s var(--novip-work-inout),
+    color 0.22s var(--novip-work-inout),
+    box-shadow 0.22s var(--novip-work-inout);
+  white-space: nowrap;
+}
+
+.novip-holo-mode-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.novip-holo-mode-btn.active {
+  background: linear-gradient(135deg, rgba(129, 236, 254, 0.24) 0%, rgba(198, 77, 255, 0.28) 100%);
+  color: #ffffff;
+  box-shadow:
+    0 2px 10px rgba(129, 236, 254, 0.2),
+    inset 0 0 0 1px rgba(129, 236, 254, 0.42);
+}
+
+/* 3D Interactive Holographic Core Emblem */
+.novip-holo-core-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 4px 12px;
+}
+
+.novip-holo-orb-btn {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: none;
+  background: radial-gradient(
+    circle at var(--orb-gx, 50%) var(--orb-gy, 50%),
+    rgba(129, 236, 254, 0.32) 0%,
+    rgba(198, 77, 255, 0.22) 45%,
+    rgba(9, 13, 28, 0.92) 85%
+  );
+  box-shadow:
+    0 0 28px rgba(129, 236, 254, 0.28),
+    0 0 48px rgba(255, 42, 75, 0.16),
+    inset 0 0 14px rgba(224, 255, 246, 0.35);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.18s var(--novip-ease-out-expo), box-shadow 0.28s var(--novip-work-inout);
+  transform-style: preserve-3d;
+}
+
+.novip-holo-orb-btn:hover {
+  box-shadow:
+    0 0 36px rgba(129, 236, 254, 0.48),
+    0 0 64px rgba(198, 77, 255, 0.32),
+    inset 0 0 18px rgba(224, 255, 246, 0.55);
+}
+
+.novip-holo-orb-btn.pulsing {
+  animation: novipOrbShockwave 0.75s var(--novip-work-inout);
+}
+
+.novip-holo-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.novip-holo-ring.outer {
+  inset: -4px;
+  border: 1.5px solid transparent;
+  background: linear-gradient(135deg, #81ecfe, #c64dff, #ff2a4b, #e0fff6) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: novipRingOrbit 9s linear infinite;
+}
+
+.novip-holo-ring.middle {
+  inset: 4px;
+  border: 1px dashed rgba(129, 236, 254, 0.55);
+  animation: novipRingOrbit 6s linear infinite reverse;
+}
+
+.novip-holo-ring.inner {
+  inset: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.novip-holo-monogram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  color: #ffffff;
+  font-family: var(--novip-tech-mono);
+  text-shadow: 0 0 12px rgba(129, 236, 254, 0.75);
+}
+
+.novip-holo-monogram strong {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.novip-holo-monogram small {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--novip-holo-cyan);
+  margin-top: 2px;
+}
+
+.novip-holo-readout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 8px 14px;
+  border-radius: 14px;
+  background: rgba(9, 14, 28, 0.74);
+  border: 1px solid rgba(129, 236, 254, 0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.novip-holo-readout:hover {
+  border-color: rgba(129, 236, 254, 0.48);
+  background: rgba(15, 23, 42, 0.84);
+}
+
+.novip-holo-readout-tag {
+  font-family: var(--novip-tech-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--novip-holo-cyan);
+}
+
+.novip-holo-readout-text {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #f1f5f9;
+  letter-spacing: 0.01em;
+}
+
+/* --------------------------------------------------------------------------
+   3. Card 3D Specular Spotlight & Spatial Entrance Transitions
+   -------------------------------------------------------------------------- */
+.novip-flagship-card,
+.novip-scenario-card,
+.novip-highfreq-card,
+.x-foryou-card,
+.ios-spotlight-quick-item,
+.ios-widget-card,
+.novip-trust-card {
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.novip-flagship-card[data-spatial-hover="true"],
+.novip-scenario-card[data-spatial-hover="true"],
+.novip-highfreq-card[data-spatial-hover="true"],
+.x-foryou-card[data-spatial-hover="true"],
+.novip-trust-card[data-spatial-hover="true"],
+.ios-widget-card[data-spatial-hover="true"] {
+  transform: perspective(920px) rotateX(var(--card-rx, 0deg)) rotateY(var(--card-ry, 0deg)) translateY(-3px) !important;
+  border-color: rgba(129, 236, 254, 0.45) !important;
+}
+
+.novip-flagship-card::after,
+.novip-scenario-card::after,
+.novip-highfreq-card::after,
+.x-foryou-card::after,
+.ios-widget-card::after,
+.novip-trust-card::after,
+.study-card::after,
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    360px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(129, 236, 254, 0.14) 0%,
+    rgba(198, 77, 255, 0.07) 42%,
+    transparent 78%
+  );
+  transition: opacity 0.25s ease;
+}
+
+.novip-flagship-card[data-spatial-hover="true"]::after,
+.novip-scenario-card[data-spatial-hover="true"]::after,
+.novip-highfreq-card[data-spatial-hover="true"]::after,
+.x-foryou-card[data-spatial-hover="true"]::after,
+.ios-widget-card[data-spatial-hover="true"]::after,
+.novip-trust-card[data-spatial-hover="true"]::after,
+.study-card[data-spatial-hover="true"]::after,
+.panel[data-spatial-hover="true"]::after {
+  opacity: 1;
+}
+
+/* Scroll-triggered Section Reveal (IntersectionObserver) */
+.novip-spatial-section {
+  opacity: 0.01;
+  transform: translateY(18px);
+  transition:
+    opacity 0.62s var(--novip-work-inout),
+    transform 0.62s var(--novip-work-inout);
+}
+
+.novip-spatial-section.is-spatial-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   4. Lightweight Route Transition Stage & Holographic Loading Bar
+   -------------------------------------------------------------------------- */
+.novip-route-stage {
+  position: relative;
+  z-index: 2;
+  animation: novipPageEnter 0.42s var(--novip-work-inout);
+}
+
+.study-progress-bar-fill {
+  background: linear-gradient(90deg, #0071e3 0%, #c64dff 55%, #ff2a4b 100%) !important;
+  box-shadow: 0 0 12px rgba(0, 113, 227, 0.35);
+}
+
+.study-progress-bar-indeterminate {
+  background: linear-gradient(90deg, transparent, #0071e3, #c64dff, #81ecfe, transparent) !important;
+  background-size: 200% 100% !important;
+}
+
+.novip-workbench-bar {
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow:
+    0 4px 18px rgba(15, 23, 42, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+  transition: box-shadow 0.25s var(--novip-work-inout), border-color 0.25s var(--novip-work-inout);
+}
+
+.novip-workbench-bar:hover {
+  border-color: rgba(0, 113, 227, 0.22) !important;
+  box-shadow:
+    0 8px 24px rgba(15, 23, 42, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+.novip-workbench-dot {
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+}
+
+.convert-loading {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(129, 236, 254, 0.28) !important;
+  background: linear-gradient(135deg, #090f22 0%, #16213e 100%) !important;
+  color: #f8fafc !important;
+  border-radius: 16px !important;
+  padding: 20px 24px !important;
+  font-family: var(--novip-tech-mono), var(--novip-font) !important;
+  letter-spacing: 0.04em;
+  box-shadow: 0 12px 32px rgba(2, 6, 18, 0.45);
+}
+
+.convert-loading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff2a4b, #c64dff, #81ecfe, #ff2a4b);
+  background-size: 200% 100%;
+  animation: novipHoloShimmer 1.4s linear infinite;
+}
+
+/* ==========================================================================
+   Phase 4: FULL-SITE DEEP-SPACE IMMERSION (html[data-novip-visual-mode="immersive"])
+   Covers 100% of Homepage (Top to Footer) + All 60 Tool Subpages!
+   ========================================================================== */
+
+/* 4.1 Global Root, Body & Layout Shells */
+html[data-novip-visual-mode="immersive"],
+html[data-novip-visual-mode="immersive"] body,
+html[data-novip-visual-mode="minimal"],
+html[data-novip-visual-mode="minimal"] body {
+  background-color: #040711 !important;
+  background-image: none !important;
+  color: #f1f5f9 !important;
+}
+
+html[data-novip-visual-mode="immersive"] #root,
+html[data-novip-visual-mode="immersive"] .study-app,
+html[data-novip-visual-mode="immersive"] .study-app.is-apple-home,
+html[data-novip-visual-mode="immersive"] .tool-main,
+html[data-novip-visual-mode="immersive"] .study-main,
+html[data-novip-visual-mode="immersive"] .convert-app,
+html[data-novip-visual-mode="immersive"] .convert-main,
+html[data-novip-visual-mode="immersive"] .app,
+html[data-novip-visual-mode="minimal"] #root,
+html[data-novip-visual-mode="minimal"] .study-app,
+html[data-novip-visual-mode="minimal"] .study-app.is-apple-home,
+html[data-novip-visual-mode="minimal"] .tool-main,
+html[data-novip-visual-mode="minimal"] .study-main,
+html[data-novip-visual-mode="minimal"] .convert-app,
+html[data-novip-visual-mode="minimal"] .convert-main,
+html[data-novip-visual-mode="minimal"] .app {
+  background: transparent !important;
+  color: #f1f5f9 !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* 4.2 Global Top Navigation Bar, Brand Header & Subpage Nav */
+html[data-novip-visual-mode="immersive"] .tool-navigation {
+  position: relative;
+  z-index: 10;
+  background: rgba(6, 10, 23, 0.78) !important;
+  backdrop-filter: blur(22px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(129, 236, 254, 0.16) !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .tool-navigation a {
+  color: #cbd5e1 !important;
+  border-color: transparent !important;
+  transition: all 0.2s var(--novip-work-inout);
+}
+
+html[data-novip-visual-mode="immersive"] .tool-navigation a:hover {
+  color: #ffffff !important;
+  background: rgba(129, 236, 254, 0.12) !important;
+  border-color: rgba(129, 236, 254, 0.28) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .tool-navigation a.active,
+html[data-novip-visual-mode="immersive"] .tool-navigation a[aria-current="page"] {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.24), rgba(198, 77, 255, 0.24)) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(129, 236, 254, 0.45) !important;
+  box-shadow: 0 0 18px rgba(129, 236, 254, 0.22) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .study-header {
+  background: rgba(7, 11, 25, 0.68) !important;
+  backdrop-filter: blur(18px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(170%) !important;
+  border-bottom: 1px solid rgba(129, 236, 254, 0.15) !important;
+  color: #e2e8f0 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-wordmark {
+  color: #ffffff !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-wordmark small,
+html[data-novip-visual-mode="immersive"] .study-header > span {
+  color: #94a3b8 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-subpage-nav {
+  position: relative;
+  z-index: 10;
+  background: rgba(7, 12, 26, 0.82) !important;
+  backdrop-filter: blur(22px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(129, 236, 254, 0.2) !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4) !important;
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-subpage-back,
+html[data-novip-visual-mode="immersive"] .ios-subpage-current-tool {
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-subpage-action-btn {
+  background: rgba(15, 23, 42, 0.85) !important;
+  color: var(--novip-holo-cyan) !important;
+  border: 1px solid rgba(129, 236, 254, 0.32) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-workbench-bar {
+  background: rgba(10, 16, 34, 0.78) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(129, 236, 254, 0.22) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32) !important;
+  color: #e2e8f0 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-workbench-back {
+  color: var(--novip-holo-cyan) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-workbench-group,
+html[data-novip-visual-mode="immersive"] .novip-workbench-trust {
+  color: #cbd5e1 !important;
+}
+
+/* 4.3 Hero Interactive Showcase Box & Apple Hero Ribbon */
+html[data-novip-visual-mode="immersive"] .novip-showcase-box {
+  background: rgba(8, 13, 28, 0.84) !important;
+  backdrop-filter: blur(20px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(170%) !important;
+  border: 1px solid rgba(129, 236, 254, 0.26) !important;
+  box-shadow:
+    0 22px 54px rgba(0, 0, 0, 0.52),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-tabs {
+  background: rgba(4, 8, 18, 0.72) !important;
+  border-bottom: 1px solid rgba(129, 236, 254, 0.16) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-tab {
+  color: #94a3b8 !important;
+  background: transparent !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-tab:hover {
+  color: #f8fafc !important;
+  background: rgba(129, 236, 254, 0.08) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-tab.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(198, 77, 255, 0.24)) !important;
+  color: #ffffff !important;
+  border-color: rgba(129, 236, 254, 0.42) !important;
+  box-shadow: 0 4px 16px rgba(129, 236, 254, 0.18) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-stage {
+  background: rgba(4, 8, 19, 0.76) !important;
+  border: 1px solid rgba(129, 236, 254, 0.18) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-info h4 {
+  color: #ffffff !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-info p {
+  color: #cbd5e1 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-badge {
+  background: rgba(56, 189, 248, 0.16) !important;
+  color: var(--novip-holo-cyan) !important;
+  border: 1px solid rgba(129, 236, 254, 0.3) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-bg-btn {
+  background: rgba(15, 23, 42, 0.85) !important;
+  color: #e2e8f0 !important;
+  border-color: rgba(148, 163, 184, 0.32) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-bg-btn.active {
+  border-color: var(--novip-holo-cyan) !important;
+  box-shadow: 0 0 12px rgba(129, 236, 254, 0.28) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-doc-item {
+  background: rgba(15, 23, 42, 0.88) !important;
+  border-color: rgba(129, 236, 254, 0.24) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-doc-item span {
+  color: #f1f5f9 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-doc-arrow {
+  color: var(--novip-holo-cyan) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-doc-merged {
+  background: rgba(56, 189, 248, 0.16) !important;
+  border-color: var(--novip-holo-cyan) !important;
+  color: #ffffff !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-stat-card.before {
+  background: rgba(15, 23, 42, 0.88) !important;
+  border-color: rgba(248, 113, 113, 0.38) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-stat-card.before div:first-child {
+  color: #e2e8f0 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-stat-card.before div:last-child {
+  color: #fca5a5 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-stat-card.after {
+  background: rgba(16, 185, 129, 0.14) !important;
+  border-color: rgba(52, 211, 153, 0.5) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-stat-card.after div:first-child {
+  color: var(--novip-holo-cyan) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-showcase-stat-card.after div:nth-child(2),
+html[data-novip-visual-mode="immersive"] .novip-showcase-stat-card.after div:last-child {
+  color: #6ee7b7 !important;
+}
+
+/* Dynamic Island Expanded Sheet */
+html[data-novip-visual-mode="immersive"] .ios-dynamic-island-expanded-card {
+  background: rgba(7, 11, 24, 0.92) !important;
+  border: 1px solid rgba(129, 236, 254, 0.3) !important;
+  color: #f8fafc !important;
+}
+
+/* Apple Hero Ribbon */
+html[data-novip-visual-mode="immersive"] .apple-hero-ribbon {
+  background: rgba(9, 15, 32, 0.78) !important;
+  backdrop-filter: blur(18px) saturate(165%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(165%) !important;
+  border: 1px solid rgba(129, 236, 254, 0.22) !important;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.38) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .apple-hero-link {
+  color: var(--novip-holo-cyan) !important;
+  background: rgba(15, 23, 42, 0.72) !important;
+  border: 1px solid rgba(129, 236, 254, 0.24) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .apple-ribbon-pill {
+  background: rgba(15, 23, 42, 0.75) !important;
+  border: 1px solid rgba(148, 163, 184, 0.22) !important;
+  color: #cbd5e1 !important;
+}
+
+/* 4.4 Section Headings Across Homepage */
+html[data-novip-visual-mode="immersive"] .novip-section-title,
+html[data-novip-visual-mode="immersive"] .novip-section-title span,
+html[data-novip-visual-mode="immersive"] .ios-springboard-title,
+html[data-novip-visual-mode="immersive"] .ios-scenarios-title,
+html[data-novip-visual-mode="immersive"] .ios-grouped-header {
+  color: #f8fafc !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+}
+
+html[data-novip-visual-mode="immersive"] .novip-section-sub {
+  color: #94a3b8 !important;
+}
+
+/* 4.5 Scenario Cards, Bento Widgets, Flagship Cards & High-Freq Grid */
+html[data-novip-visual-mode="immersive"] .novip-scenario-card,
+html[data-novip-visual-mode="immersive"] .ios-widget-card,
+html[data-novip-visual-mode="immersive"] .novip-flagship-card,
+html[data-novip-visual-mode="immersive"] .novip-highfreq-card,
+html[data-novip-visual-mode="immersive"] .novip-recent-section {
+  background: linear-gradient(
+    155deg,
+    rgba(13, 21, 44, 0.8) 0%,
+    rgba(8, 13, 28, 0.86) 100%
+  ) !important;
+  backdrop-filter: blur(18px) saturate(165%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(165%) !important;
+  border: 1px solid rgba(129, 236, 254, 0.2) !important;
+  box-shadow:
+    0 16px 40px rgba(2, 6, 18, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-scenario-title,
+html[data-novip-visual-mode="immersive"] .novip-scenario-content strong,
+html[data-novip-visual-mode="immersive"] .novip-flagship-title,
+html[data-novip-visual-mode="immersive"] .novip-highfreq-name,
+html[data-novip-visual-mode="immersive"] .ios-widget-title,
+html[data-novip-visual-mode="immersive"] .ios-widget-subtitle,
+html[data-novip-visual-mode="immersive"] .ios-privacy-status-text,
+html[data-novip-visual-mode="immersive"] .ios-spotlight-item-name,
+html[data-novip-visual-mode="immersive"] .ios-spotlight-item-title {
+  color: #ffffff !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-scenario-sub,
+html[data-novip-visual-mode="immersive"] .novip-scenario-desc,
+html[data-novip-visual-mode="immersive"] .novip-scenario-content p,
+html[data-novip-visual-mode="immersive"] .novip-flagship-desc,
+html[data-novip-visual-mode="immersive"] .novip-highfreq-benefit,
+html[data-novip-visual-mode="immersive"] .ios-privacy-status-sub,
+html[data-novip-visual-mode="immersive"] .ios-privacy-checklist li,
+html[data-novip-visual-mode="immersive"] .ios-recent-empty-hint,
+html[data-novip-visual-mode="immersive"] .ios-spotlight-item-sub,
+html[data-novip-visual-mode="immersive"] .ios-spotlight-item-desc,
+html[data-novip-visual-mode="immersive"] .novip-recent-label {
+  color: #cbd5e1 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-scenario-tag,
+html[data-novip-visual-mode="immersive"] .novip-scenario-pill,
+html[data-novip-visual-mode="immersive"] .novip-flagship-tag,
+html[data-novip-visual-mode="immersive"] .ios-widget-date {
+  background: rgba(56, 189, 248, 0.16) !important;
+  color: var(--novip-holo-cyan) !important;
+  border: 1px solid rgba(129, 236, 254, 0.3) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-scenario-arrow {
+  color: var(--novip-holo-cyan) !important;
+  background: rgba(56, 189, 248, 0.14) !important;
+  border: 1px solid rgba(129, 236, 254, 0.28) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-privacy-ring-wrap {
+  background: rgba(15, 23, 42, 0.76) !important;
+  border: 1px solid rgba(52, 211, 153, 0.28) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-flagship-icon-box,
+html[data-novip-visual-mode="immersive"] .novip-scenario-emoji {
+  background: rgba(15, 23, 42, 0.85) !important;
+  border: 1px solid rgba(129, 236, 254, 0.24) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-flagship-footer {
+  border-top-color: rgba(148, 163, 184, 0.16) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-flagship-hint {
+  color: #6ee7b7 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-flagship-cta,
+html[data-novip-visual-mode="immersive"] .novip-scenario-action {
+  color: var(--novip-holo-cyan) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-spotlight-quick-item,
+html[data-novip-visual-mode="immersive"] .ios-recent-item-mini,
+html[data-novip-visual-mode="immersive"] .novip-recent-chip {
+  background: rgba(15, 23, 42, 0.76) !important;
+  border: 1px solid rgba(129, 236, 254, 0.18) !important;
+  color: #f1f5f9 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-spotlight-quick-item:hover,
+html[data-novip-visual-mode="immersive"] .ios-recent-item-mini:hover,
+html[data-novip-visual-mode="immersive"] .novip-recent-chip:hover {
+  background: rgba(30, 41, 59, 0.88) !important;
+  border-color: rgba(129, 236, 254, 0.42) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-spotlight-item-eyebrow,
+html[data-novip-visual-mode="immersive"] .ios-spotlight-open-pill,
+html[data-novip-visual-mode="immersive"] .ios-widget-expand-btn,
+html[data-novip-visual-mode="immersive"] .ios-widget-action-btn {
+  color: var(--novip-holo-cyan) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-privacy-badge-row {
+  background: rgba(15, 23, 42, 0.72) !important;
+  border: 1px solid rgba(52, 211, 153, 0.25) !important;
+}
+
+/* 4.6 iPhone Springboard, X For-You Feed & AI Portal Banner */
+html[data-novip-visual-mode="immersive"] .ios-springboard-card {
+  background: rgba(9, 14, 30, 0.78) !important;
+  backdrop-filter: blur(20px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(170%) !important;
+  border: 1px solid rgba(129, 236, 254, 0.22) !important;
+  box-shadow: 0 20px 50px rgba(2, 6, 18, 0.48) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .x-feed-tab-switch {
+  background: rgba(4, 8, 18, 0.75) !important;
+  border: 1px solid rgba(129, 236, 254, 0.2) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .x-feed-tab-btn {
+  color: #94a3b8 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .x-feed-tab-btn.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.24), rgba(198, 77, 255, 0.24)) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 10px rgba(129, 236, 254, 0.2) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .x-foryou-card {
+  background: rgba(15, 23, 42, 0.78) !important;
+  border: 1px solid rgba(129, 236, 254, 0.18) !important;
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .x-foryou-title {
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .x-foryou-task {
+  color: #cbd5e1 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .x-foryou-bottom {
+  border-top-color: rgba(148, 163, 184, 0.14) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .x-foryou-reason,
+html[data-novip-visual-mode="immersive"] .x-foryou-arrow {
+  color: var(--novip-holo-cyan) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-springboard-label {
+  color: #e2e8f0 !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
+}
+
+html[data-novip-visual-mode="immersive"] .ios-springboard-toggle-btn {
+  background: rgba(15, 23, 42, 0.82) !important;
+  color: var(--novip-holo-cyan) !important;
+  border: 1px solid rgba(129, 236, 254, 0.28) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .home-ai-entry {
+  background: linear-gradient(
+    135deg,
+    rgba(13, 23, 52, 0.88) 0%,
+    rgba(30, 15, 58, 0.88) 100%
+  ) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  border: 1px solid rgba(198, 77, 255, 0.38) !important;
+  box-shadow:
+    0 16px 40px rgba(2, 6, 18, 0.45),
+    0 0 24px rgba(198, 77, 255, 0.16) !important;
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .home-ai-copy strong {
+  color: #ffffff !important;
+}
+
+html[data-novip-visual-mode="immersive"] .home-ai-copy small {
+  color: #cbd5e1 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .home-ai-cta {
+  background: rgba(129, 236, 254, 0.18) !important;
+  color: var(--novip-holo-cyan) !important;
+  border: 1px solid rgba(129, 236, 254, 0.35) !important;
+}
+
+/* 4.7 Spotlight Search, Grok Intent, Campus Scenarios & Segmented Control */
+html[data-novip-visual-mode="immersive"] .ios-spotlight-section,
+html[data-novip-visual-mode="immersive"] .ios-scenarios-section {
+  background: rgba(9, 14, 30, 0.76) !important;
+  backdrop-filter: blur(18px) saturate(165%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(165%) !important;
+  border: 1px solid rgba(129, 236, 254, 0.2) !important;
+  box-shadow: 0 16px 40px rgba(2, 6, 18, 0.42) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-spotlight-box {
+  background: rgba(4, 8, 19, 0.88) !important;
+  border: 1px solid rgba(129, 236, 254, 0.34) !important;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(129, 236, 254, 0.1) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-spotlight-input {
+  color: #f8fafc !important;
+  background: transparent !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-spotlight-input::placeholder {
+  color: #94a3b8 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-spotlight-icon,
+html[data-novip-visual-mode="immersive"] .ios-spotlight-kbd-hint {
+  color: var(--novip-holo-cyan) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-spotlight-kbd-hint {
+  background: rgba(15, 23, 42, 0.9) !important;
+  border-color: rgba(129, 236, 254, 0.28) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .grok-intent-card {
+  background: rgba(12, 20, 42, 0.9) !important;
+  border: 1px solid rgba(129, 236, 254, 0.35) !important;
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .grok-intent-dilemma,
+html[data-novip-visual-mode="immersive"] .grok-intent-solution,
+html[data-novip-visual-mode="immersive"] .grok-intent-tip,
+html[data-novip-visual-mode="immersive"] .grok-step-pill {
+  background: rgba(6, 11, 24, 0.78) !important;
+  color: #e2e8f0 !important;
+  border-color: rgba(129, 236, 254, 0.2) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-quick-chip-label {
+  color: #94a3b8 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-quick-chip,
+html[data-novip-visual-mode="immersive"] .ios-scenario-pill {
+  background: rgba(15, 23, 42, 0.78) !important;
+  border: 1px solid rgba(129, 236, 254, 0.18) !important;
+  color: #e2e8f0 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-quick-chip:hover,
+html[data-novip-visual-mode="immersive"] .ios-scenario-pill:hover {
+  background: rgba(30, 41, 59, 0.9) !important;
+  border-color: rgba(129, 236, 254, 0.42) !important;
+  color: #ffffff !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-scenario-pill.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.26), rgba(198, 77, 255, 0.26)) !important;
+  border-color: var(--novip-holo-cyan) !important;
+  color: #ffffff !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-scenario-name {
+  color: inherit !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-scenario-badge {
+  background: rgba(129, 236, 254, 0.16) !important;
+  color: var(--novip-holo-cyan) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-scenario-active-banner {
+  background: rgba(15, 23, 42, 0.85) !important;
+  border: 1px solid rgba(129, 236, 254, 0.3) !important;
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-segmented-control {
+  background: rgba(8, 13, 28, 0.82) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(129, 236, 254, 0.2) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-segmented-btn {
+  color: #cbd5e1 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-segmented-btn.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.26), rgba(198, 77, 255, 0.28)) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(129, 236, 254, 0.42) !important;
+  box-shadow: 0 4px 14px rgba(129, 236, 254, 0.2) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-segmented-count {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #e2e8f0 !important;
+}
+
+/* 4.8 Inset Grouped 60-Tool Lists, Trust Cards, Author Contact & Footer */
+html[data-novip-visual-mode="immersive"] .ios-grouped-card {
+  background: rgba(9, 15, 32, 0.78) !important;
+  backdrop-filter: blur(18px) saturate(165%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(165%) !important;
+  border: 1px solid rgba(129, 236, 254, 0.2) !important;
+  box-shadow: 0 16px 40px rgba(2, 6, 18, 0.42) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-list-row {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14) !important;
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-list-row:hover {
+  background: rgba(56, 189, 248, 0.08) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-list-row-title {
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-list-row-task {
+  color: #cbd5e1 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-open-btn {
+  background: rgba(56, 189, 248, 0.16) !important;
+  color: var(--novip-holo-cyan) !important;
+  border: 1px solid rgba(129, 236, 254, 0.32) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-chevron {
+  color: #94a3b8 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-trust-card,
+html[data-novip-visual-mode="immersive"] .author-contact,
+html[data-novip-visual-mode="immersive"] .study-footer {
+  background: rgba(8, 13, 28, 0.78) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  border: 1px solid rgba(129, 236, 254, 0.18) !important;
+  color: #cbd5e1 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-trust-card h3,
+html[data-novip-visual-mode="immersive"] .author-contact h2,
+html[data-novip-visual-mode="immersive"] .author-contact h3,
+html[data-novip-visual-mode="immersive"] .author-contact strong {
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-trust-card p,
+html[data-novip-visual-mode="immersive"] .author-contact p,
+html[data-novip-visual-mode="immersive"] .study-note {
+  color: #cbd5e1 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-trust-eyebrow {
+  color: var(--novip-holo-cyan) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-trust-card a,
+html[data-novip-visual-mode="immersive"] .study-footer a {
+  color: var(--novip-holo-cyan) !important;
+}
+
+/* 4.9 All 60 Tool Subpages — Spatial Workstation Cards, Panels, Forms & Tables */
+html[data-novip-visual-mode="immersive"] .tool-main > h1,
+html[data-novip-visual-mode="immersive"] .study-intro h1,
+html[data-novip-visual-mode="immersive"] .convert-main h1 {
+  color: #ffffff !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+html[data-novip-visual-mode="immersive"] .study-card,
+html[data-novip-visual-mode="immersive"] .panel,
+html[data-novip-visual-mode="immersive"] .card,
+html[data-novip-visual-mode="immersive"] .tool-card,
+html[data-novip-visual-mode="immersive"] .novip-card-box,
+html[data-novip-visual-mode="immersive"] .beginner-guide,
+html[data-novip-visual-mode="immersive"] .novip-beginner-box,
+html[data-novip-visual-mode="immersive"] .zj-photo__panel,
+html[data-novip-visual-mode="immersive"] .study-intro,
+html[data-novip-visual-mode="immersive"] .study-empty-illustration-box,
+html[data-novip-visual-mode="immersive"] .study-feedback,
+html[data-novip-visual-mode="immersive"] .study-feedback-body,
+html[data-novip-visual-mode="immersive"] .study-share-box,
+html[data-novip-visual-mode="immersive"] .novip-universal-feedback,
+html[data-novip-visual-mode="immersive"] .convert-card,
+html[data-novip-visual-mode="immersive"] .convert-panel {
+  background: rgba(10, 16, 34, 0.82) !important;
+  backdrop-filter: blur(20px) saturate(165%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(165%) !important;
+  border: 1px solid rgba(129, 236, 254, 0.22) !important;
+  box-shadow:
+    0 18px 44px rgba(2, 6, 18, 0.48),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  color: #f1f5f9 !important;
+}
+
+/* BeginnerGuide 3-Step Box & Subpage Headers (IdPhotoTool, Converter, Handwrite) */
+html[data-novip-visual-mode="immersive"] .zj-photo-page {
+  background: transparent !important;
+  color: #f1f5f9 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .zj-photo-site-header,
+html[data-novip-visual-mode="immersive"] .convert-header {
+  background: rgba(7, 11, 25, 0.72) !important;
+  backdrop-filter: blur(18px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(170%) !important;
+  border-bottom: 1px solid rgba(129, 236, 254, 0.16) !important;
+  color: #e2e8f0 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .zj-photo,
+html[data-novip-visual-mode="immersive"] .zj-photo__heading h1,
+html[data-novip-visual-mode="immersive"] .zj-photo__panel h3,
+html[data-novip-visual-mode="immersive"] .zj-photo__panel div,
+html[data-novip-visual-mode="immersive"] .convert-card h2 {
+  color: #ffffff !important;
+}
+
+html[data-novip-visual-mode="immersive"] .zj-photo__eyebrow,
+html[data-novip-visual-mode="immersive"] .study-eyebrow,
+html[data-novip-visual-mode="immersive"] .convert-eyebrow {
+  color: var(--novip-holo-cyan) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-plain-intro,
+html[data-novip-visual-mode="immersive"] .zj-photo__heading p,
+html[data-novip-visual-mode="immersive"] .zj-photo__hint,
+html[data-novip-visual-mode="immersive"] .zj-photo__footer,
+html[data-novip-visual-mode="immersive"] .convert-intro > p,
+html[data-novip-visual-mode="immersive"] .convert-privacy,
+html[data-novip-visual-mode="immersive"] .convert-free {
+  color: #cbd5e1 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-beginner-badge {
+  background: rgba(56, 189, 248, 0.16) !important;
+  color: var(--novip-holo-cyan) !important;
+  border: 1px solid rgba(129, 236, 254, 0.32) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-beginner-sub {
+  color: #94a3b8 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-step-item {
+  background: rgba(15, 23, 42, 0.78) !important;
+  border: 1px solid rgba(129, 236, 254, 0.18) !important;
+  color: #e2e8f0 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-step-num {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.28), rgba(198, 77, 255, 0.28)) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(129, 236, 254, 0.4) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-step-text {
+  color: #e2e8f0 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-beginner-save-inline {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border: 1px solid rgba(52, 211, 153, 0.28) !important;
+  color: #a7f3d0 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-beginner-save-inline strong {
+  color: #6ee7b7 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-helper-details,
+html[data-novip-visual-mode="immersive"] .novip-tech-details {
+  background: rgba(15, 23, 42, 0.74) !important;
+  border: 1px solid rgba(129, 236, 254, 0.18) !important;
+  color: #e2e8f0 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-helper-details summary,
+html[data-novip-visual-mode="immersive"] .novip-tech-details summary {
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .novip-helper-body,
+html[data-novip-visual-mode="immersive"] .novip-tech-body,
+html[data-novip-visual-mode="immersive"] .novip-helper-body p,
+html[data-novip-visual-mode="immersive"] .novip-tech-body p {
+  color: #cbd5e1 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .zj-photo__upload,
+html[data-novip-visual-mode="immersive"] .convert-drop {
+  background: rgba(15, 23, 42, 0.78) !important;
+  border-color: rgba(129, 236, 254, 0.38) !important;
+  color: #cbd5e1 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .zj-photo__upload strong,
+html[data-novip-visual-mode="immersive"] .convert-drop strong {
+  color: var(--novip-holo-cyan) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .zj-photo__upload span,
+html[data-novip-visual-mode="immersive"] .zj-photo__filename,
+html[data-novip-visual-mode="immersive"] .convert-drop span,
+html[data-novip-visual-mode="immersive"] .convert-drop small {
+  color: #94a3b8 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .zj-photo__preview-wrap {
+  background: rgba(5, 9, 20, 0.85) !important;
+  border: 1px solid rgba(129, 236, 254, 0.18) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .zj-photo__choices button,
+html[data-novip-visual-mode="immersive"] .convert-tools button {
+  background: rgba(15, 23, 42, 0.82) !important;
+  border-color: rgba(129, 236, 254, 0.22) !important;
+  color: #e2e8f0 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .zj-photo__choices button[aria-pressed="true"],
+html[data-novip-visual-mode="immersive"] .convert-tools button.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.26), rgba(198, 77, 255, 0.26)) !important;
+  border-color: var(--novip-holo-cyan) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 14px rgba(129, 236, 254, 0.24) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .zj-photo__fields label,
+html[data-novip-visual-mode="immersive"] .convert-field {
+  color: #cbd5e1 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .zj-photo__fields input {
+  background: rgba(5, 10, 22, 0.88) !important;
+  border-color: rgba(129, 236, 254, 0.28) !important;
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .zj-photo__summary,
+html[data-novip-visual-mode="immersive"] .convert-mode-note,
+html[data-novip-visual-mode="immersive"] .upload-limit-banner {
+  background: rgba(15, 23, 42, 0.82) !important;
+  border: 1px solid rgba(129, 236, 254, 0.2) !important;
+  color: #e2e8f0 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .study-card h2,
+html[data-novip-visual-mode="immersive"] .study-card h3,
+html[data-novip-visual-mode="immersive"] .panel h2,
+html[data-novip-visual-mode="immersive"] .panel h3,
+html[data-novip-visual-mode="immersive"] .beginner-guide h2,
+html[data-novip-visual-mode="immersive"] .beginner-guide h3,
+html[data-novip-visual-mode="immersive"] .beginner-guide summary,
+html[data-novip-visual-mode="immersive"] .study-empty-heading {
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="immersive"] .study-card p,
+html[data-novip-visual-mode="immersive"] .study-card li,
+html[data-novip-visual-mode="immersive"] .study-card label,
+html[data-novip-visual-mode="immersive"] .panel p,
+html[data-novip-visual-mode="immersive"] .panel label,
+html[data-novip-visual-mode="immersive"] .beginner-guide p,
+html[data-novip-visual-mode="immersive"] .beginner-guide li,
+html[data-novip-visual-mode="immersive"] .study-empty-text {
+  color: #cbd5e1 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .tool-main input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not(.ios-spotlight-input),
+html[data-novip-visual-mode="immersive"] .tool-main select,
+html[data-novip-visual-mode="immersive"] .tool-main textarea,
+html[data-novip-visual-mode="immersive"] .study-main input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]),
+html[data-novip-visual-mode="immersive"] .study-main select,
+html[data-novip-visual-mode="immersive"] .study-main textarea,
+html[data-novip-visual-mode="immersive"] .convert-main input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]),
+html[data-novip-visual-mode="immersive"] .convert-main select,
+html[data-novip-visual-mode="immersive"] .convert-main textarea {
+  background: rgba(5, 10, 22, 0.86) !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(129, 236, 254, 0.28) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .study-btn.alt,
+html[data-novip-visual-mode="immersive"] button.ghost,
+html[data-novip-visual-mode="immersive"] button.secondary {
+  background: rgba(15, 23, 42, 0.84) !important;
+  color: #f1f5f9 !important;
+  border: 1px solid rgba(129, 236, 254, 0.3) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .study-table-wrap,
+html[data-novip-visual-mode="immersive"] table {
+  background: rgba(7, 12, 26, 0.84) !important;
+  color: #f1f5f9 !important;
+  border-color: rgba(129, 236, 254, 0.22) !important;
+}
+
+html[data-novip-visual-mode="immersive"] th {
+  background: rgba(15, 23, 42, 0.92) !important;
+  color: var(--novip-holo-cyan) !important;
+  border-color: rgba(129, 236, 254, 0.22) !important;
+}
+
+html[data-novip-visual-mode="immersive"] td {
+  border-color: rgba(148, 163, 184, 0.16) !important;
+  color: #e2e8f0 !important;
+}
+
+html[data-novip-visual-mode="immersive"] pre,
+html[data-novip-visual-mode="immersive"] code {
+  background: rgba(4, 8, 18, 0.88) !important;
+  color: var(--novip-holo-mint) !important;
+  border-color: rgba(129, 236, 254, 0.2) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-dock-bar {
+  background: rgba(7, 12, 26, 0.92) !important;
+  backdrop-filter: blur(28px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+  border: 1px solid rgba(129, 236, 254, 0.28) !important;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.55),
+    0 0 20px rgba(129, 236, 254, 0.14) !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-dock-item {
+  color: #94a3b8 !important;
+}
+
+html[data-novip-visual-mode="immersive"] .ios-dock-item.active {
+  color: var(--novip-holo-cyan) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Daylight & Minimal Mode Contrast Safeguards (WCAG AA ≥ 4.5:1)
+   -------------------------------------------------------------------------- */
+html[data-novip-visual-mode="daylight"] .novip-flagship-title,
+html[data-novip-visual-mode="daylight"] .novip-scenario-card h3,
+html[data-novip-visual-mode="daylight"] .novip-highfreq-card h3,
+html[data-novip-visual-mode="daylight"] .x-foryou-title,
+html[data-novip-visual-mode="daylight"] .ios-spotlight-item-title,
+html[data-novip-visual-mode="daylight"] .novip-hero-title,
+html[data-novip-visual-mode="daylight"] .tool-main h1,
+html[data-novip-visual-mode="daylight"] .tool-main h2,
+html[data-novip-visual-mode="daylight"] .ios-status-time {
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+}
+
+html[data-novip-visual-mode="daylight"] .novip-flagship-desc,
+html[data-novip-visual-mode="daylight"] .novip-scenario-card p,
+html[data-novip-visual-mode="daylight"] .novip-highfreq-card p,
+html[data-novip-visual-mode="daylight"] .x-foryou-task,
+html[data-novip-visual-mode="daylight"] .ios-spotlight-item-desc,
+html[data-novip-visual-mode="daylight"] .novip-hero-subtitle,
+html[data-novip-visual-mode="daylight"] .tool-main p {
+  color: #334155 !important;
+}
+
+html[data-novip-visual-mode="minimal"] .novip-flagship-title,
+html[data-novip-visual-mode="minimal"] .novip-scenario-card h3,
+html[data-novip-visual-mode="minimal"] .novip-highfreq-card h3,
+html[data-novip-visual-mode="minimal"] .x-foryou-title,
+html[data-novip-visual-mode="minimal"] .ios-spotlight-item-title,
+html[data-novip-visual-mode="minimal"] .novip-hero-title,
+html[data-novip-visual-mode="minimal"] .tool-main h1,
+html[data-novip-visual-mode="minimal"] .tool-main h2,
+html[data-novip-visual-mode="minimal"] .ios-status-time {
+  color: #f8fafc !important;
+}
+
+html[data-novip-visual-mode="minimal"] .novip-flagship-desc,
+html[data-novip-visual-mode="minimal"] .novip-scenario-card p,
+html[data-novip-visual-mode="minimal"] .novip-highfreq-card p,
+html[data-novip-visual-mode="minimal"] .x-foryou-task,
+html[data-novip-visual-mode="minimal"] .ios-spotlight-item-desc,
+html[data-novip-visual-mode="minimal"] .novip-hero-subtitle,
+html[data-novip-visual-mode="minimal"] .tool-main p {
+  color: #cbd5e1 !important;
+}
+
+/* 移动端与桌面端 3D 空间交互触摸/悬停激活光晕 (Aceternity / React Bits 灵感) */
+[data-spatial-hover="true"] {
+  border-color: rgba(129, 236, 254, 0.45) !important;
+  box-shadow:
+    0 16px 36px rgba(2, 6, 23, 0.48),
+    0 0 28px rgba(129, 236, 254, 0.22) !important;
+  transition: box-shadow 0.25s var(--novip-ease-out-expo), border-color 0.25s ease !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Keyframes & Mobile / Reduced-Motion Adaptations
+   -------------------------------------------------------------------------- */
+@keyframes novipHeroTitleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes novipHeroSubReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes novipRingOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes novipSinePulse {
+  from {
+    transform: scaleY(0.65);
+  }
+  to {
+    transform: scaleY(1.35);
+  }
+}
+
+@keyframes novipOrbShockwave {
+  0% {
+    transform: scale(0.92);
+  }
+  45% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes novipPageEnter {
+  from {
+    opacity: 0.01;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes novipHoloShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .novip-holo-bar,
+  .novip-subpage-holo-inner {
+    border-radius: 14px;
+    padding: 6px 8px;
+    justify-content: center;
+    gap: 6px;
+  }
+  .novip-holo-telemetry,
+  .novip-subpage-holo-left {
+    width: 100%;
+    justify-content: center;
+    font-size: 9.5px;
+    gap: 6px;
+  }
+  .novip-subpage-telemetry-text {
+    font-size: 10px;
+    max-width: 210px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .novip-holo-controls,
+  .novip-subpage-holo-right {
+    width: 100%;
+    justify-content: center;
+  }
+  .novip-holo-mode-btn {
+    flex: 1;
+    text-align: center;
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+  .novip-holo-core-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .novip-holo-orb-btn {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+  .novip-holo-readout {
+    flex: 1;
+    min-width: 0;
+    align-items: flex-start;
+    text-align: left;
+    padding: 6px 10px;
+    border-radius: 12px;
+  }
+  html:not([data-novip-visual-mode="immersive"]) .ios-dock-bar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(28px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+    border: 1px solid rgba(15, 23, 42, 0.12) !important;
+    box-shadow:
+      0 14px 36px rgba(15, 23, 42, 0.18),
+      0 2px 8px rgba(15, 23, 42, 0.08) !important;
+  }
+
+  body,
+  main,
+  .study-main,
+  .convert-main,
+  .novip-route-stage {
+    padding-bottom: calc(116px + env(safe-area-inset-bottom, 16px)) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .novip-hero-evolution.is-immersive-hero .novip-hero-title,
+  .novip-hero-evolution.is-immersive-hero .novip-hero-subtitle,
+  .novip-holo-ring.outer,
+  .novip-holo-ring.middle,
+  .novip-wave-path,
+  .novip-route-stage,
+  .convert-loading::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+  .novip-spatial-section {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

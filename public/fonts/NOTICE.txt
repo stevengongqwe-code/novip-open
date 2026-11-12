@@ -1,0 +1,48 @@
+NOVIP 网站字体文件版权说明（/fonts/NOTICE.txt）
+
+本站 /fonts/ 目录下的 woff2 文件为网页字体子集化文件，用于手写生成器等功能的文字渲染。
+版权归各字体原作者所有。以下为根据字体文件内嵌元数据整理的许可信息（核验日期 2026-10-30）：
+
+1. 辰宇落雁體 2.0 Thin（ChenYuluoyan）
+   许可：SIL Open Font License 1.1（http://scripts.sil.org/OFL）
+   说明：原作者王立宇、刘苇晨，许可信息内嵌于字体文件 name 表。
+
+2. LXGW WenKai（霞鹜文楷）
+   许可：SIL Open Font License 1.1
+   说明：作者 lxgw，许可信息内嵌于字体文件 name 表。
+
+3. 志莽行书（Zhi Mang Xing）
+   许可：SIL Open Font License 1.1
+   说明：原作者钟齐字库 / 韦志莽，Google Fonts 托管。
+
+4. 刘建毛草（Liu Jian Mao Cao）
+   许可：SIL Open Font License 1.1
+   说明：原作者刘建，Google Fonts 托管。
+
+5. 站酷快乐体（ZCOOL KuaiLe）
+   许可：SIL Open Font License 1.1
+   说明：原作者刘兵克 / 站酷，Google Fonts 托管。
+
+6. 克利手写体（Klee One）
+   许可：SIL Open Font License 1.1
+   说明：原作者 Fontworks Inc.，Google Fonts 托管。
+
+7. 寒蝉手拙体（ChillZhuo）
+   许可：作者 Warren2060 / 寒蝉字型 免费商用授权。
+
+8. 清松手写体系列（JasonHandwriting 1 / 2 / 8p）
+   许可：原作者游清松（Yu Ching Sung），SIL Open Font License 1.1。
+
+9. 悠哉手写体（Yozai）
+   许可：基于 YozFont 衍生，SIL Open Font License 1.1。
+
+10. 小赖手写体（Xiaolai SC）
+    许可：基于 濑户字体 衍生，SIL Open Font License 1.1。
+
+11. 龙藏体（Long Cang）与 马善政毛笔体（Ma Shan Zheng）
+    许可：SIL Open Font License 1.1。
+
+12. 思源黑体 / Noto Sans SC（全站 UI 基础字体）
+    许可：SIL Open Font License 1.1（Google Fonts / @fontsource/noto-sans-sc 托管）。
+
+如权利人对本站使用有任何疑问，请通过网站联系方式告知，我们将第一时间协助处理。

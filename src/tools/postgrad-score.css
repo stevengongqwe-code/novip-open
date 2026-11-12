@@ -1,0 +1,96 @@
+.postgrad-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.postgrad-form-card {
+  border-radius: 16px;
+  padding: 20px;
+  background: var(--novip-glass-bg, rgba(255, 255, 255, 0.75));
+  border: 1px solid var(--border, #e2e8f0);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  margin-bottom: 24px;
+}
+
+[data-theme-mode='immersive'] .postgrad-form-card {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.postgrad-grid-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.postgrad-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.postgrad-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text, #334155);
+}
+
+[data-theme-mode='immersive'] .postgrad-label {
+  color: #e2e8f0;
+}
+
+.postgrad-input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border, #cbd5e1);
+  background: var(--surface, #ffffff);
+  color: var(--text, #0f172a);
+  font-size: 14px;
+}
+
+[data-theme-mode='immersive'] .postgrad-input {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #f8fafc;
+}
+
+.postgrad-results-card {
+  border-radius: 16px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(0, 113, 227, 0.08) 0%, rgba(129, 236, 254, 0.08) 100%);
+  border: 1px solid rgba(0, 113, 227, 0.25);
+  margin-top: 20px;
+}
+
+[data-theme-mode='immersive'] .postgrad-results-card {
+  background: linear-gradient(135deg, rgba(0, 113, 227, 0.16) 0%, rgba(129, 236, 254, 0.12) 100%);
+  border-color: rgba(129, 236, 254, 0.3);
+}
+
+.postgrad-score-badge {
+  font-size: 38px;
+  font-weight: 800;
+  color: #0071e3;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-theme-mode='immersive'] .postgrad-score-badge {
+  color: #81ecfe !important;
+}
+
+.postgrad-advice-box {
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-top: 14px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px dashed rgba(0, 113, 227, 0.3);
+}
+
+[data-theme-mode='immersive'] .postgrad-advice-box {
+  background: rgba(15, 23, 42, 0.5);
+  border-color: rgba(129, 236, 254, 0.25);
+}

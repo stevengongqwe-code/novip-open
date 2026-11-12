@@ -1,0 +1,103 @@
+.novip-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  flex-shrink: 0;
+  color: #0f172a;
+  text-decoration: none;
+  letter-spacing: 0;
+  font-family: system-ui, -apple-system, "PingFang SC", "Noto Sans SC", sans-serif;
+}
+.novip-brand img {
+  display: block;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  background: transparent;
+  flex-shrink: 0;
+}
+.novip-brand .novip-wordmark {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #0f172a;
+  letter-spacing: 1px;
+}
+.novip-brand small {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  font-weight: 550;
+  color: #334155;
+  letter-spacing: 0;
+}
+.novip-domain {
+  font: 650 12px system-ui, sans-serif;
+  letter-spacing: 1px;
+  color: #b90012;
+  margin: 0 0 18px;
+}
+.study-app:has(.novip-domain) .tool-main > h1 {
+  font-weight: 750;
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: #0f172a;
+}
+.study-app:has(.novip-domain) .tool-main > p:first-of-type {
+  line-height: 1.7;
+  max-width: 700px;
+  color: #334155;
+  font-weight: 500;
+}
+@media (max-width: 480px) {
+  .novip-brand {
+    gap: 8px;
+  }
+  .novip-brand img {
+    width: 36px;
+    height: 36px;
+  }
+  .novip-brand .novip-wordmark {
+    font-size: 21px;
+  }
+  .novip-brand small {
+    font-size: 10px;
+    font-weight: 600;
+    color: #334155;
+  }
+  .study-header > .novip-brand .novip-wordmark {
+    display: block;
+  }
+  .study-header > .novip-brand small {
+    display: block;
+  }
+  .zj-photo-site-header > .novip-brand .novip-wordmark {
+    display: block;
+  }
+  .header:has(.novip-brand) {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .header:has(.novip-brand) .header-right {
+    gap: 9px;
+  }
+  .header:has(.novip-brand) .free {
+    display: none;
+  }
+  .study-header:has(.novip-brand) > span {
+    font-size: 11px;
+    font-weight: 600;
+    color: #334155;
+  }
+  .convert-header:has(.novip-brand) .convert-free {
+    font-size: 11px;
+    font-weight: 600;
+    color: #334155;
+  }
+}
+

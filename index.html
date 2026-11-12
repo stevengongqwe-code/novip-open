@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <script id="novip-locale-init">
+    /* Synchronous early locale initialization to prevent flash of wrong language */
+    (function () {
+      try {
+        var saved = localStorage.getItem('novip-locale');
+        if (saved === 'en-US' || (!saved && (navigator.language || '').toLowerCase().indexOf('en') === 0)) {
+          document.documentElement.lang = 'en-US';
+        } else {
+          document.documentElement.lang = 'zh-CN';
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#cf2929" />
+  <title>NOVIP 2.0 大学生免费工具箱｜73 个 PDF、图片、文本、课表、PPT与校园工具</title>
+  <meta name="description" content="大学做作业、报名、排版不用开会员！NOVIP 2.0 提供 73 个免费实用工具：PDF 合并拆分压缩加页码、A4 证件复印拼版、报名照片体检、手写字迹生成、课表导出、PPT 生成与图片提取、Mermaid 流程图等，纯浏览器本地处理，无强制登录、无下载水印。" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://novip.site/" />
+  <link rel="icon" type="image/jpeg" href="/novip-logo.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://novip.site/" />
+  <meta property="og:title" content="NOVIP 2.0 大学生免费工具箱｜免VIP·无水印·纯本地处理" />
+  <meta property="og:description" content="大学做作业、报名、排版不用开会员！73 个 PDF 合并拆分、证件照体检、手写字迹、课表、格式转换等实用工具，纯浏览器本地安全处理。" />
+  <meta property="og:image" content="https://novip.site/novip-logo.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"WebSite","name":"NOVIP","alternateName":"NOVIP 2.0 大学生免费工具箱","url":"https://novip.site/","inLanguage":"zh-CN","description":"免费、无水印、无需强制登录的大学生在线工具箱"},
+    {"@type":"WebPage","name":"NOVIP 2.0 大学生免费工具箱","description":"73 个免费在线工具：PDF、图片、文本、课表、PPT、计算器与开发者工具。","url":"https://novip.site/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NOVIP","url":"https://novip.site/"}},
+    {"@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"NOVIP 真的免费吗？","acceptedAnswer":{"@type":"Answer","text":"是的。全部 73 个工具免费使用，无需强制登录，下载无水印。"}},
+      {"@type":"Question","name":"我的文件会被上传吗？","acceptedAnswer":{"@type":"Answer","text":"工具优先在浏览器本地处理，不上传文件内容。页面会加载字体、OCR 与 PDF 运行时等同源静态资源。"}},
+      {"@type":"Question","name":"手机上能用吗？","acceptedAnswer":{"@type":"Answer","text":"支持手机浏览器访问。微信内置浏览器可能受限，建议复制链接到系统浏览器打开；大文件建议在电脑处理。"}},
+      {"@type":"Question","name":"计算结果和文件转换结果准确吗？","acceptedAnswer":{"@type":"Answer","text":"房贷、体脂率等为参考估算；文件转换可能重排格式。请核对输出结果，不要用于医疗或合同等高风险决策。"}}
+    ]}
+  ]}
+  </script>
+  <script>
+  /* NOVIP ES5 boot guard: independent from module execution, React and local assets.
+   * A successful React Root commit is NOT enough; the initial page must resolve. */
+  (function () {
+    var RELOAD_KEY = 'novip-reload-guard-v1';
+    var RELOAD_WINDOW = 5 * 60 * 1000;
+    var MAX_RELOADS = 2;
+    function booted() { return window.__NOVIP_BOOTED === true; }
+    function recovery() { return document.getElementById('novip-boot-recovery'); }
+    function showFallback() {
+      if (booted()) return;
+      var el = recovery();
+      if (el) el.style.display = 'block';
+    }
+    function signalSuccess() {
+      window.__NOVIP_BOOTED = true;
+      var el = recovery();
+      if (el) el.style.display = 'none';
+    }
+    function showReloadLimit() {
+      var el = document.getElementById('novip-boot-reload-limit');
+      if (el) el.style.display = 'block';
+      return false;
+    }
+    function guardedReload() {
+      var now = new Date().getTime();
+      var history = null;
+      var storage = null;
+      try {
+        storage = window.sessionStorage;
+        var raw = storage.getItem(RELOAD_KEY);
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          if (parsed && typeof parsed.count === 'number' &&
+              typeof parsed.first === 'number' && isFinite(parsed.count) &&
+              isFinite(parsed.first) && parsed.count >= 0 && parsed.first >= 0) {
+            history = parsed;
+          }
+        }
+      } catch (ignored) { storage = null; }
+      if (!history || now < history.first || now - history.first > RELOAD_WINDOW) {
+        history = {count: 0, first: now};
+      }
+      if (history.count >= MAX_RELOADS) return showReloadLimit();
+      history.count++;
+      try { if (storage) storage.setItem(RELOAD_KEY, JSON.stringify(history)); }
+      catch (ignored) { /* Storage may be denied; user-initiated reload remains possible. */ }
+      window.location.reload();
+      return true;
+    }
+    window.__NOVIP_BOOT_FALLBACK = showFallback;
+    window.__NOVIP_BOOT_SUCCESS = signalSuccess;
+    window.__NOVIP_GUARDED_RELOAD = guardedReload;
+    window.addEventListener('error', function (event) {
+      var target = event && event.target;
+      if (target && target.tagName === 'SCRIPT' && !booted()) {
+        window.setTimeout(showFallback, 800);
+      }
+    }, true);
+    window.addEventListener('vite:preloadError', function () {
+      if (!booted()) showFallback();
+    }, false);
+    window.setTimeout(function () {
+      if (booted()) return;
+      var el = document.getElementById('novip-boot-note');
+      if (el) el.textContent = '加载时间较长，请检查网络连接…';
+    }, 9000);
+    window.setTimeout(showFallback, 20000);
+  })();
+  </script>
+</head>
+<body>
+  <div id="root">
+    <main style="max-width:1120px;margin:32px auto;padding:24px;font-family:system-ui,sans-serif;color:#18181b">
+      <header>
+        <strong style="color:#c9232c;font-size:24px">NOVIP</strong>
+        <p>大学生，别花冤枉钱。</p>
+        <h1>NOVIP 2.0 大学生免费工具箱｜73 个 PDF、图片、文本、课表与校园工具</h1>
+        <p>免费、无需强制登录、无下载水印。文件转换、报名照片、PDF、图片、文本、计算与开发者工具，优先在浏览器本地处理。</p>
+      </header>
+      <nav id="seo-nav" aria-label="NOVIP 工具导航">
+        <p>正在准备工具目录…</p>
+      </nav>
+      <p role="status"><span id="novip-boot-note">正在加载工具，请稍候…</span></p>
+      <noscript>请启用 JavaScript 以使用这些浏览器内处理工具。</noscript>
+    </main>
+  </div>
+  <div id="novip-boot-recovery" role="alert" style="display:none;position:fixed;z-index:2147483647;inset:0;overflow:auto;background:#fff;color:#18181b">
+    <main style="max-width:640px;margin:48px auto;padding:24px;font-family:system-ui,-apple-system,sans-serif;line-height:1.7">
+      <strong style="color:#c9232c;font-size:24px">NOVIP</strong>
+      <strong style="display:block;font-size:22px;margin:12px 0">页面没能正常加载</strong>
+      <p>可能是微信内置浏览器不兼容，或网络连接不稳定。重新加载可能清空未导出的内容。</p>
+      <p><button type="button" onclick="return window.__NOVIP_GUARDED_RELOAD && window.__NOVIP_GUARDED_RELOAD()" style="padding:10px 22px;font-size:16px;background:#c9232c;color:white;border:0;border-radius:8px">重新加载</button></p>
+      <p id="novip-boot-reload-limit" style="display:none;color:#c9232c">短时间内已重试两次，请不要持续刷新，建议更换网络或浏览器。</p>
+      <p style="font-size:14px;color:#52525b">可以切换 Wi-Fi / 移动数据，或复制 https://novip.site 到系统浏览器打开。</p>
+      <p><a href="/healthz.html">检查静态页面连接情况</a></p>
+    </main>
+  </div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>

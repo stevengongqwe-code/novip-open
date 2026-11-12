@@ -1,0 +1,167 @@
+/* 房贷与利息计算器 · 独立样式（不改动共享 study.css / tools.css） */
+
+.finance-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 14px;
+}
+
+.finance-wide {
+  grid-column: 1 / -1;
+}
+
+.finance-inline {
+  display: flex;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.finance-inline input {
+  margin-top: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.finance-inline select {
+  margin-top: 0;
+  width: auto;
+  flex: none;
+}
+
+.finance-hint {
+  font-size: 11px;
+  color: #71717a;
+  line-height: 1.9;
+  margin: 0 0 6px;
+  overflow-wrap: anywhere;
+}
+
+.finance-meta {
+  font-size: 12px;
+  color: #71717a;
+  margin: 0 0 16px;
+  overflow-wrap: anywhere;
+}
+
+.finance-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 4px 0 6px;
+}
+
+.finance-summary-item {
+  border: 1px solid #e4e4e7;
+  border-radius: 9px;
+  background: #fafafa;
+  padding: 14px;
+  min-width: 0;
+}
+
+.finance-summary-item span {
+  display: block;
+  font-size: 11px;
+  color: #71717a;
+}
+
+.finance-summary-item strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+
+.finance-summary-item small {
+  display: block;
+  font-size: 10px;
+  color: #a1a1aa;
+  margin-top: 4px;
+  line-height: 1.6;
+}
+
+.finance-extra {
+  margin: 16px 0 4px;
+  padding: 13px 14px;
+  border: 1px solid #f0c9c0;
+  border-radius: 9px;
+  background: #fff7f4;
+  font-size: 12px;
+  line-height: 1.9;
+  color: #713b2d;
+  overflow-wrap: anywhere;
+}
+
+.finance-formulas {
+  margin-top: 18px;
+  font-size: 12px;
+  color: #52525b;
+}
+
+.finance-formulas summary {
+  cursor: pointer;
+  padding: 9px 0;
+  font-size: 12px;
+  color: #c9232c;
+}
+
+.finance-formulas ul {
+  margin: 6px 0 0;
+  padding-left: 20px;
+  font-size: 11px;
+  line-height: 2;
+  color: #52525b;
+}
+
+.finance-formulas li {
+  overflow-wrap: anywhere;
+}
+
+.finance-notes {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 12px;
+  line-height: 2;
+  color: #52525b;
+}
+
+.finance-notes li {
+  overflow-wrap: anywhere;
+}
+
+/* 移动端：390px 下表单单列、摘要两列，避免输入框被挤压 */
+.tool-main .finance-fields input,
+.tool-main .finance-fields select {
+  font-size: 16px;
+}
+
+@media (max-width: 760px) {
+  .finance-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .finance-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+  .finance-summary-item {
+    padding: 11px;
+  }
+  .finance-summary-item strong {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 390px) {
+  .finance-summary {
+    grid-template-columns: 1fr;
+  }
+  .finance-inline {
+    flex-wrap: wrap;
+  }
+  .finance-inline select {
+    width: 100%;
+  }
+}

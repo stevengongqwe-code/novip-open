@@ -1,0 +1,65 @@
+.dorm-power-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.dorm-power-card {
+  border-radius: 16px;
+  padding: 20px;
+  background: var(--novip-glass-bg, rgba(255, 255, 255, 0.75));
+  border: 1px solid var(--border, #e2e8f0);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  margin-bottom: 20px;
+}
+
+[data-theme-mode='immersive'] .dorm-power-card {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dorm-member-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(148, 163, 184, 0.08);
+}
+
+[data-theme-mode='immersive'] .dorm-member-row {
+  background: rgba(30, 41, 59, 0.6);
+}
+
+.dorm-member-name {
+  width: 100px;
+  font-weight: 600;
+}
+
+.dorm-input-sm {
+  width: 90px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #cbd5e1);
+  background: var(--surface, #ffffff);
+  font-size: 13px;
+}
+
+[data-theme-mode='immersive'] .dorm-input-sm {
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.dorm-transfers-box {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(52, 211, 153, 0.08) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+[data-theme-mode='immersive'] .dorm-transfers-box {
+  background: rgba(16, 185, 129, 0.14);
+}

@@ -1,0 +1,157 @@
+/* NOVIP 2.0 Segmented Language Switcher (中文 | EN) */
+
+.novip-lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 9999px;
+  padding: 2px;
+  user-select: none;
+  touch-action: manipulation;
+  z-index: 10;
+  transition: border-color 0.16s ease, background-color 0.16s ease;
+}
+
+.novip-lang-segment {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.novip-lang-segment:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+.novip-lang-segment:hover:not(.active) {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.novip-lang-segment.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.novip-lang-divider {
+  width: 1px;
+  height: 14px;
+  background: rgba(148, 163, 184, 0.2);
+  margin: 0 1px;
+  pointer-events: none;
+}
+
+/* Compact variant for dense headers / bars */
+.novip-lang-switcher.is-compact .novip-lang-segment {
+  min-height: 38px;
+  min-width: 40px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+/* 1. 深空模式 (Deep-Space Immersion) */
+html[data-novip-visual-mode="immersive"] .novip-lang-switcher {
+  background: rgba(15, 23, 42, 0.55);
+  border-color: rgba(56, 189, 248, 0.25);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.08);
+}
+
+html[data-novip-visual-mode="immersive"] .novip-lang-segment.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.32), rgba(168, 85, 247, 0.32));
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* 2. 日光模式 (Daylight Mode) */
+html[data-novip-visual-mode="daylight"] .novip-lang-switcher {
+  background: rgba(241, 245, 249, 0.9);
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+html[data-novip-visual-mode="daylight"] .novip-lang-segment {
+  color: #475569;
+}
+
+html[data-novip-visual-mode="daylight"] .novip-lang-segment:hover:not(.active) {
+  color: #0f172a;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+html[data-novip-visual-mode="daylight"] .novip-lang-segment.active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+html[data-novip-visual-mode="daylight"] .novip-lang-divider {
+  background: #cbd5e1;
+}
+
+/* 3. 极简省电模式 (Eco Minimal) */
+html[data-novip-visual-mode="minimal"] .novip-lang-switcher {
+  background: #18181b;
+  border: 1px solid #3f3f46;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+html[data-novip-visual-mode="minimal"] .novip-lang-segment {
+  color: #a1a1aa;
+  transition: none;
+}
+
+html[data-novip-visual-mode="minimal"] .novip-lang-segment.active {
+  background: #27272a;
+  color: #fafafa;
+  box-shadow: none;
+  border: 1px solid #52525b;
+}
+
+html[data-novip-visual-mode="minimal"] .novip-lang-divider {
+  background: #3f3f46;
+}
+
+/* 4. 动画减弱偏好 (prefers-reduced-motion) */
+@media (prefers-reduced-motion: reduce) {
+  .novip-lang-switcher,
+  .novip-lang-segment {
+    transition: none !important;
+  }
+}
+
+/* 5. 移动端触摸屏宽度适配 (360px, 390px, 430px) */
+@media (max-width: 640px) {
+  .novip-lang-switcher {
+    padding: 1px;
+  }
+  .novip-lang-segment {
+    min-height: 44px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+}

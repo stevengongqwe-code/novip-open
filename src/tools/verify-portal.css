@@ -1,0 +1,775 @@
+/* 验证门户（/verify）：Claude 桌面应用体检门户。移动端 390 宽不横向溢出；状态同时有图标与文字 */
+
+.verify-hero {
+  margin-bottom: 18px;
+  border-left: 6px solid #2563eb;
+}
+
+.verify-hero-title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: #18181b;
+  overflow-wrap: anywhere;
+}
+
+.verify-hero-text {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #3f3f46;
+}
+
+.verify-hero-steps {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.85;
+  color: #52525b;
+}
+
+.verify-hero-steps li {
+  overflow-wrap: anywhere;
+}
+
+.verify-card {
+  margin-bottom: 18px;
+}
+
+.verify-card-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #18181b;
+}
+
+.verify-step-num {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: #2563eb;
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+.verify-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.verify-btn {
+  min-height: 44px;
+  white-space: normal;
+  text-align: center;
+}
+
+.verify-link-btn {
+  text-decoration: none;
+}
+
+.verify-spin {
+  animation: verify-spin 1s linear infinite;
+}
+
+@keyframes verify-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── 第一步：拖放区 ── */
+.verify-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 22px 14px;
+  border: 2px dashed #a1a1aa;
+  border-radius: 12px;
+  background: #fafafa;
+  color: #3f3f46;
+  min-width: 0;
+}
+
+.verify-drop--active {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.verify-drop--error {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+
+.verify-drop-title {
+  margin: 4px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #18181b;
+  overflow-wrap: anywhere;
+}
+
+.verify-drop-hint {
+  margin: 0;
+  font-size: 12px;
+  color: #52525b;
+}
+
+/* 原生文件输入保留给键盘与辅助技术使用，不占版面 */
+.verify-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.verify-file-error {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid #dc2626;
+  border-radius: 8px;
+  background: #fef2f2;
+}
+
+.verify-file-error-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #b91c1c;
+}
+
+.verify-overview {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid #e4e4e7;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.verify-overview-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 0 0 6px;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.verify-overview-label {
+  flex: none;
+  min-width: 68px;
+  color: #71717a;
+}
+
+.verify-overview-value {
+  flex: 1;
+  min-width: 0;
+  color: #18181b;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.verify-download-hint {
+  margin-top: 12px;
+}
+
+.verify-loading-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: #52525b;
+}
+
+/* ── 分组与单项 ── */
+.verify-group {
+  margin-top: 14px;
+  border: 1px solid #e4e4e7;
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: #fff;
+  min-width: 0;
+}
+
+.verify-group--problem {
+  border-color: #fecaca;
+}
+
+.verify-group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  margin-bottom: 6px;
+}
+
+.verify-group-head h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #18181b;
+}
+
+.verify-group-count {
+  font-size: 12px;
+  color: #71717a;
+}
+
+.verify-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.verify-item {
+  border-top: 1px solid #f4f4f5;
+  padding: 6px 0;
+}
+
+.verify-item:first-child {
+  border-top: 0;
+}
+
+.verify-item-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 6px;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+  color: #18181b;
+}
+
+.verify-item-head:hover {
+  background: #fafafa;
+}
+
+.verify-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid #e4e4e7;
+  background: #fafafa;
+  color: #3f3f46;
+}
+
+.verify-badge--pass {
+  color: #15803d;
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.verify-badge--warn {
+  color: #a16207;
+  background: #fefce8;
+  border-color: #fde68a;
+}
+
+.verify-badge--fail {
+  color: #b91c1c;
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+/* 跳过：中性灰，不制造「出事了」的错觉 */
+.verify-badge--skip {
+  color: #52525b;
+  background: #f4f4f5;
+  border-color: #e4e4e7;
+}
+
+.verify-item-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  padding-top: 1px;
+}
+
+.verify-item-caret {
+  flex: none;
+  display: inline-flex;
+  color: #71717a;
+  padding-top: 2px;
+}
+
+.verify-item-detail {
+  padding: 4px 6px 10px 12px;
+  border-left: 2px solid #e4e4e7;
+  margin-left: 6px;
+}
+
+.verify-item--fail .verify-item-detail {
+  border-left-color: #fca5a5;
+  background: #fffafa;
+  border-radius: 0 8px 8px 0;
+}
+
+/* 跳过项的详情更淡，避免抢注意力 */
+.verify-item--skip .verify-item-detail {
+  border-left-style: dashed;
+}
+
+.verify-item-text {
+  margin: 0 0 6px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #3f3f46;
+  overflow-wrap: anywhere;
+}
+
+.verify-item-meta {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: #71717a;
+  overflow-wrap: anywhere;
+}
+
+.verify-item-next {
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #1e3a8a;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 8px 10px;
+  overflow-wrap: anywhere;
+}
+
+.verify-item-next strong {
+  font-weight: 700;
+}
+
+/* ── 总结论横幅 ── */
+.verify-verdict {
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin: 0 0 18px;
+  border: 1px solid #e4e4e7;
+  background: #fff;
+  overflow-wrap: anywhere;
+}
+
+.verify-verdict--ready {
+  background: #f0fdf4;
+  border-color: #86efac;
+  border-left: 6px solid #16a34a;
+}
+
+.verify-verdict--attention {
+  background: #fefce8;
+  border-color: #fde047;
+  border-left: 6px solid #ca8a04;
+}
+
+.verify-verdict--blocked {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  border-left: 6px solid #dc2626;
+}
+
+.verify-verdict-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.verify-verdict-icon {
+  display: inline-flex;
+  flex: none;
+  margin-top: 2px;
+}
+
+.verify-verdict--ready .verify-verdict-icon {
+  color: #15803d;
+}
+
+.verify-verdict--attention .verify-verdict-icon {
+  color: #a16207;
+}
+
+.verify-verdict--blocked .verify-verdict-icon {
+  color: #b91c1c;
+}
+
+.verify-verdict-title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: #18181b;
+}
+
+.verify-verdict-text {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #3f3f46;
+}
+
+.verify-verdict-meta {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #52525b;
+  overflow-wrap: anywhere;
+}
+
+/* ── 导出 ── */
+.verify-hero-hint {
+  font-size: 12px;
+  color: #71717a;
+}
+
+.verify-message {
+  margin: 12px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #15803d;
+  overflow-wrap: anywhere;
+}
+
+.verify-manual-copy {
+  margin-top: 12px;
+  width: 100%;
+  min-height: 200px;
+  font-size: 12px;
+  line-height: 1.6;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ── 关于 ── */
+.verify-about-list {
+  margin: 0 0 10px;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #52525b;
+}
+
+.verify-about-list li {
+  overflow-wrap: anywhere;
+}
+
+/* ── 移动端：390 宽不横向溢出 ── */
+@media (max-width: 760px) {
+  .verify-hero-title {
+    font-size: 17px;
+  }
+
+  .verify-card-title {
+    font-size: 16px;
+  }
+
+  .verify-verdict {
+    padding: 14px 14px;
+  }
+
+  .verify-verdict-title {
+    font-size: 16px;
+  }
+
+  .verify-group {
+    padding: 10px 10px;
+  }
+
+  .verify-actions .verify-btn,
+  .verify-actions .verify-link-btn {
+    flex: 1 1 100%;
+  }
+
+  .verify-item-detail {
+    padding-left: 8px;
+  }
+
+  .verify-overview-label {
+    min-width: 100%;
+  }
+}
+
+/* ── 尊重「减少动态效果」 ── */
+@media (prefers-reduced-motion: reduce) {
+  .verify-spin {
+    animation: none !important;
+  }
+
+  .verify-drop,
+  .verify-item-head {
+    transition: none !important;
+  }
+}
+
+/* ── 暗色模式 ── */
+@media (prefers-color-scheme: dark) {
+  :where(html[data-novip-visual-mode]) .verify-hero-title,
+  :where(html[data-novip-visual-mode]) .verify-card-title,
+  :where(html[data-novip-visual-mode]) .verify-verdict-title,
+  :where(html[data-novip-visual-mode]) .verify-group-head h3,
+  :where(html[data-novip-visual-mode]) .verify-item-head,
+  :where(html[data-novip-visual-mode]) .verify-drop-title,
+  :where(html[data-novip-visual-mode]) .verify-overview-value {
+    color: #f4f4f5;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-hero-text,
+  :where(html[data-novip-visual-mode]) .verify-hero-steps,
+  :where(html[data-novip-visual-mode]) .verify-item-text,
+  :where(html[data-novip-visual-mode]) .verify-verdict-text,
+  :where(html[data-novip-visual-mode]) .verify-about-list,
+  :where(html[data-novip-visual-mode]) .verify-drop-hint,
+  :where(html[data-novip-visual-mode]) .verify-loading-line {
+    color: #d4d4d8;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-hero-hint,
+  :where(html[data-novip-visual-mode]) .verify-verdict-meta,
+  :where(html[data-novip-visual-mode]) .verify-group-count,
+  :where(html[data-novip-visual-mode]) .verify-item-meta,
+  :where(html[data-novip-visual-mode]) .verify-overview-label {
+    color: #a1a1aa;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-drop {
+    background: #1f1f23;
+    border-color: #3f3f46;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-drop--active {
+    background: #172554;
+    border-color: #3b82f6;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-overview {
+    background: #1f1f23;
+    border-color: #3f3f46;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-group {
+    background: #18181b;
+    border-color: #27272a;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-item {
+    border-top-color: #27272a;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-item-head:hover {
+    background: #1f1f23;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-item-detail {
+    border-left-color: #3f3f46;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-item--fail .verify-item-detail {
+    background: #241a1a;
+    border-left-color: #7f1d1d;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-item-next {
+    background: #1e293b;
+    border-color: #334155;
+    color: #bfdbfe;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-badge {
+    background: #27272a;
+    border-color: #3f3f46;
+    color: #e4e4e7;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-verdict--ready {
+    background: #0f2418;
+    border-color: #14532d;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-verdict--attention {
+    background: #241f0b;
+    border-color: #713f12;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-verdict--blocked {
+    background: #26110f;
+    border-color: #7f1d1d;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-verdict--ready .verify-verdict-title,
+  :where(html[data-novip-visual-mode]) .verify-verdict--attention .verify-verdict-title,
+  :where(html[data-novip-visual-mode]) .verify-verdict--blocked .verify-verdict-title {
+    color: #f4f4f5;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-file-error {
+    background: #26110f;
+    border-color: #7f1d1d;
+  }
+}
+
+/* ── 结论横幅里的「关键事实」（应用版本 / 签名）与第一条 fail 原文 ── */
+.verify-verdict-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #e4e4e7;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.verify-verdict-facts div {
+  min-width: 0;
+  flex: 1 1 200px;
+}
+
+.verify-verdict-facts dt {
+  font-size: 12px;
+  color: #71717a;
+}
+
+.verify-verdict-facts dd {
+  margin: 2px 0 0;
+  font-weight: 700;
+  color: #18181b;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.verify-verdict-fail {
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid #dc2626;
+  border-radius: 10px;
+}
+
+.verify-verdict-fail-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.65;
+  color: #991b1b;
+  overflow-wrap: anywhere;
+}
+
+.verify-verdict-fail-link {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.verify-ext-link {
+  color: #1d4ed8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+
+.verify-ext-hint {
+  font-size: 11px;
+  color: #71717a;
+  white-space: nowrap;
+  margin-left: 2px;
+}
+
+.verify-ext-note {
+  display: block;
+  font-size: 11px;
+  color: #71717a;
+  margin-top: 2px;
+}
+
+.verify-verdict-fail-next {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #1e3a8a;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 8px 10px;
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-color-scheme: dark) {
+  :where(html[data-novip-visual-mode]) .verify-verdict-facts {
+    background: rgba(24, 24, 27, 0.7);
+    border-color: #3f3f46;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-verdict-facts dt {
+    color: #a1a1aa;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-verdict-facts dd {
+    color: #f4f4f5;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-verdict-fail {
+    background: #1c1414;
+    border-color: #7f1d1d;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-verdict-fail-title {
+    color: #fca5a5;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-ext-link {
+    color: #93c5fd;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-ext-hint,
+  :where(html[data-novip-visual-mode]) .verify-ext-note {
+    color: #a1a1aa;
+  }
+
+  :where(html[data-novip-visual-mode]) .verify-verdict-fail-next {
+    background: #1e293b;
+    border-color: #334155;
+    color: #bfdbfe;
+  }
+}

@@ -1,0 +1,10 @@
+/* PDF 加水印：预览画布与颜色输入。仅本工具使用，不改共享样式。 */
+.pdf-watermark-preview{margin:10px 0 4px;padding:10px;border:1px solid #e4e4e7;border-radius:8px;background:#f4f4f5;overflow:auto}
+.pdf-watermark-preview canvas{display:block;margin:0 auto;border:1px solid #d4d4d8;border-radius:4px;background:#fff}
+.pdf-color-field{display:flex;gap:8px;align-items:center}
+.pdf-color-field input[type='color']{width:44px;height:38px;min-height:38px;padding:2px;border:1px solid #e4e4e7;border-radius:6px;background:#fff;flex:0 0 auto}
+.pdf-color-field input[type='text'],.pdf-color-field input:not([type]){flex:1}
+@media(max-width:760px){
+ .pdf-watermark-preview{padding:6px}
+ .pdf-watermark-preview canvas{width:100%!important;height:auto!important}
+}

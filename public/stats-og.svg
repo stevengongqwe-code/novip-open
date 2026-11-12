@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">NOVIP 公开数据中心</title><desc id="desc">无实时数字的静态分享封面</desc>
+<rect width="1200" height="630" fill="#f8f8f9"/><rect x="78" y="78" width="1044" height="474" rx="26" fill="#fff" stroke="#e7e7e9" stroke-width="2"/>
+<rect x="110" y="115" width="10" height="56" rx="5" fill="#c9232c"/><text x="144" y="162" font-family="Arial,sans-serif" font-size="49" font-weight="800" fill="#c9232c">NOVIP</text>
+<text x="110" y="288" font-family="Arial,sans-serif" font-size="64" font-weight="700" fill="#18181b">Public Analytics</text>
+<text x="110" y="359" font-family="Arial,sans-serif" font-size="37" fill="#5f6269">Open data. Real growth.</text>
+<line x1="110" y1="409" x2="1090" y2="409" stroke="#e5e5e5" stroke-width="2"/>
+<text x="110" y="473" font-family="Arial,sans-serif" font-size="25" fill="#71717a">novip.site/stats</text>
+<path d="M755 330 L829 298 L887 327 L950 230 L1018 246 L1080 181" fill="none" stroke="#c9232c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".65"/>
+<g fill="#c9232c"><circle cx="755" cy="330" r="7"/><circle cx="829" cy="298" r="7"/><circle cx="887" cy="327" r="7"/><circle cx="950" cy="230" r="7"/><circle cx="1018" cy="246" r="7"/><circle cx="1080" cy="181" r="7"/></g>
+</svg>

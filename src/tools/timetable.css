@@ -1,0 +1,797 @@
+/* NOVIP 大学课程表独立样式 · 遵循 novip-theme.css 视觉规范 */
+:root {
+  --tt-row: 48px;
+}
+
+/* 顶部通知与横幅 */
+.tt-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+  padding: 10px 14px;
+}
+.tt-banner span {
+  flex: 1;
+  min-width: 0;
+}
+.tt-warn-text {
+  color: #c9232c;
+  font-size: 12px;
+  margin: 6px 0 0;
+  line-height: 1.6;
+}
+
+/* 周课表主卡片 */
+.tt-board {
+  position: relative;
+  overflow: hidden;
+}
+.tt-weekbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.tt-weektitle {
+  text-align: center;
+  flex: 1;
+}
+.tt-weektitle strong {
+  display: block;
+  font-size: 18px;
+  color: #18181b;
+  font-weight: 700;
+}
+.tt-weektitle strong small {
+  font-size: 13px;
+  color: #71717a;
+  font-weight: 400;
+}
+.tt-weektitle span {
+  display: block;
+  font-size: 12px;
+  color: #71717a;
+  margin-top: 2px;
+}
+.tt-weektitle em.on {
+  color: #c9232c;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.tt-weekchips {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tt-weekchips::-webkit-scrollbar {
+  display: none;
+}
+.tt-weekchips button {
+  min-width: 34px;
+  height: 32px;
+  padding: 0 8px;
+  border-radius: 6px;
+  border: 1px solid #e4e4e7;
+  background: #fff;
+  color: #3f3f46;
+  font-size: 13px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.tt-weekchips button.now {
+  border-color: #fca5a5;
+  background: #fff5f5;
+  color: #c9232c;
+  font-weight: 600;
+}
+.tt-weekchips button.on {
+  background: #c9232c;
+  border-color: #c9232c;
+  color: #fff;
+  font-weight: 700;
+}
+.tt-back {
+  display: inline-block;
+  font-size: 12px;
+  margin: 0 0 10px;
+}
+
+/* 课表网格 */
+.tt-grid {
+  display: grid;
+  border: 1px solid #e4e4e7;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f4f4f5;
+  gap: 1px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+}
+.tt-grid.days-5 {
+  grid-template-columns: 46px repeat(5, minmax(0, 1fr));
+}
+.tt-grid.days-7 {
+  grid-template-columns: 42px repeat(7, minmax(0, 1fr));
+}
+
+.tt-corner {
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #71717a;
+  font-weight: 600;
+  border-bottom: 1px solid #e4e4e7;
+}
+.tt-dayhead {
+  background: #fafafa;
+  padding: 8px 2px;
+  text-align: center;
+  border-bottom: 1px solid #e4e4e7;
+}
+.tt-dayhead b {
+  display: block;
+  font-size: 13px;
+  color: #27272a;
+}
+.tt-dayhead small {
+  display: block;
+  font-size: 10px;
+  color: #71717a;
+  margin-top: 1px;
+}
+.tt-dayhead.today {
+  background: #fff0f1;
+}
+.tt-dayhead.today b {
+  color: #c9232c;
+}
+.tt-dayhead.today small {
+  color: #c9232c;
+  font-weight: 600;
+}
+
+.tt-period {
+  background: #fafafa;
+  padding: 4px 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+}
+.tt-period b {
+  font-size: 12px;
+  color: #3f3f46;
+}
+.tt-period small {
+  font-size: 9px;
+  color: #71717a;
+  transform: scale(0.9);
+}
+
+.tt-cell {
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  min-height: var(--tt-row);
+  transition: background-color 0.1s;
+}
+.tt-cell:hover,
+.tt-cell:focus-visible {
+  background: #fdf2f2;
+}
+
+/* 课程卡片 */
+.tt-course {
+  border: none;
+  border-radius: 6px;
+  padding: 4px 5px;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2px;
+  font-size: 11px;
+  line-height: 1.35;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  z-index: 2;
+  position: relative;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.tt-course:hover,
+.tt-course:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  z-index: 3;
+}
+.tt-course b {
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
+}
+.tt-course span {
+  font-size: 10px;
+  opacity: 0.9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tt-course .tt-teacher {
+  opacity: 0.8;
+}
+.tt-course i {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-style: normal;
+  font-size: 9px;
+  padding: 1px 3px;
+  background: #dc2626;
+  color: #fff;
+  border-radius: 3px;
+  line-height: 1;
+}
+
+/* 10 套高对比、温和课程配色 */
+.c0 { background: #fee2e2; color: #991b1b; }
+.c1 { background: #ffedd5; color: #9a3412; }
+.c2 { background: #fef3c7; color: #92400e; }
+.c3 { background: #dcfce7; color: #166534; }
+.c4 { background: #ccfbf1; color: #115e59; }
+.c5 { background: #e0f2fe; color: #075985; }
+.c6 { background: #e0e7ff; color: #3730a3; }
+.c7 { background: #ede9fe; color: #5b21b6; }
+.c8 { background: #fae8ff; color: #86198f; }
+.c9 { background: #fce7f3; color: #9d174d; }
+
+.tt-hint {
+  margin-top: 10px;
+  font-size: 12px;
+}
+.tt-save {
+  font-size: 11px;
+  color: #15803d;
+  text-align: right;
+  margin: 6px 0 0;
+}
+
+/* 冲突提醒 */
+.tt-conflicts {
+  border-color: #fca5a5;
+  background: #fff8f8;
+}
+.tt-conflicts h2 {
+  color: #b91c1c;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.tt-conflicts ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+}
+.tt-conflicts li {
+  padding: 8px 0;
+  border-bottom: 1px dashed #fecaca;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.tt-conflict-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* 全部课程列表 */
+.tt-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tt-group {
+  border: 1px solid #e4e4e7;
+  border-left-width: 4px;
+  border-radius: 8px;
+  padding: 10px 14px;
+  background: #fafafa;
+  color: #18181b;
+}
+.tt-group.c0 { border-left-color: #ef4444; }
+.tt-group.c1 { border-left-color: #f97316; }
+.tt-group.c2 { border-left-color: #f59e0b; }
+.tt-group.c3 { border-left-color: #10b981; }
+.tt-group.c4 { border-left-color: #14b8a6; }
+.tt-group.c5 { border-left-color: #0ea5e9; }
+.tt-group.c6 { border-left-color: #6366f1; }
+.tt-group.c7 { border-left-color: #8b5cf6; }
+.tt-group.c8 { border-left-color: #d946ef; }
+.tt-group.c9 { border-left-color: #ec4899; }
+
+.tt-group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.tt-group-head b {
+  font-size: 15px;
+  color: #18181b;
+}
+.tt-group-head small {
+  font-size: 12px;
+  color: #71717a;
+}
+.tt-slot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 7px 10px;
+  margin-top: 4px;
+  border: 1px solid #e4e4e7;
+  border-radius: 6px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+  gap: 8px;
+}
+.tt-slot:hover,
+.tt-slot:focus-visible {
+  border-color: #c9232c;
+  background: #fff8f8;
+}
+.tt-slot.clash {
+  border-color: #fca5a5;
+  background: #fff5f5;
+}
+.tt-slot-main {
+  font-size: 13px;
+  color: #27272a;
+  font-weight: 500;
+}
+.tt-slot-sub {
+  font-size: 11px;
+  color: #71717a;
+  text-align: right;
+}
+
+/* 学期设置 */
+.tt-collapse {
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 0;
+  text-align: left;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.tt-collapse h2 {
+  margin: 0;
+  font-size: 18px;
+}
+.tt-collapse span {
+  font-size: 12px;
+  color: #71717a;
+}
+.tt-settings-body {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #e4e4e7;
+}
+.tt-field-hint {
+  display: block;
+  font-size: 11px;
+  color: #71717a;
+  margin-top: 4px;
+}
+.tt-subhead {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 18px 0 8px;
+  color: #27272a;
+}
+.tt-periods {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tt-periods li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.tt-periods li span:first-child {
+  width: 58px;
+  color: #71717a;
+}
+.tt-periods input[type="time"] {
+  padding: 6px 8px;
+  border: 1px solid #e4e4e7;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.tt-gen {
+  margin: 10px 0;
+}
+.tt-help {
+  margin: 14px 0;
+  font-size: 13px;
+  color: #71717a;
+}
+.tt-help summary {
+  cursor: pointer;
+  color: #3f3f46;
+  font-weight: 500;
+}
+
+/* 危险操作与按钮 */
+.tt-danger {
+  color: #dc2626 !important;
+  border-color: #fca5a5 !important;
+}
+.tt-danger:hover {
+  background: #fef2f2 !important;
+}
+.tt-danger-solid {
+  background: #dc2626 !important;
+  border-color: #dc2626 !important;
+  color: #fff !important;
+}
+
+/* 浮动添加按钮（移动端方便单手操作） */
+.tt-fab {
+  position: fixed;
+  right: 22px;
+  bottom: 26px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #c9232c;
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 14px rgba(201, 35, 44, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 99;
+  transition: transform 0.15s, background-color 0.15s;
+}
+.tt-fab:hover {
+  background: #ac1c25;
+  transform: scale(1.05);
+}
+.tt-fab:active {
+  transform: scale(0.96);
+}
+
+/* 弹窗 / 底部抽屉（移动端优化） */
+.tt-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0;
+}
+.tt-backdrop.tt-top {
+  align-items: center;
+  padding: 16px;
+}
+.tt-sheet {
+  background: #fff;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.18);
+  animation: tt-slide-up 0.2s ease-out;
+}
+@media (min-width: 640px) {
+  .tt-backdrop {
+    align-items: center;
+    padding: 20px;
+  }
+  .tt-sheet {
+    border-radius: 14px;
+    max-height: 85vh;
+  }
+}
+@keyframes tt-slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.tt-sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid #e4e4e7;
+}
+.tt-sheet-head h2 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 700;
+}
+.tt-sheet-body {
+  padding: 14px 20px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tt-sheet-body label {
+  margin-bottom: 0;
+}
+.tt-sheet-body .study-field {
+  margin: 0;
+}
+.tt-sheet-foot {
+  display: flex;
+  gap: 10px;
+  padding: 14px 20px;
+  border-top: 1px solid #e4e4e7;
+  background: #fafafa;
+}
+.tt-sheet-foot button {
+  flex: 1;
+}
+
+/* 分段单选与点选器 */
+.tt-seg {
+  display: flex;
+  border: 1px solid #d4d4d8;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.tt-seg button {
+  flex: 1;
+  min-height: 40px;
+  border: none;
+  background: #fff;
+  color: #3f3f46;
+  font-size: 13px;
+  cursor: pointer;
+  border-right: 1px solid #e4e4e7;
+}
+.tt-seg button:last-child {
+  border-right: none;
+}
+.tt-seg button.on {
+  background: #fff0f1;
+  color: #c9232c;
+  font-weight: 700;
+}
+
+.tt-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.tt-range select {
+  flex: 1;
+  min-height: 42px;
+}
+
+.tt-weekpick {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin: 8px 0;
+}
+.tt-weekpick button {
+  height: 36px;
+  border: 1px solid #e4e4e7;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 13px;
+  color: #3f3f46;
+  cursor: pointer;
+}
+.tt-weekpick button.on {
+  background: #c9232c;
+  border-color: #c9232c;
+  color: #fff;
+  font-weight: 700;
+}
+.tt-inline {
+  display: block;
+  font-size: 12px;
+  color: #71717a;
+  margin: 6px 0;
+}
+.tt-inline input {
+  margin-top: 4px;
+}
+
+.tt-colors {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+.tt-colors button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.tt-colors button.on {
+  border-color: #18181b;
+  transform: scale(1.1);
+}
+
+.tt-summary {
+  font-size: 12px;
+  color: #71717a;
+  line-height: 1.6;
+  background: #fafafa;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e4e4e7;
+  margin: 4px 0;
+}
+.tt-clash {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #b91c1c;
+  background: #fff5f5;
+  border: 1px solid #fecaca;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+/* 确认对话框 */
+.tt-confirm {
+  background: #fff;
+  max-width: 420px;
+  width: 100%;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.tt-confirm h2 {
+  font-size: 17px;
+  margin: 0 0 10px;
+}
+.tt-confirm-body {
+  font-size: 13px;
+  color: #60606b;
+  line-height: 1.7;
+}
+
+/* 底部操作反馈轻提示 Toast */
+.tt-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #18181b;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1001;
+  max-width: 90vw;
+}
+.tt-toast span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tt-toast button {
+  background: none;
+  border: none;
+  color: #fca5a5;
+  cursor: pointer;
+  padding: 0 4px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* 辅助图标按钮 */
+.tt-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid #e4e4e7;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #3f3f46;
+  cursor: pointer;
+}
+.tt-icon-btn:hover:not(:disabled) {
+  border-color: #c9232c;
+  color: #c9232c;
+}
+.tt-icon-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.tt-icon-btn.small {
+  width: 32px;
+  height: 32px;
+}
+
+/* 响应式调整 */
+@media (max-width: 760px) {
+  :root {
+    --tt-row: 44px;
+  }
+  .tt-board {
+    padding: 14px 10px;
+  }
+  .tt-period small {
+    display: none;
+  }
+  .tt-course {
+    padding: 3px 3px;
+    font-size: 10px;
+    line-height: 1.25;
+  }
+  .tt-course span {
+    font-size: 9px;
+  }
+  .tt-course .tt-teacher {
+    display: none;
+  }
+  .tt-weekchips button {
+    min-width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+  .tt-weekpick {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

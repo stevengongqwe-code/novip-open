@@ -1,0 +1,588 @@
+{
+  "baseUrl": "http://127.0.0.1:4173",
+  "viewport": "360x800@3",
+  "auditedAt": "2026-10-24T14:11:56.790Z",
+  "results": [
+    {
+      "name": "home-new-tools",
+      "url": "http://127.0.0.1:4173/",
+      "metrics": {
+        "title": "大学生，别花冤枉钱。｜NOVIP",
+        "h1": "大学生，别花冤枉钱。",
+        "scrollWidth": 360,
+        "innerWidth": 360,
+        "horizontalOverflow": false,
+        "overflows": [],
+        "smallTargets": [
+          {
+            "tag": "A",
+            "text": "你遇到了什么需要开会员才能完成的事情？",
+            "w": 247,
+            "h": 16
+          },
+          {
+            "tag": "A",
+            "text": "查看完整验收报告（Markdown）",
+            "w": 193,
+            "h": 16
+          },
+          {
+            "tag": "A",
+            "text": "开源许可",
+            "w": 36,
+            "h": 15
+          }
+        ],
+        "buttons": 5,
+        "fileInputs": 0,
+        "canvases": 0,
+        "totalTransferKB": 238,
+        "fetchCount": 0,
+        "readyState": "complete"
+      },
+      "actionLog": [],
+      "assertion": {
+        "pass": true,
+        "detail": "cards=35 missing="
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "name": "text-dedupe",
+      "url": "http://127.0.0.1:4173/tools/text",
+      "metrics": {
+        "title": "文本工具箱｜NOVIP",
+        "h1": "文本工具箱",
+        "scrollWidth": 360,
+        "innerWidth": 360,
+        "horizontalOverflow": false,
+        "overflows": [],
+        "smallTargets": [
+          {
+            "tag": "INPUT",
+            "text": "",
+            "w": 16,
+            "h": 16
+          },
+          {
+            "tag": "INPUT",
+            "text": "",
+            "w": 16,
+            "h": 16
+          },
+          {
+            "tag": "INPUT",
+            "text": "",
+            "w": 16,
+            "h": 16
+          },
+          {
+            "tag": "INPUT",
+            "text": "",
+            "w": 16,
+            "h": 16
+          },
+          {
+            "tag": "INPUT",
+            "text": "",
+            "w": 16,
+            "h": 16
+          },
+          {
+            "tag": "INPUT",
+            "text": "",
+            "w": 16,
+            "h": 16
+          },
+          {
+            "tag": "INPUT",
+            "text": "",
+            "w": 16,
+            "h": 16
+          },
+          {
+            "tag": "INPUT",
+            "text": "",
+            "w": 16,
+            "h": 16
+          }
+        ],
+        "buttons": 18,
+        "fileInputs": 0,
+        "canvases": 0,
+        "totalTransferKB": 665,
+        "fetchCount": 0,
+        "readyState": "complete"
+      },
+      "actionLog": [
+        {
+          "eval": "(() => { const ta=document.querySelector('textarea[aria-label=\"待处理文本\"]'); const ",
+          "value": true
+        },
+        {
+          "wait": 400
+        },
+        {
+          "eval": "(() => { const lab=[...document.querySelectorAll('label')].find(l=>l.textContent",
+          "value": true
+        },
+        {
+          "wait": 500
+        }
+      ],
+      "assertion": {
+        "pass": true,
+        "detail": "\"苹果\\n香蕉\""
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "name": "timestamp-epoch",
+      "url": "http://127.0.0.1:4173/tools/timestamp",
+      "metrics": {
+        "title": "时间戳转换器｜NOVIP",
+        "h1": "时间戳转换器",
+        "scrollWidth": 360,
+        "innerWidth": 360,
+        "horizontalOverflow": false,
+        "overflows": [],
+        "smallTargets": [
+          {
+            "tag": "A",
+            "text": "开源许可",
+            "w": 36,
+            "h": 15
+          }
+        ],
+        "buttons": 14,
+        "fileInputs": 0,
+        "canvases": 0,
+        "totalTransferKB": 663,
+        "fetchCount": 0,
+        "readyState": "complete"
+      },
+      "actionLog": [
+        {
+          "eval": "(() => { const el=document.querySelector('input[aria-label=\"时间戳输入\"]'); const set",
+          "value": true
+        },
+        {
+          "clickText": "转换时间戳",
+          "clicked": true
+        },
+        {
+          "wait": 700
+        }
+      ],
+      "assertion": {
+        "pass": true,
+        "detail": "工具首页\n手写生成器\n文件转换\n参考文献\nExcel合并\n报名照片\n大学生导航\n免费替代方案\n功能许愿池\nNOVIP\n大学生，别花冤枉钱。\n免费 · 无登录 · 无水印\n时间戳转换器\n\nUnix 时间戳与日期时间互转：自动识别秒/毫秒、北京"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "name": "finance-mortgage-default",
+      "url": "http://127.0.0.1:4173/tools/finance",
+      "metrics": {
+        "title": "房贷与利息计算器｜NOVIP",
+        "h1": "房贷与利息计算器",
+        "scrollWidth": 360,
+        "innerWidth": 360,
+        "horizontalOverflow": false,
+        "overflows": [
+          {
+            "tag": "TABLE",
+            "cls": "",
+            "left": 37,
+            "right": 436
+          },
+          {
+            "tag": "TBODY",
+            "cls": "",
+            "left": 37,
+            "right": 436
+          },
+          {
+            "tag": "TR",
+            "cls": "",
+            "left": 37,
+            "right": 436
+          },
+          {
+            "tag": "TH",
+            "cls": "",
+            "left": 332,
+            "right": 436
+          },
+          {
+            "tag": "TR",
+            "cls": "",
+            "left": 37,
+            "right": 436
+          },
+          {
+            "tag": "TD",
+            "cls": "",
+            "left": 332,
+            "right": 436
+          },
+          {
+            "tag": "TR",
+            "cls": "",
+            "left": 37,
+            "right": 436
+          },
+          {
+            "tag": "TD",
+            "cls": "",
+            "left": 332,
+            "right": 436
+          }
+        ],
+        "smallTargets": [
+          {
+            "tag": "A",
+            "text": "开源许可",
+            "w": 36,
+            "h": 15
+          }
+        ],
+        "buttons": 10,
+        "fileInputs": 0,
+        "canvases": 0,
+        "totalTransferKB": 1137,
+        "fetchCount": 0,
+        "readyState": "complete"
+      },
+      "actionLog": [
+        {
+          "clickText": "计算房贷",
+          "clicked": true
+        },
+        {
+          "wait": 800
+        }
+      ],
+      "assertion": {
+        "pass": true,
+        "detail": "工具首页\n手写生成器\n文件转换\n参考文献\nExcel合并\n报名照片\n大学生导航\n免费替代方案\n功能许愿池\nNOVIP\n大学生，别花冤枉钱。\n免费 · 无登录 · 无水印\n房贷与利息计算器\n\n等额本息/等额本金月供、总利息与逐月还款表，以及单利/复利估算。全部在本机计算，不联网、不上传任何数据。\n\n处"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "name": "health-bmi",
+      "url": "http://127.0.0.1:4173/tools/health",
+      "metrics": {
+        "title": "BMI / 体脂率参考计算｜NOVIP",
+        "h1": "BMI / 体脂率参考计算",
+        "scrollWidth": 360,
+        "innerWidth": 360,
+        "horizontalOverflow": false,
+        "overflows": [],
+        "smallTargets": [
+          {
+            "tag": "A",
+            "text": "开源许可",
+            "w": 36,
+            "h": 15
+          }
+        ],
+        "buttons": 7,
+        "fileInputs": 0,
+        "canvases": 0,
+        "totalTransferKB": 665,
+        "fetchCount": 0,
+        "readyState": "complete"
+      },
+      "actionLog": [
+        {
+          "eval": "(() => { const set=(labelText,v)=>{const lab=[...document.querySelectorAll('labe",
+          "value": true
+        },
+        {
+          "wait": 500
+        },
+        {
+          "clickText": "计算参考值",
+          "clicked": true
+        },
+        {
+          "wait": 700
+        }
+      ],
+      "assertion": {
+        "pass": true,
+        "detail": "BMI/BMR found: true/true"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "name": "developer-md5",
+      "url": "http://127.0.0.1:4173/tools/developer",
+      "metrics": {
+        "title": "开发者与文本工具箱｜NOVIP",
+        "h1": "开发者与文本工具箱",
+        "scrollWidth": 360,
+        "innerWidth": 360,
+        "horizontalOverflow": false,
+        "overflows": [],
+        "smallTargets": [
+          {
+            "tag": "A",
+            "text": "开源许可",
+            "w": 36,
+            "h": 15
+          }
+        ],
+        "buttons": 8,
+        "fileInputs": 0,
+        "canvases": 0,
+        "totalTransferKB": 668,
+        "fetchCount": 0,
+        "readyState": "complete"
+      },
+      "actionLog": [
+        {
+          "eval": "(() => { const sel=document.querySelector('select'); const setter=Object.getOwnP",
+          "value": true
+        },
+        {
+          "wait": 300
+        },
+        {
+          "eval": "(() => { const ta=document.querySelector('textarea[aria-label=\"待处理文本\"]'); const ",
+          "value": true
+        },
+        {
+          "clickText": "计算摘要",
+          "clicked": true
+        },
+        {
+          "wait": 800
+        }
+      ],
+      "assertion": {
+        "pass": true,
+        "detail": "900150983cd24fb0d6963f7d28e17f72"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "name": "color-picker-upload",
+      "url": "http://127.0.0.1:4173/tools/color-picker",
+      "metrics": {
+        "title": "图片取色 / 颜色转换｜NOVIP",
+        "h1": "图片取色 / 颜色转换",
+        "scrollWidth": 360,
+        "innerWidth": 360,
+        "horizontalOverflow": false,
+        "overflows": [],
+        "smallTargets": [
+          {
+            "tag": "A",
+            "text": "开源许可",
+            "w": 36,
+            "h": 15
+          }
+        ],
+        "buttons": 14,
+        "fileInputs": 1,
+        "canvases": 1,
+        "totalTransferKB": 668,
+        "fetchCount": 0,
+        "readyState": "complete"
+      },
+      "actionLog": [
+        {
+          "file": "input[type=file]"
+        },
+        {
+          "wait": 1200
+        },
+        {
+          "eval": "(() => { const canvas=document.querySelector('canvas'); if(!canvas) return 'no-c",
+          "value": "clicked"
+        },
+        {
+          "wait": 600
+        }
+      ],
+      "assertion": {
+        "pass": true,
+        "detail": "工具首页\n手写生成器\n文件转换\n参考文献\nExcel合并\n报名照片\n大学生导航\n免费替代方案\n功能许愿池\nNOVIP\n大学生，别花冤枉钱。\n免费 · 无登录 · 无水印\n图片取色 / 颜色转换\n\n上传图片后点击任意位置取色，得到 HEX / RGB / HSL 并一键复制；自动提取前 8 个主色及占"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "name": "stitch-two-images",
+      "url": "http://127.0.0.1:4173/tools/stitch",
+      "metrics": {
+        "title": "长图拼接｜NOVIP",
+        "h1": "长图拼接",
+        "scrollWidth": 360,
+        "innerWidth": 360,
+        "horizontalOverflow": false,
+        "overflows": [],
+        "smallTargets": [
+          {
+            "tag": "A",
+            "text": "开源许可",
+            "w": 36,
+            "h": 15
+          }
+        ],
+        "buttons": 14,
+        "fileInputs": 1,
+        "canvases": 1,
+        "totalTransferKB": 666,
+        "fetchCount": 0,
+        "readyState": "complete"
+      },
+      "actionLog": [
+        {
+          "file": "input[type=file]"
+        },
+        {
+          "wait": 1500
+        },
+        {
+          "clickText": "开始拼接",
+          "clicked": true
+        },
+        {
+          "wait": 3000
+        }
+      ],
+      "assertion": {
+        "pass": true,
+        "detail": "与正文仅在本机内存处理，不发送给服务器；刷新或重置会清空。首次载入工具资源需网络。\n\n完成任务 / 反馈问题 ↗\n文件与内容只在当前浏览器处理，刷新会清空\n开源许可\nCONTACT / 联系作者\n有问题，或者有个好主意？\n\n功能建议、使用反馈，都可以通过微信联系作者。\n\n扫码联系作者 · 点击放大\n作者微信\n复制微信号"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "name": "pdf-page-number",
+      "url": "http://127.0.0.1:4173/tools/pdf-page-number",
+      "metrics": {
+        "title": "PDF 加页码｜NOVIP",
+        "h1": "PDF加页码",
+        "scrollWidth": 360,
+        "innerWidth": 360,
+        "horizontalOverflow": false,
+        "overflows": [],
+        "smallTargets": [
+          {
+            "tag": "A",
+            "text": "开源许可",
+            "w": 36,
+            "h": 15
+          }
+        ],
+        "buttons": 7,
+        "fileInputs": 1,
+        "canvases": 0,
+        "totalTransferKB": 872,
+        "fetchCount": 0,
+        "readyState": "complete"
+      },
+      "actionLog": [
+        {
+          "file": "input[type=file]"
+        },
+        {
+          "wait": 1500
+        },
+        {
+          "clickText": "生成带页码的PDF",
+          "clicked": true
+        },
+        {
+          "wait": 2500
+        }
+      ],
+      "assertion": {
+        "pass": true,
+        "detail": "内容重叠。\n\n下载新PDF\n\n隐私：文件与正文仅在本机内存处理，不发送给服务器；刷新或重置会清空。首次载入工具资源需网络。\n\n完成任务 / 反馈问题 ↗\n文件与内容只在当前浏览器处理，刷新会清空\n开源许可\nCONTACT / 联系作者\n有问题，或者有个好主意？\n\n功能建议、使用反馈，都可以通过微信联系作者。\n\n扫码联系作者 · 点击放大\n作者微信\n复制微信号"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "name": "pdf-crop",
+      "url": "http://127.0.0.1:4173/tools/pdf-crop",
+      "metrics": {
+        "title": "PDF 裁剪｜NOVIP",
+        "h1": "PDF裁剪（统一页边距）",
+        "scrollWidth": 360,
+        "innerWidth": 360,
+        "horizontalOverflow": false,
+        "overflows": [],
+        "smallTargets": [
+          {
+            "tag": "INPUT",
+            "text": "",
+            "w": 16,
+            "h": 16
+          },
+          {
+            "tag": "A",
+            "text": "开源许可",
+            "w": 36,
+            "h": 15
+          }
+        ],
+        "buttons": 10,
+        "fileInputs": 1,
+        "canvases": 0,
+        "totalTransferKB": 872,
+        "fetchCount": 0,
+        "readyState": "complete"
+      },
+      "actionLog": [
+        {
+          "file": "input[type=file]"
+        },
+        {
+          "wait": 1500
+        },
+        {
+          "eval": "(() => { const set=(labelText,v)=>{const lab=[...document.querySelectorAll('labe",
+          "value": true
+        },
+        {
+          "wait": 400
+        },
+        {
+          "clickText": "裁剪并验证",
+          "clicked": true
+        },
+        {
+          "wait": 2500
+        }
+      ],
+      "assertion": {
+        "pass": true,
+        "detail": "准。\n\n下载裁剪后的PDF\n\n隐私：文件与正文仅在本机内存处理，不发送给服务器；刷新或重置会清空。首次载入工具资源需网络。\n\n完成任务 / 反馈问题 ↗\n文件与内容只在当前浏览器处理，刷新会清空\n开源许可\nCONTACT / 联系作者\n有问题，或者有个好主意？\n\n功能建议、使用反馈，都可以通过微信联系作者。\n\n扫码联系作者 · 点击放大\n作者微信\n复制微信号"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": []
+    }
+  ]
+}

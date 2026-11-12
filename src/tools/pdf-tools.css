@@ -1,0 +1,116 @@
+/* PDF 工具共用样式（加页码九宫格 / 裁剪预览框 / 合并拆分） */
+.pdf-fieldset{border:0;padding:0;margin:0}
+.pdf-fieldset legend{font-size:11px;color:#52525b;padding:0;margin:0 0 6px}
+.pdf-position-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;max-width:250px;margin-top:4px}
+.pdf-position-grid label{position:relative;display:flex;align-items:center;justify-content:center;min-height:42px;margin:0;border:1px solid #d4d4d8;background:#fafafa;border-radius:7px;font-size:11px;color:#3f3f46;cursor:pointer;transition:border-color .15s ease,background-color .15s ease}
+.pdf-position-grid label:hover{border-color:#71717a}
+.pdf-position-grid label.selected{border-color:#c9232c;background:white;color:#c9232c;font-weight:600}
+.pdf-position-grid input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.pdf-preset-row{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 14px}
+.pdf-preset-row button{font-size:12px;color:#3f3f46;border:1px solid #d4d4d8;background:white;border-radius:6px;min-height:40px;padding:0 14px;cursor:pointer;transition:border-color .15s ease,transform .08s ease}
+.pdf-preset-row button:hover:not(:disabled){border-color:#71717a}
+.pdf-preset-row button:active:not(:disabled){transform:scale(.98)}
+.pdf-preset-row button:disabled{opacity:.55}
+.pdf-preview{position:relative;display:block;max-width:440px;margin:14px 0 6px;border:1px solid #e4e4e7;border-radius:8px;overflow:hidden;background:#f4f4f5}
+.pdf-preview img{display:block;width:100%;height:auto}
+.pdf-preview-frame{position:absolute;box-sizing:border-box;border:2px solid #c9232c;pointer-events:none;box-shadow:0 0 0 9999px rgba(24,24,27,.35)}
+@media(max-width:760px){.pdf-position-grid{max-width:none}.pdf-preview{max-width:100%}}
+
+/* PDF 合并与拆分组件样式 */
+.pdf-tab-header{display:flex;gap:10px;border-bottom:1px solid #e4e4e7;padding-bottom:12px}
+.pdf-tab-btn{background:#f4f4f5;border:1px solid #e4e4e7;border-radius:8px;padding:8px 18px;font-size:15px;cursor:pointer;font-weight:500;color:#3f3f46;transition:border-color .15s ease,background-color .15s ease,transform .08s ease}
+.pdf-tab-btn:hover{background:#ebebeb}
+.pdf-tab-btn:active{transform:scale(.98)}
+.pdf-tab-btn.active{background:#fff;border-color:#c9232c;color:#c9232c;box-shadow:0 1px 3px rgba(0,0,0,.08);font-weight:600}
+.pdf-merge-queue{margin-top:14px}
+
+/* 拖拽文件项平滑过渡与微交互 */
+.pdf-queue-item{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border:1px solid #e4e4e7;border-radius:8px;margin-bottom:8px;background:#fff;gap:12px;flex-wrap:wrap;transition:transform .2s cubic-bezier(0.2,0,0,1),background-color .15s ease,box-shadow .15s ease,border-color .15s ease}
+.pdf-queue-item:hover{border-color:#cbd5e1;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.pdf-queue-item.is-dragover{border:2px dashed #2563eb;background:#eff6ff}
+.pdf-queue-item:focus-within{border-color:#2563eb}
+.pdf-queue-handle{cursor:grab;color:#71717a;font-size:16px;user-select:none;padding:4px 6px;line-height:1;border-radius:4px;display:flex;align-items:center;justify-content:center}
+.pdf-queue-handle:active{cursor:grabbing}
+.pdf-queue-info{display:flex;align-items:flex-start;gap:10px;flex:1;min-width:200px}
+.pdf-queue-index{font-weight:700;color:#52525b;min-width:20px}
+.pdf-queue-text{flex:1;min-width:0;overflow-wrap:anywhere}
+.pdf-file-name{display:block;font-size:14px;color:#18181b;font-weight:600}
+.pdf-queue-meta{display:flex;gap:10px;font-size:12px;color:#52525b;margin-top:4px;flex-wrap:wrap}
+.pdf-queue-actions{display:flex;gap:6px}
+.pdf-queue-actions button{min-width:44px;min-height:44px;padding:6px 10px;border:1px solid #d4d4d8;background:#fff;border-radius:6px;cursor:pointer;font-size:15px;display:inline-flex;align-items:center;justify-content:center;transition:background-color .12s ease,border-color .12s ease,transform .08s ease}
+.pdf-queue-actions button:hover:not(:disabled){background:#f4f4f5;border-color:#a1a1aa}
+.pdf-queue-actions button:active:not(:disabled){transform:scale(.94)}
+.pdf-queue-actions button:disabled{opacity:.4;cursor:not-allowed}
+
+@media(max-width:480px){
+  .pdf-tab-btn{flex:1;padding:8px 10px;font-size:14px;text-align:center}
+  .pdf-queue-item{flex-direction:column;align-items:stretch}
+  .pdf-queue-actions{justify-content:flex-end}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .pdf-queue-item, .pdf-queue-actions button, .pdf-tab-btn, .pdf-preset-row button, .pdf-tier-card{
+    transition:none!important;
+    transform:none!important;
+  }
+}
+
+/* ==================== PDF 压缩专属样式 ==================== */
+.pdf-tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:12px 0}
+.pdf-tier-card{border:1px solid #d4d4d8;background:#fafafa;border-radius:8px;padding:12px 14px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:6px;transition:border-color .15s ease,background-color .15s ease,box-shadow .15s ease}
+.pdf-tier-card:hover{border-color:#71717a}
+.pdf-tier-card.selected{border-color:#2563eb;background:#fff;box-shadow:0 0 0 1px #2563eb,0 2px 6px rgba(37,99,235,.08)}
+.pdf-tier-header{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pdf-tier-title{font-size:14px;font-weight:600;color:#18181b}
+.pdf-tier-badge{font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px}
+.pdf-tier-badge.lossy{background:#fef3c7;color:#92400e}
+.pdf-tier-badge.lossless{background:#dcfce7;color:#166534}
+.pdf-tier-desc{font-size:12px;color:#52525b;line-height:1.5;margin:0}
+.pdf-lossy-disclosure{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 14px;font-size:13px;color:#1e40af;line-height:1.6;margin:12px 0}
+.pdf-compress-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:14px 0}
+.pdf-stat-box{background:#fafafa;border:1px solid #e4e4e7;border-radius:8px;padding:12px;text-align:center}
+.pdf-stat-label{font-size:12px;color:#71717a;margin-bottom:4px}
+.pdf-stat-val{font-size:18px;font-weight:700;color:#18181b}
+.pdf-stat-val.highlight{color:#16a34a}
+.pdf-retention-box{background:#f8fafc;border:1px solid #cbd5e1;border-radius:8px;padding:12px 14px;font-size:13px;color:#334155;line-height:1.6;margin:12px 0}
+.pdf-success-box{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px 14px;font-size:13px;color:#166534;line-height:1.6;margin:12px 0}
+
+/* ==================== 暗色模式对比度适配 (正文 ≥ 4.5:1) ==================== */
+@media(prefers-color-scheme:dark){
+  :where(html[data-novip-visual-mode]) .pdf-tier-card{background:#27272a;border-color:#3f3f46}
+  :where(html[data-novip-visual-mode]) .pdf-tier-card:hover{border-color:#71717a}
+  :where(html[data-novip-visual-mode]) .pdf-tier-card.selected{background:#1f1f23;border-color:#3b82f6;box-shadow:0 0 0 1px #3b82f6}
+  :where(html[data-novip-visual-mode]) .pdf-tier-title{color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .pdf-tier-desc{color:#a1a1aa}
+  :where(html[data-novip-visual-mode]) .pdf-tier-badge.lossy{background:#78350f;color:#fef08a}
+  :where(html[data-novip-visual-mode]) .pdf-tier-badge.lossless{background:#14532d;color:#bbf7d0}
+  :where(html[data-novip-visual-mode]) .pdf-lossy-disclosure{background:#0f172a;border-color:#1e3a8a;color:#bfdbfe}
+  :where(html[data-novip-visual-mode]) .pdf-stat-box{background:#1f1f23;border-color:#27272a}
+  :where(html[data-novip-visual-mode]) .pdf-stat-label{color:#a1a1aa}
+  :where(html[data-novip-visual-mode]) .pdf-stat-val{color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .pdf-stat-val.highlight{color:#86efac}
+  :where(html[data-novip-visual-mode]) .pdf-retention-box{background:#1e293b;border-color:#334155;color:#cbd5e1}
+  :where(html[data-novip-visual-mode]) .pdf-success-box{background:#052e16;border-color:#14532d;color:#bbf7d0}
+  :where(html[data-novip-visual-mode]) .pdf-fieldset legend{color:#d4d4d8}
+  :where(html[data-novip-visual-mode]) .pdf-position-grid label{background:#27272a;border-color:#3f3f46;color:#e4e4e7}
+  :where(html[data-novip-visual-mode]) .pdf-position-grid label:hover{border-color:#71717a}
+  :where(html[data-novip-visual-mode]) .pdf-position-grid label.selected{background:#1f1f23;border-color:#ef4444;color:#f87171}
+  :where(html[data-novip-visual-mode]) .pdf-preset-row button{background:#27272a;border-color:#3f3f46;color:#e4e4e7}
+  :where(html[data-novip-visual-mode]) .pdf-preset-row button:hover:not(:disabled){border-color:#71717a}
+  :where(html[data-novip-visual-mode]) .pdf-preview{background:#1f1f23;border-color:#3f3f46}
+
+  :where(html[data-novip-visual-mode]) .pdf-tab-header{border-bottom-color:#27272a}
+  :where(html[data-novip-visual-mode]) .pdf-tab-btn{background:#27272a;border-color:#3f3f46;color:#e4e4e7}
+  :where(html[data-novip-visual-mode]) .pdf-tab-btn:hover{background:#333338}
+  :where(html[data-novip-visual-mode]) .pdf-tab-btn.active{background:#1f1f23;border-color:#ef4444;color:#f87171}
+
+  :where(html[data-novip-visual-mode]) .pdf-queue-item{background:#1f1f23;border-color:#27272a}
+  :where(html[data-novip-visual-mode]) .pdf-queue-item:hover{border-color:#3f3f46}
+  :where(html[data-novip-visual-mode]) .pdf-queue-item.is-dragover{background:#1e293b;border-color:#3b82f6}
+  :where(html[data-novip-visual-mode]) .pdf-queue-handle{color:#a1a1aa}
+  :where(html[data-novip-visual-mode]) .pdf-queue-index{color:#a1a1aa}
+  :where(html[data-novip-visual-mode]) .pdf-file-name{color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .pdf-queue-meta{color:#a1a1aa}
+  :where(html[data-novip-visual-mode]) .pdf-queue-actions button{background:#27272a;border-color:#3f3f46;color:#f4f4f5}
+  :where(html[data-novip-visual-mode]) .pdf-queue-actions button:hover:not(:disabled){background:#3f3f46}
+}

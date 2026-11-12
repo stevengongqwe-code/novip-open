@@ -1,0 +1,7228 @@
+/* ==========================================================================
+   NOVIP Design System v3.0 — Apple Cupertino & Bento Edition
+   Inspired by apple.com.cn editorial typography, frosted glass, and Bento grids.
+   ========================================================================== */
+
+:root {
+  --novip-bg: #f8fafc;
+  --novip-bg-elevated: #ffffff;
+  --novip-surface: #ffffff;
+  --novip-surface-subtle: #f1f5f9;
+  --novip-surface-hover: #e2e8f0;
+
+  --novip-ink: #0f172a;
+  --novip-ink-secondary: #1e293b;
+  --novip-muted: #334155;
+  --novip-subtle: #475569;
+
+  --novip-line: rgba(15, 23, 42, 0.08);
+  --novip-line-strong: rgba(15, 23, 42, 0.16);
+
+  /* Brand Crimson ((PRODUCT)RED tone) + Apple Action Blue */
+  --novip-red: #d70015;
+  --novip-red-hover: #b80012;
+  --novip-red-active: #96000e;
+  --novip-red-soft: rgba(215, 0, 21, 0.07);
+  --novip-red-border: rgba(215, 0, 21, 0.18);
+  --novip-red-ring: rgba(215, 0, 21, 0.18);
+
+  --novip-blue: #0071e3;
+  --novip-blue-hover: #0077ed;
+  --novip-blue-ring: rgba(0, 113, 227, 0.18);
+
+  --novip-radius-xs: 10px;
+  --novip-radius-sm: 14px;
+  --novip-radius-md: 20px;
+  --novip-radius-lg: 24px;
+  --novip-radius-xl: 28px;
+
+  --novip-shadow-xs: 0 2px 10px rgba(0, 0, 0, 0.03);
+  --novip-shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.04);
+  --novip-shadow-md: 0 12px 36px rgba(0, 0, 0, 0.06);
+  --novip-shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.1);
+  --novip-shadow-red: 0 16px 40px rgba(0, 0, 0, 0.08);
+
+  --novip-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  --novip-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --------------------------------------------------------------------------
+   1. Global Typography & Canvas Reset
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  max-width: 100%;
+  background: var(--novip-bg);
+  color: var(--novip-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+}
+
+body,
+#root,
+.app,
+.study-app,
+.convert-app,
+.zj-photo-page {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--novip-font) !important;
+  color: var(--novip-ink) !important;
+  background: var(--novip-bg) !important;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --------------------------------------------------------------------------
+   2. Apple Global Frosted Glass Navigation (.tool-navigation)
+   -------------------------------------------------------------------------- */
+.tool-navigation {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 6px max(16px, calc((100% - 1120px) / 2)) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+  font-family: var(--novip-font) !important;
+  font-size: 13px !important;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 900px) {
+  .tool-navigation {
+    justify-content: flex-start !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+.tool-navigation a {
+  flex: 0 0 auto !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 13px !important;
+  border-radius: 980px !important;
+  color: #1e293b !important;
+  background: rgba(15, 23, 42, 0.04);
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: color 0.18s var(--novip-ease), background-color 0.18s var(--novip-ease), transform 0.18s var(--novip-ease);
+}
+
+.tool-navigation a:hover {
+  color: #0f172a !important;
+  background: rgba(15, 23, 42, 0.08) !important;
+}
+
+.tool-navigation a.active,
+.tool-navigation a[aria-current="page"] {
+  color: #ffffff !important;
+  background: #0f172a !important;
+  font-weight: 650 !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+}
+
+/* --------------------------------------------------------------------------
+   3. Apple Local Product Header (.header / .study-header / .convert-header)
+   -------------------------------------------------------------------------- */
+.header,
+.study-header,
+.convert-header,
+.zj-photo-site-header {
+  width: 100%;
+  max-width: 100%;
+  min-height: 58px !important;
+  height: auto !important;
+  background: rgba(255, 255, 255, 0.74) !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  padding: 8px max(24px, calc((100% - 1120px) / 2)) !important;
+}
+
+.novip-brand {
+  gap: 11px !important;
+  transition: opacity 0.18s var(--novip-ease);
+}
+
+.novip-brand:hover {
+  opacity: 0.85;
+}
+
+.novip-brand img {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.novip-brand .novip-wordmark {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--novip-ink) !important;
+}
+
+.novip-brand small {
+  font-size: 11px !important;
+  color: var(--novip-muted) !important;
+  font-weight: 450 !important;
+  margin-top: 2px !important;
+}
+
+.study-header > span,
+.convert-header .convert-free,
+.header .free,
+.zj-photo-site-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 13px;
+  border-radius: 980px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--novip-ink-secondary) !important;
+  font-size: 12px !important;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   4. Main Container & Apple Hero Typography
+   -------------------------------------------------------------------------- */
+.tool-main,
+.study-main,
+.convert-main,
+.zj-photo-container {
+  width: 100% !important;
+  max-width: 1120px !important;
+  min-width: 0;
+  margin: 0 auto !important;
+  padding: 36px 24px 32px !important;
+  box-sizing: border-box;
+}
+
+/* Tool Detail Pages Headline */
+.tool-main > h1,
+.study-intro h1,
+.convert-intro h1,
+.intro h1,
+.zj-photo-hero h1 {
+  font-size: clamp(28px, 3.6vw, 40px) !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.025em !important;
+  color: var(--novip-ink) !important;
+  margin: 6px 0 12px !important;
+}
+
+.tool-main > p:first-of-type,
+.study-intro > p,
+.convert-intro > p,
+.intro p,
+.zj-photo-sub {
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  color: var(--novip-muted) !important;
+  max-width: 780px;
+  margin: 0 0 22px !important;
+}
+
+/* Apple Monumental Centered Hero on Homepage (.tool-main--home) */
+.tool-main--home {
+  padding-top: 16px !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Apple Surfaces, Cards & Panels
+   -------------------------------------------------------------------------- */
+.study-card,
+.convert-card,
+.card,
+.preview-panel,
+.zj-photo-card,
+.tool-main fieldset,
+.panel {
+  background: var(--novip-surface) !important;
+  border: 1px solid var(--novip-line) !important;
+  border-radius: var(--novip-radius-lg) !important;
+  box-shadow: var(--novip-shadow-sm) !important;
+  padding: 26px !important;
+  transition: box-shadow 0.28s var(--novip-ease), border-color 0.28s var(--novip-ease);
+}
+
+.study-card h2,
+.convert-card h2,
+.card-heading h2,
+.preview-heading h2,
+.zj-photo-card h2 {
+  font-size: 18px !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.015em !important;
+  color: var(--novip-ink) !important;
+}
+
+.study-step,
+.step {
+  background: var(--novip-surface-subtle) !important;
+  border: none !important;
+  color: var(--novip-ink) !important;
+  font-weight: 650 !important;
+  border-radius: 8px !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Apple Capsule Buttons & Form Controls
+   -------------------------------------------------------------------------- */
+.study-btn,
+.convert-button,
+.button,
+.zj-photo-btn {
+  border-radius: 980px !important;
+  font-weight: 550 !important;
+  font-size: 13px !important;
+  min-height: 44px !important;
+  min-width: 44px;
+  padding: 10px 22px !important;
+  letter-spacing: -0.01em;
+  transition: transform 0.2s var(--novip-ease), box-shadow 0.2s var(--novip-ease), background-color 0.2s var(--novip-ease), border-color 0.2s var(--novip-ease) !important;
+  cursor: pointer;
+}
+
+.study-btn:not(.alt),
+.convert-button.primary,
+.button.primary,
+.zj-photo-btn--primary {
+  background: var(--novip-ink) !important;
+  border-color: var(--novip-ink) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+}
+
+.study-btn:not(.alt):hover:not(:disabled),
+.convert-button.primary:hover:not(:disabled),
+.button.primary:hover:not(:disabled),
+.zj-photo-btn--primary:hover:not(:disabled) {
+  background: #333336 !important;
+  border-color: #333336 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+.study-btn.alt,
+.convert-button.secondary,
+.button.secondary,
+.zj-photo-btn--ghost {
+  background: var(--novip-surface-subtle) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: var(--novip-ink) !important;
+}
+
+.study-btn.alt:hover:not(:disabled),
+.convert-button.secondary:hover:not(:disabled),
+.button.secondary:hover:not(:disabled),
+.zj-photo-btn--ghost:hover:not(:disabled) {
+  background: #e8e8ed !important;
+  border-color: rgba(0, 0, 0, 0.14) !important;
+}
+
+/* Inputs, Selects, Textareas */
+.study-app input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):not(.home-search),
+.study-app select,
+.study-app textarea,
+.convert-field select,
+.convert-field input,
+.input-card textarea {
+  background: var(--novip-surface-subtle) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: var(--novip-radius-sm) !important;
+  color: var(--novip-ink) !important;
+  font-size: 14px !important;
+  padding: 11px 14px !important;
+  transition: border-color 0.2s var(--novip-ease), box-shadow 0.2s var(--novip-ease), background-color 0.2s var(--novip-ease);
+}
+
+.study-app input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):focus,
+.study-app select:focus,
+.study-app textarea:focus,
+.convert-field select:focus,
+.convert-field input:focus,
+.input-card textarea:focus {
+  outline: none !important;
+  background: #ffffff !important;
+  border-color: var(--novip-blue) !important;
+  box-shadow: 0 0 0 4px var(--novip-blue-ring) !important;
+}
+
+/* Dropzones */
+.convert-drop,
+.study-drop,
+.tool-drop,
+.zj-photo-dropzone {
+  border: 1.5px dashed rgba(0, 0, 0, 0.16) !important;
+  border-radius: var(--novip-radius-md) !important;
+  background: var(--novip-surface-subtle) !important;
+  transition: border-color 0.2s var(--novip-ease), background-color 0.2s var(--novip-ease);
+}
+
+.convert-drop:hover,
+.study-drop:hover,
+.tool-drop:hover,
+.zj-photo-dropzone:hover,
+.convert-drop.dragging,
+.study-drop.dragging {
+  border-color: var(--novip-blue) !important;
+  background: rgba(0, 113, 227, 0.04) !important;
+}
+
+/* Status, Warning & Error Alerts */
+.study-message,
+.message:not(.error) {
+  background: var(--novip-surface-subtle) !important;
+  border: 1px solid var(--novip-line) !important;
+  border-radius: var(--novip-radius-sm) !important;
+  color: var(--novip-ink-secondary) !important;
+  padding: 12px 16px !important;
+  font-size: 13px !important;
+}
+
+.study-error,
+.convert-error,
+.message.error,
+.zj-photo-alert--error {
+  background: #fff2f4 !important;
+  border: 1px solid rgba(215, 0, 21, 0.2) !important;
+  color: #b80012 !important;
+  border-radius: var(--novip-radius-sm) !important;
+  padding: 13px 16px !important;
+  font-size: 13px !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. Apple Homepage: Hero Trust Strip & Spotlight Command Search
+   -------------------------------------------------------------------------- */
+.novip-hero-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto 34px;
+  max-width: 860px;
+}
+
+.novip-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 980px;
+  font-size: 12px;
+  font-weight: 500;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--novip-ink-secondary);
+  box-shadow: var(--novip-shadow-xs);
+}
+
+.novip-pill-badge.accent {
+  background: #1d1d1f;
+  border-color: #1d1d1f;
+  color: #ffffff;
+  font-weight: 550;
+}
+
+/* macOS Spotlight / Apple Support Search Centerpiece */
+.novip-search-panel {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: var(--novip-radius-xl);
+  padding: 26px 28px;
+  margin: 0 auto 48px;
+  max-width: 860px;
+  box-shadow: var(--novip-shadow-md);
+}
+
+.novip-search-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.novip-search-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--novip-ink);
+  letter-spacing: -0.01em;
+  margin: 0 !important;
+}
+
+.novip-search-kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--novip-muted);
+}
+
+.novip-search-kbd kbd {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: var(--novip-surface-subtle);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--novip-ink-secondary);
+  font-family: var(--novip-font);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.novip-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.novip-search-icon {
+  position: absolute;
+  left: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--novip-subtle);
+  pointer-events: none;
+}
+
+.study-app .novip-search-box input.home-search,
+.home-search {
+  width: 100% !important;
+  height: 56px !important;
+  padding: 0 108px 0 48px !important;
+  font-size: 16px !important;
+  border-radius: 16px !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.06) !important;
+  background: var(--novip-surface-subtle) !important;
+  color: var(--novip-ink) !important;
+  transition: border-color 0.2s var(--novip-ease), box-shadow 0.2s var(--novip-ease), background-color 0.2s var(--novip-ease);
+}
+
+.home-search::placeholder {
+  color: var(--novip-subtle);
+}
+
+.home-search:focus {
+  outline: none !important;
+  background: #ffffff !important;
+  border-color: var(--novip-blue) !important;
+  box-shadow: 0 0 0 4px var(--novip-blue-ring) !important;
+}
+
+.novip-search-clear {
+  position: absolute;
+  right: 12px;
+  padding: 6px 12px;
+  border-radius: 980px;
+  border: none;
+  background: rgba(0, 0, 0, 0.07);
+  color: var(--novip-ink-secondary);
+  font-size: 12px;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.novip-search-clear:hover {
+  background: rgba(0, 0, 0, 0.12);
+  color: var(--novip-ink);
+}
+
+/* Quick Task Scenario Capsules */
+.novip-quick-tasks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.novip-quick-label {
+  font-size: 12px;
+  color: var(--novip-subtle);
+  font-weight: 500;
+  margin-right: 2px;
+}
+
+.novip-quick-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 980px;
+  background: var(--novip-surface-subtle);
+  border: 1px solid transparent;
+  color: var(--novip-ink-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none !important;
+  transition: all 0.2s var(--novip-ease);
+  cursor: pointer;
+}
+
+.novip-quick-chip:hover {
+  background: var(--novip-ink);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   8. Apple Asymmetric 12-Column Bento Grid (.novip-spotlight)
+   -------------------------------------------------------------------------- */
+.novip-spotlight {
+  margin: 16px 0 44px;
+}
+
+.novip-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.novip-bento-eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--novip-red);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.novip-section-head h2 {
+  font-size: clamp(22px, 2.6vw, 28px) !important;
+  font-weight: 700 !important;
+  color: var(--novip-ink) !important;
+  margin: 0 !important;
+  letter-spacing: -0.022em !important;
+  line-height: 1.2 !important;
+}
+
+.novip-section-head > span {
+  font-size: 13px;
+  color: var(--novip-muted);
+}
+
+.novip-spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* 12-Column Asymmetric Bento Span Layout on Desktop */
+.novip-spotlight-grid .bento-tile-1 {
+  grid-column: span 7;
+}
+.novip-spotlight-grid .bento-tile-2 {
+  grid-column: span 5;
+}
+.novip-spotlight-grid .bento-tile-3 {
+  grid-column: span 5;
+}
+.novip-spotlight-grid .bento-tile-4 {
+  grid-column: span 7;
+}
+.novip-spotlight-grid .bento-tile-5 {
+  grid-column: span 6;
+}
+.novip-spotlight-grid .bento-tile-6 {
+  grid-column: span 6;
+}
+
+/* Flagship Pro Dark Obsidian Tile (Tile #1: PPT图片提取) */
+.home-card.bento-tile-1 {
+  background: radial-gradient(110% 120% at 100% 0%, rgba(215, 0, 21, 0.28) 0%, rgba(29, 29, 31, 0) 58%),
+    linear-gradient(145deg, #1d1d1f 0%, #2c2c2e 100%) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f5f5f7 !important;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.14);
+}
+
+.home-card.bento-tile-1 h3 {
+  color: #ffffff !important;
+  font-size: 24px !important;
+}
+
+.home-card.bento-tile-1 p {
+  color: rgba(245, 245, 247, 0.78) !important;
+  font-size: 14px !important;
+}
+
+.home-card.bento-tile-1 .home-card-group {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.home-card.bento-tile-1 .home-card-tag.new {
+  background: #ff3b30;
+  color: #ffffff;
+}
+
+.home-card.bento-tile-1 .home-card-arrow {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.home-card.bento-tile-1:hover .home-card-arrow {
+  background: #ffffff;
+  color: #1d1d1f;
+}
+
+.home-card.bento-tile-1 .bento-spec-pill {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Bento Spec Pills inside Spotlight Cards */
+.bento-spec-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.home-card.bento-tile-1 .bento-spec-pills {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.bento-spec-pill {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 980px;
+  background: var(--novip-surface-subtle);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  color: var(--novip-ink-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   9. Apple Segmented Category Dock (.novip-category-bar)
+   -------------------------------------------------------------------------- */
+.novip-category-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px;
+  margin: 0 auto 32px;
+  width: fit-content;
+  max-width: 100%;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 980px;
+  box-shadow: var(--novip-shadow-sm);
+}
+
+.novip-category-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.novip-cat-tab {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 15px;
+  border-radius: 980px;
+  border: none;
+  background: transparent;
+  color: var(--novip-ink-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s var(--novip-ease);
+}
+
+.novip-cat-tab:hover {
+  color: var(--novip-ink);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.novip-cat-tab.active {
+  background: var(--novip-ink);
+  color: #ffffff;
+  font-weight: 550;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+}
+
+.novip-cat-count {
+  font-size: 11px;
+  padding: 1px 7px;
+  border-radius: 980px;
+  background: rgba(0, 0, 0, 0.07);
+  color: inherit;
+}
+
+.novip-cat-tab.active .novip-cat-count {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   10. Apple Cupertino Tool Cards (.home-grid & .home-card)
+   -------------------------------------------------------------------------- */
+.novip-group-section {
+  margin-bottom: 36px;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.home-card,
+.home-card.home-photo-entry {
+  position: relative;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 24px 26px !important;
+  background: var(--novip-surface) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  border-radius: var(--novip-radius-lg) !important;
+  box-shadow: var(--novip-shadow-sm);
+  text-decoration: none !important;
+  transition: transform 0.32s var(--novip-ease), box-shadow 0.32s var(--novip-ease), border-color 0.25s var(--novip-ease);
+}
+
+.home-card.is-featured:not(.bento-tile-1) {
+  padding: 26px 28px !important;
+  background: linear-gradient(180deg, #ffffff 0%, #fcfcfd 100%) !important;
+}
+
+.home-card:hover,
+.home-card:focus-visible {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  box-shadow: var(--novip-shadow-red);
+  transform: scale(1.012) translateY(-3px);
+}
+
+.home-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.home-card-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.home-card-group {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 980px;
+  background: var(--novip-surface-subtle);
+  color: var(--novip-muted);
+  letter-spacing: 0.01em;
+}
+
+.home-card-tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 980px;
+  letter-spacing: 0.04em;
+}
+
+.home-card-tag.new {
+  background: rgba(215, 0, 21, 0.1);
+  color: var(--novip-red);
+}
+
+.home-card-tag.hot {
+  background: rgba(255, 149, 0, 0.14);
+  color: #b25000;
+}
+
+.home-card-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--novip-surface-subtle);
+  color: var(--novip-ink-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: transform 0.24s var(--novip-ease), background-color 0.24s var(--novip-ease), color 0.24s var(--novip-ease);
+}
+
+.home-card:hover .home-card-arrow {
+  background: var(--novip-ink);
+  color: #ffffff;
+  transform: scale(1.06);
+}
+
+.home-card h3 {
+  font-size: 18px !important;
+  font-weight: 650 !important;
+  color: var(--novip-ink) !important;
+  margin: 0 0 8px !important;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+.home-card.is-featured h3 {
+  font-size: 21px !important;
+}
+
+.home-card p {
+  font-size: 13px !important;
+  line-height: 1.65 !important;
+  color: var(--novip-muted) !important;
+  margin: 0 !important;
+}
+
+/* Recent Tools Strip */
+.novip-recent-section {
+  margin-bottom: 32px;
+}
+
+.home-recent {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 20px;
+}
+
+.home-recent a {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 15px !important;
+  border-radius: 980px !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  background: var(--novip-surface) !important;
+  color: var(--novip-ink) !important;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none !important;
+  box-shadow: var(--novip-shadow-xs);
+  transition: all 0.2s var(--novip-ease);
+}
+
+.home-recent a:hover {
+  background: var(--novip-ink) !important;
+  color: #ffffff !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. Apple Trust & Transparency Bento Footer Grid (.novip-trust-grid)
+   -------------------------------------------------------------------------- */
+.novip-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 44px 0 24px;
+}
+
+.novip-trust-card {
+  background: var(--novip-surface);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: var(--novip-radius-lg);
+  padding: 28px 30px;
+  box-shadow: var(--novip-shadow-sm);
+}
+
+.novip-trust-eyebrow {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--novip-subtle);
+  margin-bottom: 6px;
+}
+
+.novip-trust-card h3 {
+  font-size: 17px;
+  font-weight: 650;
+  color: var(--novip-ink);
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.novip-trust-card p {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--novip-muted);
+  margin: 0 0 10px;
+}
+
+.novip-trust-card p:last-child {
+  margin-bottom: 0;
+}
+
+.novip-trust-card a {
+  color: var(--novip-blue);
+  font-weight: 550;
+  text-decoration: none;
+}
+
+.novip-trust-card a:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   12. Responsive Breakpoints (Tablet 768px & Mobile 390px / 375px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .tool-navigation {
+    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 6px 12px !important;
+    gap: 4px !important;
+  }
+
+  .tool-navigation::-webkit-scrollbar {
+    display: none;
+  }
+
+  .novip-spotlight-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .novip-spotlight-grid .bento-tile-1,
+  .novip-spotlight-grid .bento-tile-2,
+  .novip-spotlight-grid .bento-tile-3,
+  .novip-spotlight-grid .bento-tile-4,
+  .novip-spotlight-grid .bento-tile-5,
+  .novip-spotlight-grid .bento-tile-6 {
+    grid-column: span 1;
+  }
+
+  .home-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .novip-trust-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .tool-main,
+  .study-main,
+  .convert-main,
+  .zj-photo-container {
+    padding: 24px 16px 24px !important;
+  }
+
+  .tool-main--home {
+    padding-top: 12px !important;
+  }
+
+  .novip-search-panel {
+    padding: 18px 16px;
+    border-radius: 22px;
+    margin-bottom: 32px;
+  }
+
+  .novip-search-kbd {
+    display: none;
+  }
+
+  .home-search {
+    height: 48px !important;
+    font-size: 15px !important;
+    padding-left: 42px !important;
+  }
+
+  .novip-spotlight-grid,
+  .home-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .novip-category-bar {
+    border-radius: 16px;
+    width: 100%;
+  }
+
+  .study-card,
+  .convert-card,
+  .card,
+  .preview-panel,
+  .zj-photo-card,
+  .tool-main fieldset,
+  .panel {
+    padding: 20px 16px !important;
+    border-radius: 20px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. Tool Detail Page Workbench Bar & Standardized File Inputs
+   -------------------------------------------------------------------------- */
+.novip-workbench-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 0 18px;
+  padding: 10px 16px;
+  border-radius: 980px;
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: saturate(180%) blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: var(--novip-shadow-xs);
+}
+
+.novip-workbench-crumbs {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--novip-muted);
+}
+
+.novip-workbench-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 980px;
+  background: var(--novip-surface-subtle);
+  color: var(--novip-ink) !important;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: background-color 0.18s var(--novip-ease), color 0.18s var(--novip-ease);
+}
+
+.novip-workbench-back:hover {
+  background: var(--novip-ink);
+  color: #ffffff !important;
+}
+
+.novip-workbench-group {
+  color: var(--novip-muted);
+  font-weight: 500;
+}
+
+.novip-workbench-trust {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #15803d;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 4px 12px;
+  border-radius: 980px;
+}
+
+.novip-workbench-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #16a34a;
+  display: inline-block;
+}
+
+/* Standardized File Input Styling Across All Tools */
+.tool-main input[type="file"] {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 14px 16px !important;
+  margin: 12px 0 !important;
+  border: 1.5px dashed rgba(0, 0, 0, 0.16) !important;
+  border-radius: var(--novip-radius-md) !important;
+  background: var(--novip-surface-subtle) !important;
+  color: var(--novip-ink-secondary) !important;
+  font-size: 13px !important;
+  cursor: pointer;
+  transition: border-color 0.2s var(--novip-ease), background-color 0.2s var(--novip-ease);
+}
+
+.tool-main input[type="file"]:hover {
+  border-color: var(--novip-blue) !important;
+  background: rgba(0, 113, 227, 0.04) !important;
+}
+
+.tool-main input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 16px;
+  border-radius: 980px;
+  border: none;
+  background: var(--novip-ink);
+  color: #ffffff;
+  font-family: var(--novip-font);
+  font-size: 12px;
+  font-weight: 550;
+  cursor: pointer;
+  transition: background-color 0.18s var(--novip-ease);
+}
+
+.tool-main input[type="file"]::file-selector-button:hover {
+  background: #333336;
+}
+
+/* Global Footer Alignment */
+.study-footer {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 28px 24px !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--novip-muted) !important;
+  font-size: 12px !important;
+}
+
+/* --------------------------------------------------------------------------
+   14. Author Contact Card & QR Dialog (.author-contact)
+   Fixes the 820px QR image overflow in Android WeChat WebView
+   -------------------------------------------------------------------------- */
+.author-contact {
+  width: 100%;
+  max-width: 1120px;
+  margin: 20px auto 32px;
+  padding: 24px 28px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  background: var(--novip-surface);
+  border: 1px solid var(--novip-line);
+  border-radius: var(--novip-radius-lg);
+  box-shadow: var(--novip-shadow-sm);
+}
+
+.author-contact > div {
+  min-width: 0;
+}
+
+.author-contact__eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--novip-red);
+  margin: 0 0 6px;
+}
+
+.author-contact h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--novip-ink);
+  margin: 0 0 8px;
+  letter-spacing: -0.015em;
+}
+
+.author-contact p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--novip-muted);
+  margin: 0 0 14px;
+}
+
+.author-contact__action {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: var(--novip-surface-subtle);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.author-contact__action label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--novip-muted);
+}
+
+.author-contact__action input {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  color: var(--novip-ink);
+  font-size: 15px;
+  font-weight: 650;
+  font-family: var(--novip-font);
+}
+
+.author-contact__action button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 10px 18px;
+  border-radius: 980px;
+  border: 1px solid var(--novip-ink);
+  background: var(--novip-ink);
+  color: #ffffff !important;
+  font-family: var(--novip-font);
+  font-size: 13px;
+  font-weight: 550;
+  cursor: pointer;
+  transition: background-color 0.2s var(--novip-ease), transform 0.2s var(--novip-ease);
+}
+
+.author-contact__action button:hover {
+  background: #333336;
+  transform: translateY(-1px);
+}
+
+.author-contact__action p {
+  margin: 0;
+  font-size: 12px;
+  color: #15803d;
+  font-weight: 550;
+}
+
+.author-contact__qr {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 168px;
+  max-width: 100%;
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--novip-surface-subtle);
+  cursor: pointer;
+  font-family: var(--novip-font);
+}
+
+.author-contact__qr img {
+  display: block;
+  width: 100% !important;
+  max-width: 148px !important;
+  height: auto !important;
+  border-radius: 10px;
+}
+
+.author-contact__qr span {
+  font-size: 11px;
+  color: var(--novip-muted);
+  font-weight: 500;
+}
+
+.author-contact__dialog {
+  width: min(360px, calc(100% - 32px));
+  max-width: calc(100vw - 32px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 22px;
+  padding: 18px;
+  background: #ffffff;
+  color: var(--novip-ink);
+  box-shadow: var(--novip-shadow-lg);
+}
+
+.author-contact__dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.author-contact__dialog-head button {
+  min-height: 38px;
+  min-width: 44px;
+  padding: 6px 14px;
+  border-radius: 980px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--novip-surface-subtle);
+  color: var(--novip-ink);
+  font-size: 12px;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.author-contact__dialog img {
+  display: block;
+  width: 100% !important;
+  max-width: 280px !important;
+  height: auto !important;
+  margin: 0 auto 10px;
+  border-radius: 12px;
+}
+
+.author-contact__dialog p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--novip-muted);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   15. Zero-Background Student Onboarding & Beginner Guide (.novip-beginner)
+   -------------------------------------------------------------------------- */
+.novip-plain-intro {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--novip-muted);
+  margin: 0 0 14px;
+  max-width: 760px;
+}
+
+.novip-beginner-box {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--novip-radius-lg);
+  padding: 16px 20px;
+  margin: 0 0 16px;
+  box-shadow: var(--novip-shadow-xs);
+}
+
+.novip-beginner-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.novip-beginner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--novip-ink);
+  background: var(--novip-surface-subtle);
+  padding: 4px 12px;
+  border-radius: 980px;
+}
+
+.novip-beginner-sub {
+  font-size: 12px;
+  color: var(--novip-muted);
+}
+
+.novip-step-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.novip-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--novip-surface-subtle);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.novip-step-num {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 980px;
+  background: var(--novip-ink);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.novip-step-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--novip-ink);
+  font-weight: 500;
+}
+
+.novip-beginner-save-inline {
+  margin: 0 0 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.novip-beginner-drawers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.novip-helper-details,
+.novip-tech-details,
+.novip-advanced-details {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  background: var(--novip-surface-subtle);
+  padding: 10px 14px;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--novip-ink-secondary);
+}
+
+.novip-advanced-details {
+  background: #fbfbfd;
+  border-style: dashed;
+  border-color: rgba(0, 0, 0, 0.14);
+  margin: 12px 0;
+}
+
+.novip-helper-details > summary,
+.novip-tech-details > summary,
+.novip-advanced-details > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--novip-ink);
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+
+.novip-helper-body,
+.novip-tech-body,
+.novip-advanced-body {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  line-height: 1.65;
+  color: var(--novip-ink-secondary);
+}
+
+.novip-helper-body p,
+.novip-tech-body p {
+  margin: 0 0 8px;
+  font-size: 13px !important;
+  color: var(--novip-ink-secondary) !important;
+}
+
+.novip-helper-body p:last-child,
+.novip-tech-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Post-Action Download Success & WeChat Save Banner */
+.novip-save-banner {
+  margin: 12px 0 18px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  color: #14532d;
+  box-shadow: var(--novip-shadow-xs);
+}
+
+.novip-save-banner strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #14532d;
+}
+
+.novip-save-banner p {
+  margin: 0 0 6px !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+  color: #166534 !important;
+}
+
+.novip-wechat-banner {
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.novip-wechat-banner strong {
+  color: #78350f;
+}
+
+/* --------------------------------------------------------------------------
+   16. Mobile & Android WeChat Full-Width & 44x44px Touch Target Enforcement
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .header,
+  .study-header,
+  .convert-header,
+  .zj-photo-site-header {
+    padding: 8px 16px !important;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .study-header > span,
+  .convert-header .convert-free,
+  .header .free,
+  .zj-photo-site-meta {
+    font-size: 11px !important;
+    padding: 4px 10px;
+  }
+
+  .tool-navigation a,
+  .novip-cat-tab,
+  .novip-quick-chip,
+  .novip-workbench-back,
+  .study-btn,
+  .convert-button,
+  .button,
+  .zj-photo-btn,
+  .author-contact__action button {
+    min-height: 44px !important;
+    min-width: 44px;
+  }
+
+  .study-actions > .study-btn {
+    flex: 1 1 auto !important;
+  }
+
+  .novip-step-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 8px;
+    padding: 2px 2px 6px;
+    margin: 0 0 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .novip-step-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .novip-step-item {
+    flex: 0 0 80%;
+    scroll-snap-align: start;
+    padding: 10px 12px;
+    box-sizing: border-box;
+  }
+
+  .novip-step-text {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .novip-beginner-box {
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    border-radius: 16px;
+  }
+
+  .novip-beginner-save-inline {
+    font-size: 12px;
+    padding: 8px 12px;
+    margin-bottom: 6px;
+  }
+
+  .author-contact {
+    grid-template-columns: 1fr;
+    width: calc(100% - 32px);
+    padding: 20px 16px;
+    margin: 16px auto 24px;
+    gap: 16px;
+  }
+
+  .author-contact__qr {
+    width: 164px;
+  }
+
+  .novip-workbench-bar {
+    border-radius: 12px;
+    padding: 6px 10px;
+    margin: 0 0 12px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    justify-content: center;
+  }
+
+  .novip-workbench-crumbs {
+    display: none;
+  }
+
+  .novip-workbench-trust {
+    font-size: 11px;
+    color: var(--novip-muted);
+  }
+
+  .study-card,
+  .convert-card,
+  .card,
+  .preview-panel,
+  .zj-photo-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0;
+  }
+
+  .study-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ==========================================================================
+   NOVIP iPhone UI & iOS Design System Edition
+   ========================================================================== */
+
+/* 1. iOS Dynamic Island (灵动岛胶囊状态栏) */
+.ios-dynamic-island {
+  margin: 0 auto 18px;
+  max-width: 520px;
+  width: 100%;
+  box-sizing: border-box;
+  background: #000000;
+  color: #ffffff;
+  border-radius: 9999px;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
+  user-select: none;
+  white-space: nowrap;
+  transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2), box-shadow 0.25s ease;
+}
+
+.ios-dynamic-island:hover {
+  transform: scale(1.02);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.ios-island-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ios-island-text-mobile {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .ios-dynamic-island {
+    padding: 7px 12px;
+    font-size: 11px;
+    gap: 8px;
+  }
+  .ios-island-tag {
+    display: none;
+  }
+  .ios-island-text-desktop {
+    display: none;
+  }
+  .ios-island-text-mobile {
+    display: inline;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .ios-island-chip {
+    padding: 2px 6px;
+    font-size: 10px;
+  }
+  .ios-island-expand-text {
+    font-size: 10px;
+  }
+}
+
+.ios-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34c759;
+  box-shadow: 0 0 10px #34c759;
+  animation: ios-pulse 2s infinite ease-in-out;
+}
+
+@keyframes ios-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.ios-island-tag {
+  color: #34c759;
+  font-weight: 600;
+}
+
+.ios-island-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.ios-island-chip {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  color: #ffffff;
+}
+
+/* 2. iOS Bento Widgets Grid (小组件群) */
+.ios-widgets-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.1fr 1.1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+.ios-widget-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border-radius: 24px;
+  border: 0.5px solid rgba(60, 60, 67, 0.12);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.ios-widget-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.ios-widget-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.ios-widget-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ios-widget-date {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ff3b30;
+  letter-spacing: 0.2px;
+}
+
+.ios-widget-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--novip-ink);
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.ios-widget-subtitle {
+  font-size: 12px;
+  color: var(--novip-muted);
+}
+
+/* Featured Spotlight Widget Inside Items */
+.ios-spotlight-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.ios-spotlight-quick-item {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(242, 242, 247, 0.7);
+  border: 0.5px solid rgba(60, 60, 67, 0.06);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.15s ease;
+}
+
+.ios-spotlight-quick-item:hover,
+.ios-spotlight-quick-item:active {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.ios-spotlight-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.ios-spotlight-item-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--novip-ink);
+  margin: 0 0 3px 0;
+}
+
+.ios-spotlight-item-desc {
+  font-size: 11px;
+  color: var(--novip-muted);
+  line-height: 1.3;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ios-spotlight-item-pill {
+  font-size: 10px;
+  color: #007aff;
+  background: rgba(0, 122, 255, 0.08);
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-top: 6px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Widget B: Privacy & Sandbox */
+.ios-privacy-widget {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 248, 255, 0.9) 100%);
+  justify-content: space-between;
+}
+
+.ios-privacy-ring-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0;
+}
+
+.ios-privacy-badge-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #007aff 0%, #00c7be 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 122, 255, 0.25);
+  flex-shrink: 0;
+}
+
+.ios-privacy-status-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--novip-ink);
+  line-height: 1.3;
+}
+
+.ios-privacy-status-sub {
+  font-size: 11px;
+  color: var(--novip-muted);
+}
+
+.ios-privacy-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 11px;
+  color: var(--novip-ink-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ios-privacy-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ios-privacy-checklist li::before {
+  content: "✓";
+  color: #34c759;
+  font-weight: 700;
+}
+
+/* Widget C: Shortcuts & Recent */
+.ios-shortcuts-widget {
+  justify-content: space-between;
+}
+
+.ios-recent-list-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.ios-recent-item-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: 12px;
+  background: rgba(242, 242, 247, 0.6);
+  text-decoration: none;
+  color: var(--novip-ink);
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.ios-recent-item-mini:hover {
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.ios-recent-empty-hint {
+  font-size: 12px;
+  color: var(--novip-muted);
+  line-height: 1.4;
+  margin: 8px 0;
+}
+
+.ios-widget-action-btn {
+  border: none;
+  background: transparent;
+  color: #007aff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 3. iPhone Springboard App Icons Grid (iOS 桌面图标网格) */
+.ios-springboard-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border-radius: 24px;
+  border: 0.5px solid rgba(60, 60, 67, 0.12);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  padding: 22px 24px;
+  margin-bottom: 28px;
+}
+
+.ios-springboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.ios-springboard-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--novip-ink);
+  margin: 0;
+}
+
+.ios-springboard-toggle-btn {
+  font-size: 12px;
+  font-weight: 600;
+  color: #007aff;
+  background: rgba(0, 122, 255, 0.08);
+  border: none;
+  border-radius: 9999px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ios-springboard-toggle-btn:hover {
+  background: rgba(0, 122, 255, 0.15);
+}
+
+.ios-springboard-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 20px 14px;
+  width: 100%;
+}
+
+.ios-springboard-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ios-app-icon-squircle {
+  border-radius: 22.5%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.11), 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: transform 0.18s cubic-bezier(0.2, 0.9, 0.3, 1.2), box-shadow 0.18s ease;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.ios-springboard-item:hover .ios-app-icon-squircle {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.ios-springboard-item:active .ios-app-icon-squircle,
+.ios-app-icon-squircle:active {
+  transform: scale(0.88) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+.ios-app-icon-gloss {
+  position: absolute;
+  inset: 0;
+  border-radius: 22.5%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(0, 0, 0, 0.04) 100%);
+  pointer-events: none;
+}
+
+.ios-app-icon-glyph {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+  position: relative;
+  z-index: 2;
+}
+
+.ios-springboard-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--novip-ink);
+  margin-top: 6px;
+  max-width: 76px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  letter-spacing: -0.1px;
+}
+
+.ios-badge-pill {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #ff3b30;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 9999px;
+  box-shadow: 0 2px 6px rgba(255, 59, 48, 0.45);
+  border: 1.5px solid #ffffff;
+  z-index: 5;
+  letter-spacing: 0.2px;
+}
+
+.ios-badge-pill.hot {
+  background: #ff9500;
+  box-shadow: 0 2px 6px rgba(255, 149, 0, 0.45);
+}
+
+/* 4. iOS Spotlight Search Box (全局搜索栏) */
+.ios-spotlight-section {
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.ios-spotlight-box {
+  background: rgba(142, 142, 147, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 9999px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 0.5px solid rgba(60, 60, 67, 0.12);
+  transition: all 0.2s cubic-bezier(0.2, 0.9, 0.3, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.ios-spotlight-box:focus-within {
+  background: #ffffff;
+  border-color: #007aff;
+  box-shadow: 0 8px 30px rgba(0, 122, 255, 0.14), 0 0 0 3px rgba(0, 122, 255, 0.15);
+}
+
+.ios-spotlight-icon {
+  color: var(--novip-subtle);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ios-spotlight-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: var(--novip-ink);
+  font-family: inherit;
+  min-width: 0;
+}
+
+.ios-spotlight-input::placeholder {
+  color: var(--novip-subtle);
+  font-size: 14px;
+}
+
+.ios-spotlight-clear-btn {
+  background: rgba(142, 142, 147, 0.2);
+  border: none;
+  border-radius: 9999px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--novip-ink-secondary);
+  cursor: pointer;
+}
+
+.ios-spotlight-kbd-hint {
+  font-size: 11px;
+  color: var(--novip-subtle);
+  background: rgba(255, 255, 255, 0.6);
+  border: 0.5px solid rgba(60, 60, 67, 0.12);
+  padding: 2px 6px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.ios-quick-chips-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ios-quick-chip-label {
+  font-size: 12px;
+  color: var(--novip-muted);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.ios-quick-chip {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--novip-ink);
+  background: rgba(255, 255, 255, 0.8);
+  border: 0.5px solid rgba(60, 60, 67, 0.1);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.ios-quick-chip:hover {
+  background: #ffffff;
+  color: #007aff;
+  border-color: rgba(0, 122, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.1);
+}
+
+/* 5. iOS Segmented Control (分段控制器) */
+.ios-segmented-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.ios-segmented-control {
+  background: rgba(118, 118, 128, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 9999px;
+  padding: 3px;
+  display: inline-flex;
+  max-width: 100%;
+  overflow-x: auto;
+  gap: 3px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ios-segmented-btn {
+  border: none;
+  background: transparent;
+  color: var(--novip-ink-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s cubic-bezier(0.2, 0.9, 0.3, 1);
+  user-select: none;
+  font-family: inherit;
+}
+
+.ios-segmented-btn:hover {
+  color: var(--novip-ink);
+}
+
+.ios-segmented-btn.active {
+  background: #ffffff;
+  color: #000000;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), 0 0.5px 1px rgba(0, 0, 0, 0.08);
+}
+
+.ios-segmented-count {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  background: rgba(142, 142, 147, 0.18);
+  color: inherit;
+}
+
+.ios-segmented-btn.active .ios-segmented-count {
+  background: rgba(0, 122, 255, 0.12);
+  color: #007aff;
+}
+
+/* 6. iOS Inset Grouped List (设置与快捷指令列表) */
+.ios-grouped-section {
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.ios-grouped-header {
+  font-size: 14px;
+  font-weight: 750;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: -0.1px;
+  margin: 0 0 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ios-grouped-header span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  text-transform: none;
+}
+
+.ios-grouped-card {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+}
+
+.ios-list-row {
+  display: flex;
+  align-items: center;
+  padding: 14px 18px;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s ease;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ios-list-row:hover {
+  background: rgba(15, 23, 42, 0.02);
+}
+
+.ios-list-row:active {
+  background: rgba(15, 23, 42, 0.05);
+}
+
+.ios-list-row:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 70px;
+  right: 0;
+  height: 1px;
+  background: #f1f5f9;
+}
+
+.ios-list-row-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ios-list-row-title-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ios-list-row-title {
+  font-size: 16px;
+  font-weight: 750;
+  color: #0f172a;
+  letter-spacing: -0.2px;
+}
+
+.ios-list-row-task {
+  font-size: 13.5px;
+  color: #334155;
+  font-weight: 500;
+  line-height: 1.45;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ios-list-row-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ios-open-btn {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0284c7;
+  background: #e0f2fe;
+  border: 1px solid #bae6fd;
+  border-radius: 9999px;
+  padding: 4px 12px;
+  letter-spacing: 0.1px;
+}
+
+.ios-chevron {
+  color: #94a3b8;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* 7. iOS Mobile Floating Dock (移动端底部悬浮 Dock 栏) */
+.ios-dock-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .ios-dock-bar {
+    position: fixed;
+    bottom: max(14px, env(safe-area-inset-bottom, 14px));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(25px) saturate(200%);
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
+    border-radius: 9999px;
+    border: 0.5px solid rgba(60, 60, 67, 0.14);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.06);
+    user-select: none;
+  }
+
+  .ios-dock-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #334155;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+    transition: all 0.15s ease;
+    gap: 2px;
+    min-width: 48px;
+  }
+
+  .ios-dock-item.active {
+    color: #0284c7;
+    font-weight: 700;
+    background: #e0f2fe;
+  }
+
+  .ios-dock-item:active {
+    transform: scale(0.92);
+  }
+
+  /* Responsive Adjustments for Widgets and Springboard */
+  .ios-widgets-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .ios-spotlight-quick-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .ios-springboard-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px 8px;
+  }
+
+  .ios-springboard-card {
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .ios-widget-card {
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .ios-list-row {
+    padding: 12px 14px;
+  }
+
+  .ios-list-row:not(:last-child)::after {
+    left: 64px;
+  }
+
+  /* Ensure footer has extra padding so floating dock doesn't cover content */
+  .author-contact {
+    margin-bottom: 84px !important;
+  }
+}
+
+/* 8. iOS Dynamic HUD Toast Notification (苹果音量/静音同款胶囊弹窗) */
+.ios-hud-toast {
+  position: fixed;
+  top: max(16px, env(safe-area-inset-top, 16px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(28, 28, 30, 0.94);
+  color: #ffffff;
+  backdrop-filter: blur(25px) saturate(200%);
+  -webkit-backdrop-filter: blur(25px) saturate(200%);
+  padding: 10px 20px;
+  border-radius: 9999px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.32), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  font-size: 13px;
+  font-weight: 550;
+  letter-spacing: -0.1px;
+  user-select: none;
+  pointer-events: none;
+  animation: ios-hud-in 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2) forwards;
+}
+
+@keyframes ios-hud-in {
+  0% { opacity: 0; transform: translate(-50%, -12px) scale(0.92); }
+  100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+
+.ios-hud-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #34c759;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* 9. Interactive Dynamic Island Expansion Sheet (可展开交互式灵动岛面板) */
+.ios-dynamic-island--clickable {
+  cursor: pointer;
+}
+
+.ios-dynamic-island-expanded-card {
+  max-width: 600px;
+  width: calc(100% - 32px);
+  margin: 16px auto 24px;
+  background: #1c1c1e;
+  color: #ffffff;
+  border-radius: 28px;
+  padding: 22px 24px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.38), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  user-select: none;
+  animation: ios-island-expand 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.2) forwards;
+}
+
+@keyframes ios-island-expand {
+  0% { opacity: 0; transform: scale(0.94); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.ios-island-sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+}
+
+.ios-island-sheet-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.ios-island-close-btn {
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ios-island-close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.ios-island-status-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.ios-island-status-cell {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 12px;
+  text-align: center;
+}
+
+.ios-island-status-cell strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #34c759;
+  margin-bottom: 4px;
+}
+
+.ios-island-status-cell span {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.ios-island-pwa-box {
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.18) 0%, rgba(88, 86, 214, 0.18) 100%);
+  border: 0.5px solid rgba(0, 122, 255, 0.3);
+  border-radius: 16px;
+  padding: 14px 16px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.ios-island-pwa-box strong {
+  color: #64d2ff;
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+/* 10. Campus Life Scenarios Filter Bar (情境场景速查条) */
+.ios-scenarios-section {
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.ios-scenarios-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.ios-scenarios-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--novip-ink);
+  letter-spacing: -0.2px;
+}
+
+.ios-scenarios-pills-row {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ios-scenario-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 0.5px solid rgba(60, 60, 67, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.9, 0.3, 1);
+  white-space: nowrap;
+  user-select: none;
+  color: var(--novip-ink);
+}
+
+.ios-scenario-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 122, 255, 0.3);
+}
+
+.ios-scenario-pill.active {
+  background: #007aff;
+  color: #ffffff;
+  border-color: #007aff;
+  box-shadow: 0 4px 18px rgba(0, 122, 255, 0.32);
+}
+
+.ios-scenario-icon {
+  font-size: 16px;
+}
+
+.ios-scenario-name {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ios-scenario-badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(142, 142, 147, 0.14);
+  color: inherit;
+  font-weight: 500;
+}
+
+.ios-scenario-pill.active .ios-scenario-badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.ios-scenario-active-banner {
+  margin-top: 10px;
+  background: rgba(0, 122, 255, 0.06);
+  border: 0.5px solid rgba(0, 122, 255, 0.18);
+  border-radius: 14px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #007aff;
+}
+
+.ios-scenario-clear-btn {
+  background: transparent;
+  border: none;
+  color: #007aff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* 11. Subpage iOS Top Navigation Bar (子页面原生顶部返回与分享导航栏) */
+.ios-subpage-nav {
+  position: sticky;
+  top: 0;
+  z-index: 70;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(25px) saturate(200%);
+  -webkit-backdrop-filter: blur(25px) saturate(200%);
+  border-bottom: 0.5px solid rgba(60, 60, 67, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px max(16px, calc((100% - 1120px) / 2));
+  gap: 12px;
+  user-select: none;
+}
+
+.ios-subpage-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: #007aff;
+  font-size: 14px;
+  font-weight: 550;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  background: rgba(0, 122, 255, 0.08);
+  transition: all 0.15s ease;
+}
+
+.ios-subpage-back:hover,
+.ios-subpage-back:active {
+  background: rgba(0, 122, 255, 0.16);
+  transform: scale(0.97);
+}
+
+.ios-subpage-current-tool {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--novip-ink);
+  letter-spacing: -0.15px;
+}
+
+.ios-subpage-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ios-subpage-action-btn {
+  border: none;
+  background: rgba(142, 142, 147, 0.12);
+  color: var(--novip-ink);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.ios-subpage-action-btn:hover {
+  background: rgba(142, 142, 147, 0.2);
+}
+
+.ios-subpage-action-btn:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .ios-island-status-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
+
+/* ==========================================================================
+   马斯克开源哲学启发的智能体验组件样式 (xAI Grok & X The Algorithm & SpaceX)
+   ========================================================================== */
+
+/* 1. Grok 智能意图直达卡片 (Grok Intent Solver Card) */
+.grok-intent-container {
+  margin: 16px 0 20px 0;
+  width: 100%;
+  animation: grokCardSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes grokCardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.grok-intent-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(246, 248, 252, 0.95) 100%);
+  border: 1.5px solid rgba(0, 122, 255, 0.18);
+  border-radius: 20px;
+  padding: 20px 22px;
+  box-shadow: 0 10px 32px rgba(0, 122, 255, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+}
+
+.grok-intent-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #007AFF 0%, #5856D6 50%, #FF9500 100%);
+}
+
+.grok-intent-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.grok-intent-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.12) 0%, rgba(88, 86, 214, 0.12) 100%);
+  color: #007AFF;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 122, 255, 0.2);
+}
+
+.grok-intent-tag {
+  font-size: 12px;
+  color: #8E8E93;
+  font-weight: 500;
+}
+
+.grok-intent-dilemma {
+  font-size: 14px;
+  color: #636366;
+  background: rgba(0, 0, 0, 0.03);
+  padding: 8px 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  line-height: 1.45;
+  border-left: 3px solid #007AFF;
+}
+
+.grok-intent-solution {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1C1C1E;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.grok-intent-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.grok-intent-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #007AFF 0%, #0051FF 100%);
+  color: #FFFFFF !important;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 122, 255, 0.35);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.grok-intent-cta-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 122, 255, 0.45);
+}
+
+.grok-intent-cta-btn:active {
+  transform: scale(0.97);
+}
+
+.grok-intent-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.05);
+  color: #1C1C1E;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.grok-intent-secondary-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.grok-intent-steps-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.grok-step-pill {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 12px;
+  color: #3A3A3C;
+  line-height: 1.35;
+}
+
+.grok-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(0, 122, 255, 0.15);
+  color: #007AFF;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.grok-intent-tip {
+  font-size: 12px;
+  color: #8E8E93;
+  line-height: 1.45;
+  background: rgba(255, 149, 0, 0.06);
+  padding: 8px 12px;
+  border-radius: 10px;
+  border-left: 2px solid #FF9500;
+}
+
+/* 2. X 推荐流 Tab 切换器 (X The Algorithm For You Tabs) */
+.x-feed-tabs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding: 0 4px;
+}
+
+.x-feed-tab-switch {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(118, 118, 128, 0.12);
+  padding: 3px;
+  border-radius: 12px;
+}
+
+.x-feed-tab-btn {
+  border: none;
+  background: transparent;
+  color: #636366;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 9px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.18s ease;
+}
+
+.x-feed-tab-btn.active {
+  background: #FFFFFF;
+  color: #1C1C1E;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.x-feed-status-telemetry {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #8E8E93;
+  font-weight: 500;
+}
+
+.x-foryou-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.x-foryou-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 16px;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.x-foryou-card:hover {
+  transform: translateY(-2px);
+  background: #FFFFFF;
+  border-color: rgba(0, 122, 255, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+}
+
+.x-foryou-card:active {
+  transform: scale(0.98);
+}
+
+.x-foryou-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.x-foryou-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.x-foryou-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.x-foryou-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1C1C1E;
+}
+
+.x-foryou-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(0, 122, 255, 0.1);
+  color: #007AFF;
+}
+
+.x-foryou-task {
+  font-size: 13px;
+  color: #636366;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.x-foryou-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.x-foryou-reason {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #FF9500;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.x-foryou-arrow {
+  color: #C7C7CC;
+  transition: transform 0.15s ease;
+}
+
+.x-foryou-card:hover .x-foryou-arrow {
+  transform: translateX(2px);
+  color: #007AFF;
+}
+
+@media (max-width: 640px) {
+  .grok-intent-steps-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .x-foryou-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .home-card,
+  .home-card:hover,
+  .home-card:focus-visible,
+  .study-btn:hover,
+  .novip-quick-chip:hover {
+    transform: none !important;
+  }
+}
+
+/* NOVIP AI Assistant & Homepage Entry (PR #7 Resolution & iOS Cupertino Integration) */
+.home-ai-entry {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 16px 0 24px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 45, 85, 0.22);
+  border-left: 4px solid #FF2D55;
+  border-radius: 16px;
+  background: linear-gradient(110deg, #FFF5F7 0%, #FFFFFF 62%);
+  color: var(--novip-ink, #1C1C1E);
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(255, 45, 85, 0.06);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-ai-entry:hover,
+.home-ai-entry:focus-visible {
+  border-color: #FF2D55;
+  box-shadow: 0 8px 24px rgba(255, 45, 85, 0.14);
+  transform: translateY(-1px);
+}
+
+.home-ai-mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #FF2D55 0%, #AF52DE 50%, #5856D6 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(255, 45, 85, 0.28);
+}
+
+.home-ai-copy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.home-ai-copy strong {
+  font-size: 15px;
+  font-weight: 750;
+  color: #1C1C1E;
+}
+
+.home-ai-copy small {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #636366;
+}
+
+.home-ai-cta {
+  margin-left: auto;
+  white-space: nowrap;
+  color: #FF2D55;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+@media (max-width: 600px) {
+  .home-ai-entry {
+    gap: 12px;
+    margin: 12px 0 18px;
+    padding: 13px 14px;
+  }
+  .home-ai-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+  .home-ai-copy strong {
+    font-size: 13px;
+  }
+  .home-ai-copy small {
+    font-size: 11px;
+  }
+  .home-ai-cta {
+    font-size: 11px;
+  }
+}
+
+/* Standalone / In-app AI Assistant Tool Container */
+.novip-ai-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.novip-ai-status-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+}
+
+.novip-ai-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.novip-ai-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FF2D55;
+  box-shadow: 0 0 8px #FF2D55;
+  animation: pulse 2s infinite;
+}
+
+.novip-ai-badge-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1C1C1E;
+}
+
+.novip-ai-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.novip-ai-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(118, 118, 128, 0.08);
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #636366;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.novip-ai-action-btn:hover {
+  background: rgba(255, 59, 48, 0.12);
+  color: #FF3B30;
+}
+
+.novip-ai-chat-flow {
+  min-height: 380px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.novip-ai-welcome-box {
+  text-align: center;
+  padding: 30px 10px;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.novip-ai-icon-large {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #FF2D55 0%, #AF52DE 50%, #5856D6 100%);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 16px;
+  box-shadow: 0 8px 24px rgba(255, 45, 85, 0.25);
+}
+
+.novip-ai-welcome-box h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #1C1C1E;
+}
+
+.novip-ai-welcome-box p {
+  font-size: 14px;
+  color: #636366;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+.novip-ai-presets-container {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.novip-ai-presets-title {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3A3A3C;
+  margin-bottom: 12px;
+}
+
+.novip-ai-presets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.novip-ai-preset-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #F8F9FA;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 12px;
+  padding: 11px 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.novip-ai-preset-chip:hover {
+  background: #FFFFFF;
+  border-color: rgba(255, 45, 85, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 45, 85, 0.08);
+  transform: translateY(-1px);
+}
+
+.novip-ai-preset-icon {
+  font-size: 16px;
+  flex: none;
+}
+
+.novip-ai-preset-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1C1C1E;
+  flex: 1;
+}
+
+.novip-ai-preset-arrow {
+  color: #C7C7CC;
+  transition: transform 0.15s ease;
+}
+
+.novip-ai-preset-chip:hover .novip-ai-preset-arrow {
+  color: #FF2D55;
+  transform: translateX(2px);
+}
+
+.novip-ai-messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.novip-ai-message-row {
+  display: flex;
+  gap: 12px;
+  max-width: 100%;
+}
+
+.novip-ai-message-row.user {
+  flex-direction: row-reverse;
+}
+
+.novip-ai-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+  flex: none;
+}
+
+.novip-ai-message-row.user .novip-ai-avatar {
+  background: #1C1C1E;
+}
+
+.novip-ai-message-row.assistant .novip-ai-avatar {
+  background: linear-gradient(135deg, #FF2D55 0%, #AF52DE 50%, #5856D6 100%);
+  box-shadow: 0 2px 8px rgba(255, 45, 85, 0.2);
+}
+
+.novip-ai-bubble-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: min(85%, 680px);
+}
+
+.novip-ai-bubble {
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.68;
+  word-break: break-word;
+}
+
+.novip-ai-message-row.user .novip-ai-bubble {
+  background: #FFF0F2;
+  color: #1C1C1E;
+  border: 1px solid rgba(255, 45, 85, 0.2);
+  border-bottom-right-radius: 4px;
+}
+
+.novip-ai-message-row.assistant .novip-ai-bubble {
+  background: #F2F2F7;
+  color: #1C1C1E;
+  border-bottom-left-radius: 4px;
+}
+
+.novip-ai-text-content p {
+  margin: 0 0 10px;
+}
+
+.novip-ai-text-content p:last-child {
+  margin-bottom: 0;
+}
+
+.novip-ai-bubble-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.novip-ai-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
+  color: #636366;
+  cursor: pointer;
+}
+
+.novip-ai-copy-btn:hover {
+  color: #FF2D55;
+  border-color: #FF2D55;
+}
+
+/* Recommended tools shelf in AI Bubble */
+.novip-ai-tools-shelf {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  padding: 12px 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.novip-ai-shelf-header {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #8E8E93;
+  margin-bottom: 8px;
+}
+
+.novip-ai-tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.novip-ai-tool-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #F8F9FA;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 10px 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.16s ease;
+}
+
+.novip-ai-tool-card:hover {
+  background: #FFFFFF;
+  border-color: rgba(0, 122, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.novip-ai-tool-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.novip-ai-tool-name-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.novip-ai-tool-name-line strong {
+  font-size: 14px;
+  font-weight: 650;
+  color: #1C1C1E;
+}
+
+.novip-ai-group-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(0, 122, 255, 0.08);
+  color: #007AFF;
+}
+
+.novip-ai-tool-desc {
+  font-size: 12px;
+  color: #636366;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.novip-ai-open-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #007AFF;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: rgba(0, 122, 255, 0.1);
+  flex: none;
+}
+
+/* Composer */
+.novip-ai-composer-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.novip-ai-composer-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 20px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.novip-ai-composer-form:focus-within {
+  border-color: #FF2D55;
+  box-shadow: 0 0 0 3px rgba(255, 45, 85, 0.14);
+}
+
+.novip-ai-textarea {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  resize: none;
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 6px 8px;
+  max-height: 120px;
+}
+
+.novip-ai-send-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.novip-ai-send-btn.send {
+  background: #FF2D55;
+  color: #FFFFFF;
+}
+
+.novip-ai-send-btn.send:disabled {
+  background: #E5E5EA;
+  color: #8E8E93;
+  cursor: not-allowed;
+}
+
+.novip-ai-send-btn.send:not(:disabled):hover {
+  background: #E02447;
+}
+
+.novip-ai-send-btn.stop {
+  background: #3A3A3C;
+  color: #FFFFFF;
+}
+
+.novip-ai-privacy-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #8E8E93;
+  text-align: center;
+}
+
+/* 微信内置浏览器专属提示条 */
+.novip-ai-wechat-hint {
+  background: rgba(0, 113, 227, 0.06);
+  border: 1px solid rgba(0, 113, 227, 0.18);
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 12px;
+  color: #0071e3;
+  line-height: 1.5;
+}
+
+/* Markdown 排版渲染样式 */
+.novip-ai-strong {
+  font-weight: 700;
+  color: #1C1C1E;
+}
+
+.novip-ai-inline-code {
+  background: rgba(0, 0, 0, 0.06);
+  color: #D70015;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12.5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.novip-ai-code-block {
+  background: #1C1C1E;
+  color: #F2F2F7;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  overflow-x: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 8px 0;
+}
+
+.novip-ai-code-block code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.novip-ai-md-list,
+.novip-ai-md-ol {
+  margin: 6px 0 8px 20px;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.novip-ai-md-list li,
+.novip-ai-md-ol li {
+  margin-bottom: 4px;
+}
+
+.novip-ai-quote {
+  border-left: 3px solid #0071e3;
+  background: rgba(0, 113, 227, 0.04);
+  padding: 6px 12px;
+  margin: 8px 0;
+  border-radius: 0 8px 8px 0;
+  color: #3A3A3C;
+  font-size: 13.5px;
+}
+
+.novip-ai-para {
+  margin: 0 0 6px 0;
+  line-height: 1.68;
+}
+
+.novip-ai-para-space {
+  height: 8px;
+}
+
+/* 真实计算推导结果高亮面板 */
+.novip-ai-calc-box {
+  background: #FFFBEA;
+  border: 1px solid #F5D982;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-top: 10px;
+}
+
+.novip-ai-calc-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #925400;
+  margin-bottom: 4px;
+}
+
+.novip-ai-calc-content {
+  font-size: 13px;
+  font-weight: 600;
+  color: #613400;
+  font-family: ui-monospace, Menlo, monospace;
+}
+
+/* 专属实战文案/大纲/代码草稿箱（一键复制即可用） */
+.novip-ai-draft-card {
+  background: #F5F9FF;
+  border: 1px solid rgba(0, 113, 227, 0.2);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-top: 12px;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.04);
+}
+
+.novip-ai-draft-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.novip-ai-draft-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #1d1d1f;
+}
+
+.novip-ai-draft-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #0071e3;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.novip-ai-draft-copy-btn:hover {
+  background: #0077ED;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.25);
+}
+
+.novip-ai-draft-body {
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #1d1d1f;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 113, 227, 0.12);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* 快捷追问胶囊列表 */
+.novip-ai-followups-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 12px;
+}
+
+.novip-ai-followups-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #8E8E93;
+}
+
+.novip-ai-followups-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.novip-ai-followup-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 99px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: #1C1C1E;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.novip-ai-followup-pill:hover {
+  background: #F8F9FA;
+  border-color: #0071e3;
+  color: #0071e3;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .novip-ai-presets-grid {
+    grid-template-columns: 1fr;
+  }
+  .novip-ai-bubble-wrap {
+    max-width: 90%;
+  }
+  .novip-ai-chat-flow {
+    padding: 14px 10px;
+  }
+  .novip-ai-draft-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .novip-ai-draft-copy-btn {
+    align-self: flex-end;
+  }
+}
+
+/* NOVIP 助手 · 外部 API 与提供商设置弹窗样式 */
+.novip-ai-settings-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0, 113, 227, 0.08);
+  color: #0071e3;
+  border: 1px solid rgba(0, 113, 227, 0.2);
+  border-radius: 8px;
+  padding: 5px 11px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.novip-ai-settings-btn:hover {
+  background: rgba(0, 113, 227, 0.15);
+  border-color: #0071e3;
+  transform: translateY(-1px);
+}
+
+.novip-ai-active-provider-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #F2F2F7;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
+  color: #3A3A3C;
+  font-weight: 500;
+}
+
+.novip-ai-thinking-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #F9F9FB;
+  border: 1px solid rgba(0, 113, 227, 0.15);
+  border-radius: 12px;
+  color: #0071e3;
+  font-size: 13px;
+  animation: pulse-border 1.5s infinite;
+}
+
+@keyframes pulse-border {
+  0% { box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.2); }
+  70% { box-shadow: 0 0 0 6px rgba(0, 113, 227, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 113, 227, 0); }
+}
+
+.novip-ai-spin-icon {
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.novip-ai-fallback-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: #FFFBE6;
+  border: 1px solid #FFE58F;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #D48806;
+  line-height: 1.5;
+}
+
+.novip-ai-model-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #8E8E93;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 8px;
+}
+
+/* 弹窗遮罩与卡片 */
+.novip-ai-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+  animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.novip-ai-modal-card {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: scaleUp 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.novip-ai-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid #F2F2F7;
+}
+
+.novip-ai-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1C1C1E;
+}
+
+.novip-ai-modal-close-btn {
+  background: #F2F2F7;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8E8E93;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.novip-ai-modal-close-btn:hover {
+  background: #E5E5EA;
+  color: #1C1C1E;
+}
+
+.novip-ai-tabs-bar {
+  display: flex;
+  background: #F2F2F7;
+  padding: 4px;
+  margin: 16px 24px 0 24px;
+  border-radius: 10px;
+  gap: 4px;
+}
+
+.novip-ai-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: none;
+  background: transparent;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #636366;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.novip-ai-tab-btn.active {
+  background: #FFFFFF;
+  color: #1C1C1E;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.novip-ai-modal-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.novip-ai-info-box {
+  background: #F8F9FA;
+  border: 1px solid #E5E5EA;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #3A3A3C;
+  line-height: 1.6;
+}
+
+.novip-ai-info-box strong {
+  color: #0071e3;
+}
+
+.novip-ai-guide-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #0071e3;
+  text-decoration: underline;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.novip-ai-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.novip-ai-form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1C1C1E;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.novip-ai-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.novip-ai-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #D1D1D6;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.novip-ai-input:focus {
+  border-color: #0071e3;
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
+
+.novip-ai-eye-btn {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #8E8E93;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.novip-ai-eye-btn:hover {
+  color: #1C1C1E;
+}
+
+.novip-ai-test-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.novip-ai-test-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #F2F2F7;
+  border: 1px solid #D1D1D6;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 13px;
+  color: #1C1C1E;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.novip-ai-test-btn:hover:not(:disabled) {
+  background: #E5E5EA;
+}
+
+.novip-ai-test-feedback {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.novip-ai-test-feedback.success {
+  color: #34C759;
+}
+
+.novip-ai-test-feedback.error {
+  color: #FF3B30;
+}
+
+.novip-ai-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid #F2F2F7;
+  background: #FAFAFC;
+}
+
+.novip-ai-cancel-btn {
+  background: transparent;
+  border: 1px solid #D1D1D6;
+  padding: 8px 18px;
+  border-radius: 99px;
+  font-size: 14px;
+  color: #636366;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.novip-ai-cancel-btn:hover {
+  background: #F2F2F7;
+  color: #1C1C1E;
+}
+
+.novip-ai-save-btn {
+  background: #0071e3;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 22px;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 6px rgba(0, 113, 227, 0.25);
+}
+
+.novip-ai-save-btn:hover {
+  background: #0077ED;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .novip-ai-tabs-bar {
+    overflow-x: auto;
+    margin: 12px 16px 0 16px;
+  }
+  .novip-ai-modal-card {
+    border-radius: 16px;
+  }
+  .novip-ai-modal-body {
+    padding: 16px;
+  }
+  .novip-ai-modal-footer {
+    padding: 12px 16px;
+  }
+}
+
+/* ==========================================================================
+   V3 Pro College Tools: Responsive & Cupertino Layouts
+   ========================================================================== */
+
+/* 1. PPT Generator */
+.ppt-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 960px) {
+  .ppt-layout-grid {
+    grid-template-columns: 220px minmax(0, 1fr) 300px;
+  }
+}
+
+.ppt-scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+/* 2. PDF Form Filler */
+.pdf-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 960px) {
+  .pdf-layout-grid {
+    grid-template-columns: minmax(0, 1fr) 380px;
+  }
+}
+
+.pdf-scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+.pdf-form-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .pdf-form-grid > * {
+    grid-column: span 12 !important;
+  }
+}
+
+/* 3. Image Compress */
+.compress-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+/* 4. Flowchart Maker */
+.flowchart-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 960px) {
+  .flowchart-layout-grid {
+    grid-template-columns: minmax(0, 42%) minmax(0, 58%);
+  }
+}
+
+.flowchart-scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+/* 5. Media Converter */
+.media-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 960px) {
+  .media-layout-grid {
+    grid-template-columns: minmax(0, 1fr) 340px;
+  }
+}
+
+.media-mode-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+/* ============================================================
+   Handwriting Generator V2 Realism Styles (Papers & Inks)
+   ============================================================ */
+.papers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 480px) {
+  .papers {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.paper-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid #e4e4e7;
+  border-radius: 9px;
+  height: 42px;
+  font-size: 11px;
+  color: #52525b;
+  background: #ffffff;
+  transition: all 0.15s ease;
+  padding: 0 6px;
+  white-space: nowrap;
+}
+
+.paper-option:hover {
+  background: #f4f4f5;
+  border-color: #d4d4d8;
+}
+
+.paper-option.selected {
+  background: #fff5f5;
+  border-color: #c9232c;
+  color: #c9232c;
+  font-weight: 550;
+  box-shadow: 0 1px 3px rgba(201, 35, 44, 0.12);
+}
+
+.paper-icon.college-notebook {
+  background: #faf7f0 repeating-linear-gradient(0deg, transparent, transparent 3px, #bed6ed 3px, #bed6ed 4px);
+  border-left: 2px solid #e06c75;
+}
+
+.paper-icon.cornell {
+  background: #fafaf9;
+  position: relative;
+}
+.paper-icon.cornell::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0;
+  bottom: 4px;
+  width: 1px;
+  background: #94a3b8;
+}
+.paper-icon.cornell::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  height: 1px;
+  background: #94a3b8;
+}
+
+.paper-icon.kraft {
+  background: #ebd9bc repeating-linear-gradient(0deg, transparent, transparent 3px, #aa9174 3px, #aa9174 4px);
+  border-color: #aa9174;
+}
+
+.paper-icon.stationery {
+  background: #fdfcf9 repeating-linear-gradient(0deg, transparent, transparent 3px, #d66363 3px, #d66363 4px);
+  border-top: 2px solid #cf3232;
+}
+
+.paper-icon.english {
+  background: #fcfbfa;
+  background-image: repeating-linear-gradient(0deg, #d96060 0, #d96060 1px, transparent 1px, transparent 3px, #a0b8d0 3px, #a0b8d0 4px, transparent 4px, transparent 6px);
+}
+
+.paper-icon.exam-sheet {
+  background: #faf8f5 repeating-linear-gradient(0deg, transparent, transparent 3px, #cad5e0 3px, #cad5e0 4px);
+  border-left: 2px dashed #8c8c8c;
+}
+
+.paper-icon.cream {
+  background: #f6eedc repeating-linear-gradient(0deg, transparent, transparent 3px, #d5dfe1 3px, #d5dfe1 4px);
+}
+
+.paper-icon.blank {
+  background: #ffffff;
+}
+
+.ink-palette {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ink {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  padding: 0;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.ink:hover {
+  transform: scale(1.15);
+}
+
+.ink.chosen {
+  outline: 2px solid #0071e3;
+  outline-offset: 2.5px;
+  transform: scale(1.1);
+}
+
+/* --------------------------------------------------------------------------
+   新手友好与场景直达大卡片 (.novip-female-scenarios)
+   -------------------------------------------------------------------------- */
+.novip-female-scenarios {
+  margin: 16px 0 24px;
+}
+
+.novip-scenario-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.novip-scenario-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.novip-scenario-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: #ff2d55;
+  color: #fff;
+}
+
+.novip-scenario-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.novip-scenario-sub {
+  font-size: 12px;
+  color: #86868b;
+}
+
+.novip-scenario-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.novip-scenario-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.novip-scenario-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 113, 227, 0.3);
+}
+
+.novip-scenario-icon {
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  background: #f5f5f7;
+  flex-shrink: 0;
+}
+
+.novip-scenario-card.photo .novip-scenario-icon {
+  background: #eff6ff;
+}
+.novip-scenario-card.files .novip-scenario-icon {
+  background: #fdf2f8;
+}
+.novip-scenario-card.handwrite .novip-scenario-icon {
+  background: #fefce8;
+}
+.novip-scenario-card.ai .novip-scenario-icon {
+  background: #f5f3ff;
+}
+
+.novip-scenario-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.novip-scenario-content strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin-bottom: 3px;
+}
+
+.novip-scenario-content p {
+  font-size: 12px;
+  color: #6e6e73;
+  margin: 0 0 6px;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.novip-scenario-pill {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  color: #0071e3;
+  background: rgba(0, 113, 227, 0.08);
+  padding: 2px 7px;
+  border-radius: 12px;
+}
+
+.novip-scenario-arrow {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0071e3;
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+
+@media (max-width: 768px) {
+  .novip-scenario-cards {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .novip-scenario-card {
+    padding: 12px 14px;
+  }
+  .novip-scenario-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 26px;
+  }
+  .novip-scenario-content p {
+    white-space: normal;
+  }
+  .tool-navigation.mobile-subpage-hide {
+    display: none !important;
+  }
+  .ios-spotlight-kbd-hint {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   NOVIP Design Evolution — Chess.com-Tier Tactile & College Experience
+   ========================================================================== */
+
+:root {
+  --novip-brand-red: #e53935;
+  --novip-brand-red-dark: #c62828;
+  --novip-brand-red-shadow: #b71c1c;
+  --novip-brand-red-subtle: #fef2f2;
+  --novip-brand-neutral-bg: #f8fafc;
+  --novip-brand-card-bg: #ffffff;
+  --novip-brand-border: #cbd5e1;
+  --novip-brand-border-focus: #94a3b8;
+  --novip-brand-text: #0f172a;
+  --novip-brand-text-muted: #334155;
+  --novip-brand-text-subtle: #475569;
+  --novip-brand-radius-sm: 10px;
+  --novip-brand-radius-md: 16px;
+  --novip-brand-radius-lg: 22px;
+  --novip-brand-radius-xl: 30px;
+  --novip-tactile-spring: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Tactile 3D Buttons (Chess.com-inspired satisfying physical depression) */
+.novip-btn-tactile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--novip-brand-radius-md);
+  font-family: var(--novip-font);
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.2;
+  text-decoration: none !important;
+  cursor: pointer;
+  border: none;
+  min-height: 44px;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: transform 0.12s var(--novip-tactile-spring), box-shadow 0.12s var(--novip-tactile-spring), background-color 0.12s ease;
+}
+
+.novip-btn-tactile--primary {
+  background: var(--novip-brand-red);
+  color: #ffffff !important;
+  box-shadow: 0 4px 0 var(--novip-brand-red-shadow), 0 8px 18px rgba(229, 57, 53, 0.25);
+}
+
+.novip-btn-tactile--primary:hover {
+  background: #ea4541;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 var(--novip-brand-red-shadow), 0 10px 22px rgba(229, 57, 53, 0.3);
+}
+
+.novip-btn-tactile--primary:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--novip-brand-red-shadow), 0 3px 8px rgba(229, 57, 53, 0.2);
+}
+
+.novip-btn-tactile--secondary {
+  background: #ffffff;
+  color: var(--novip-brand-text) !important;
+  border: 1.5px solid var(--novip-brand-border);
+  box-shadow: 0 4px 0 #cbd5e1, 0 6px 14px rgba(0, 0, 0, 0.04);
+}
+
+.novip-btn-tactile--secondary:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 #94a3b8, 0 8px 16px rgba(0, 0, 0, 0.06);
+}
+
+.novip-btn-tactile--secondary:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #94a3b8, 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.novip-btn-tactile--accent {
+  background: #0071e3;
+  color: #ffffff !important;
+  box-shadow: 0 4px 0 #0056b3, 0 8px 18px rgba(0, 113, 227, 0.25);
+}
+
+.novip-btn-tactile--accent:hover {
+  background: #007bf0;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 #0056b3, 0 10px 22px rgba(0, 113, 227, 0.3);
+}
+
+.novip-btn-tactile--accent:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #0056b3, 0 3px 8px rgba(0, 113, 227, 0.2);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .novip-btn-tactile,
+  .novip-flagship-card,
+  .novip-highfreq-card,
+  .novip-hero-tab-btn {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Hero Section (3-Second Comprehension & Tactile Focus) */
+.novip-hero-evolution {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px 24px 28px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: var(--novip-brand-radius-xl);
+  border: 1px solid var(--novip-brand-border);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.04);
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.novip-hero-evolution::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #e53935 0%, #ff5252 50%, #0071e3 100%);
+}
+
+.novip-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.novip-hero-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #fef2f2;
+  border: 1px solid rgba(229, 57, 53, 0.2);
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #c62828;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 6px rgba(229, 57, 53, 0.06);
+}
+
+.novip-hero-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e53935;
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.25);
+}
+
+.novip-hero-title {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 850;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 0 14px;
+}
+
+.novip-hero-subtitle {
+  font-size: clamp(15px, 2.2vw, 18px);
+  color: #1e293b;
+  line-height: 1.65;
+  max-width: 720px;
+  font-weight: 500;
+  margin: 0 0 20px;
+}
+
+.novip-hero-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+/* Reassuring Slim Trust Strip */
+.novip-trust-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 10px 18px;
+  background: #ffffff;
+  border-radius: 9999px;
+  border: 1.5px solid #cbd5e1;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.novip-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.novip-trust-item svg {
+  color: #059669;
+  stroke-width: 2.2;
+}
+
+/* College Showcase Live Interactive Demonstration (The Hero Product Value) */
+.novip-showcase-box {
+  background: #ffffff;
+  border-radius: var(--novip-brand-radius-lg);
+  border: 1.5px solid #cbd5e1;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.novip-showcase-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #e2e8f0;
+  border-bottom: 1.5px solid #cbd5e1;
+  padding: 5px;
+  gap: 6px;
+}
+
+.novip-showcase-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 650;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 44px;
+}
+
+.novip-showcase-tab:hover {
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.novip-showcase-tab.active {
+  background: #ffffff;
+  color: var(--novip-brand-red);
+  font-weight: 750;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.novip-showcase-body {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .novip-showcase-tabs {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    padding: 4px;
+  }
+  .novip-showcase-tab {
+    font-size: 12.5px;
+    padding: 8px 6px;
+    gap: 4px;
+    min-height: 40px;
+    white-space: nowrap;
+  }
+  .novip-showcase-body {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 16px;
+  }
+}
+
+.novip-showcase-stage {
+  background: #f8fafc;
+  border-radius: var(--novip-brand-radius-md);
+  border: 1px dashed #cbd5e1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  position: relative;
+}
+
+.novip-showcase-info h4 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 10px;
+}
+
+.novip-showcase-info p {
+  font-size: 14px;
+  color: #334155;
+  font-weight: 500;
+  line-height: 1.65;
+  margin: 0 0 18px;
+}
+
+.novip-showcase-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #d1fae5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* Flagship Cards Grid (4 Iconic College Lifesavers) */
+.novip-flagship-section {
+  margin-bottom: 32px;
+}
+
+.novip-section-title-wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.novip-section-title {
+  font-size: 21px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.novip-section-sub {
+  font-size: 13px;
+  color: #334155;
+  font-weight: 600;
+}
+
+.novip-flagship-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.novip-flagship-card {
+  background: #ffffff;
+  border-radius: var(--novip-brand-radius-lg);
+  border: 1.5px solid #cbd5e1;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none !important;
+  color: inherit !important;
+  position: relative;
+  transition: transform 0.18s var(--novip-tactile-spring), box-shadow 0.18s var(--novip-tactile-spring), border-color 0.18s ease;
+  min-height: 220px;
+}
+
+.novip-flagship-card:hover {
+  transform: translateY(-3px);
+  border-color: #94a3b8;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+.novip-flagship-card:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+.novip-flagship-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.novip-flagship-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+}
+
+.novip-flagship-tag {
+  font-size: 12px;
+  font-weight: 750;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+.novip-flagship-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 8px;
+}
+
+.novip-flagship-desc {
+  font-size: 14px;
+  color: #334155;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.novip-flagship-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 12px;
+  margin-top: auto;
+}
+
+.novip-flagship-hint {
+  font-size: 12px;
+  font-weight: 700;
+  color: #047857;
+}
+
+.novip-flagship-cta {
+  font-size: 14px;
+  font-weight: 750;
+  color: var(--novip-brand-red);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Recently Used Bar */
+.novip-recent-section {
+  background: #f8fafc;
+  border-radius: var(--novip-brand-radius-md);
+  border: 1px solid #cbd5e1;
+  padding: 12px 18px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.novip-recent-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.novip-recent-label {
+  font-size: 13px;
+  font-weight: 750;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.novip-recent-chips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.novip-recent-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: #ffffff;
+  border-radius: 9999px;
+  border: 1.5px solid #cbd5e1;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+  text-decoration: none !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  transition: all 0.15s ease;
+}
+
+.novip-recent-chip:hover {
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.novip-recent-clear-btn {
+  background: transparent;
+  border: none;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.novip-recent-clear-btn:hover {
+  color: #e53935;
+  background: rgba(229, 57, 53, 0.05);
+}
+
+/* High-Frequency College Utilities Grid */
+.novip-highfreq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.novip-highfreq-card {
+  background: #ffffff;
+  border-radius: var(--novip-brand-radius-md);
+  border: 1.5px solid #cbd5e1;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none !important;
+  color: inherit !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.02);
+  transition: transform 0.15s var(--novip-tactile-spring), box-shadow 0.15s var(--novip-tactile-spring), border-color 0.15s ease;
+}
+
+.novip-highfreq-card:hover {
+  transform: translateY(-2px);
+  border-color: #94a3b8;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+}
+
+.novip-highfreq-card:active {
+  transform: translateY(1px);
+}
+
+.novip-highfreq-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.novip-highfreq-name {
+  font-size: 15px;
+  font-weight: 750;
+  color: #0f172a;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.novip-highfreq-benefit {
+  font-size: 13px;
+  color: #475569;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Subpage & Layout Safeguard: Mobile Dock Clearance */
+@media (max-width: 768px) {
+  body,
+  #root,
+  .app,
+  .study-app,
+  .convert-app,
+  .tool-main,
+  .study-main {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 16px)) !important;
+  }
+
+  .novip-hero-evolution {
+    padding: 24px 16px 20px;
+    border-radius: 20px;
+  }
+
+  .novip-hero-title {
+    font-size: 24px;
+  }
+
+  .novip-hero-subtitle {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .novip-btn-tactile {
+    width: 100%;
+    padding: 12px 20px;
+  }
+
+  .novip-hero-actions-row {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .novip-trust-strip {
+    font-size: 11px;
+    padding: 8px 12px;
+    gap: 8px;
+    border-radius: 12px;
+  }
+
+  .novip-flagship-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .novip-highfreq-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .novip-highfreq-card {
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .novip-highfreq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   A4 证件拼版复印打印 (ID Card A4 Print Layout) · 样式规范
+   ========================================================================== */
+.novip-idcard-layout-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+  margin-top: 18px;
+  align-items: start;
+}
+
+@media (max-width: 920px) {
+  .novip-idcard-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.novip-idcard-control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.novip-card-slot-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .novip-card-slot-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.novip-card-slot-box {
+  background: #FFFFFF;
+  border: 1.5px dashed #D2D2D7;
+  border-radius: 16px;
+  padding: 12px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.novip-card-slot-box.has-image {
+  border-style: solid;
+  border-color: #E5E5EA;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.novip-card-slot-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.novip-slot-badge {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1C1C1E;
+}
+
+.novip-slot-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.novip-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid #E5E5EA;
+  background: #F2F2F7;
+  color: #3A3A3C;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.novip-btn-icon:hover {
+  background: #E5E5EA;
+  color: #000000;
+}
+
+.novip-btn-icon--danger:hover {
+  background: #FEE2E2;
+  color: #DC2626;
+  border-color: #FECACA;
+}
+
+.novip-slot-dropzone {
+  aspect-ratio: 85.6 / 54;
+  border-radius: 12px;
+  background: #F9F9FB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.18s;
+}
+
+.novip-slot-dropzone:hover {
+  background: #F2F2F7;
+}
+
+.novip-slot-empty-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  color: #8E8E93;
+  padding: 8px;
+}
+
+.novip-slot-empty-prompt span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #3A3A3C;
+}
+
+.novip-slot-empty-prompt small {
+  font-size: 10px;
+  color: #8E8E93;
+}
+
+.novip-slot-preview-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.novip-slot-preview-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.novip-slot-replace-mask {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.18s;
+}
+
+.novip-slot-dropzone:hover .novip-slot-replace-mask {
+  opacity: 1;
+}
+
+.novip-sample-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.novip-sample-hint {
+  font-size: 12px;
+  color: #8E8E93;
+}
+
+.novip-settings-group {
+  background: #FFFFFF;
+  border: 1px solid #E5E5EA;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.novip-group-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1C1C1E;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.novip-group-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.novip-field-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.novip-field-row label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #636366;
+}
+
+.novip-field-tip {
+  margin: 2px 0 0;
+  font-size: 11px;
+  color: #007AFF;
+  line-height: 1.4;
+}
+
+.novip-segmented-control {
+  display: flex;
+  background: #F2F2F7;
+  padding: 3px;
+  border-radius: 10px;
+  gap: 2px;
+}
+
+.novip-segmented-control button {
+  flex: 1;
+  padding: 7px 10px;
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 500;
+  color: #636366;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.novip-segmented-control button.active {
+  background: #FFFFFF;
+  color: #1C1C1E;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.novip-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.novip-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.novip-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #E5E5EA;
+  transition: 0.2s;
+  border-radius: 24px;
+}
+
+.novip-switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.novip-switch input:checked + .novip-switch-slider {
+  background-color: #34C759;
+}
+
+.novip-switch input:checked + .novip-switch-slider:before {
+  transform: translateX(20px);
+}
+
+.novip-preset-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.novip-preset-chips-label {
+  font-size: 11px;
+  color: #8E8E93;
+}
+
+.novip-chip-pill {
+  font-size: 11px;
+  padding: 4px 9px;
+  border-radius: 20px;
+  border: 1px solid #E5E5EA;
+  background: #F9F9FB;
+  color: #3A3A3C;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.novip-chip-pill:hover {
+  background: #F2F2F7;
+  border-color: #D2D2D7;
+}
+
+.novip-chip-pill.active {
+  background: #007AFF;
+  color: #FFFFFF;
+  border-color: #007AFF;
+  font-weight: 600;
+}
+
+.novip-watermark-attrs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.novip-field-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #636366;
+}
+
+.novip-color-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.novip-dot-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.novip-dot-btn.gray { background: #64748B; }
+.novip-dot-btn.red { background: #DC2626; }
+.novip-dot-btn.blue { background: #2563EB; }
+
+.novip-dot-btn.active {
+  transform: scale(1.2);
+  border-color: #000000;
+}
+
+.novip-idcard-preview-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.novip-preview-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.novip-preview-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.novip-preview-title strong {
+  font-size: 14px;
+  color: #1C1C1E;
+}
+
+.novip-preview-title small {
+  font-size: 11px;
+  color: #8E8E93;
+}
+
+.novip-badge-pulse {
+  font-size: 11px;
+  color: #007AFF;
+  background: rgba(0, 122, 255, 0.08);
+  padding: 3px 8px;
+  border-radius: 12px;
+  animation: pulse 1.5s infinite;
+}
+
+.novip-a4-desk {
+  background: #F2F2F7;
+  border: 1px solid #E5E5EA;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.novip-a4-sheet {
+  width: 100%;
+  max-width: 380px;
+  background: #FFFFFF;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.novip-a4-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.novip-a4-loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8E8E93;
+  font-size: 13px;
+}
+
+.novip-export-actions-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E5EA;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+}
+
+.novip-export-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.novip-wechat-guide-tip {
+  margin: 0;
+  font-size: 12px;
+  color: #15803D;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  line-height: 1.45;
+}
+
+.novip-printer-guide {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #92400E;
+}
+
+.novip-printer-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #D97706;
+}
+
+.novip-printer-guide-text {
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   NOVIP iOS 18 & Apple.com Flagship Craftsmanship Upgrade (v3.5)
+   ========================================================================== */
+
+/* 1. iPhone iOS 18 Status Bar & Dynamic Island Header Strip */
+.ios-status-bar-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto 8px;
+  padding: 4px 12px;
+  user-select: none;
+}
+
+.ios-status-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--novip-ink);
+  flex-shrink: 0;
+}
+
+.ios-status-loc {
+  transform: rotate(45deg);
+  color: var(--novip-ink);
+  opacity: 0.85;
+}
+
+.ios-status-bar-strip .ios-dynamic-island {
+  margin: 0 auto;
+  flex: 0 1 auto;
+}
+
+.ios-island-lens {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #25386b 0%, #0d1326 55%, #050507 100%);
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.ios-status-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--novip-ink);
+  flex-shrink: 0;
+}
+
+.ios-status-battery {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5px;
+}
+
+.ios-status-battery-body {
+  width: 23px;
+  height: 11.5px;
+  border-radius: 3.5px;
+  border: 1.2px solid rgba(29, 29, 31, 0.45);
+  padding: 1.5px;
+  display: flex;
+  align-items: center;
+}
+
+.ios-status-battery-fill {
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5px;
+  background: #34c759;
+}
+
+.ios-status-battery-cap {
+  width: 1.5px;
+  height: 4px;
+  border-radius: 0 1.5px 1.5px 0;
+  background: rgba(29, 29, 31, 0.45);
+}
+
+@media (max-width: 640px) {
+  .ios-status-bar-strip {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 4px;
+    margin: 0 auto 8px;
+  }
+  .ios-status-left {
+    order: 1;
+    font-size: 13px;
+  }
+  .ios-status-right {
+    order: 2;
+  }
+  .ios-status-bar-strip .ios-dynamic-island {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    padding: 8px 14px;
+  }
+}
+
+/* 2. Apple.com Flagship Hero Action & Spec Ribbon (.apple-hero-ribbon) */
+.apple-hero-ribbon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin: -6px auto 28px;
+  max-width: 780px;
+  text-align: center;
+}
+
+.apple-hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px 22px;
+}
+
+.apple-hero-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  min-height: 42px;
+  border-radius: 980px;
+  background: #0071e3;
+  color: #ffffff !important;
+  font-size: 14px;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  text-decoration: none !important;
+  box-shadow: 0 4px 14px rgba(0, 113, 227, 0.28);
+  transition: background-color 0.2s var(--novip-ease), transform 0.2s var(--novip-ease), box-shadow 0.2s var(--novip-ease);
+}
+
+.apple-hero-primary-btn:hover {
+  background: #0077ed;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 113, 227, 0.36);
+}
+
+.apple-hero-primary-btn:active {
+  transform: scale(0.97);
+}
+
+.apple-hero-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #0066cc !important;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none !important;
+  letter-spacing: -0.01em;
+  transition: color 0.15s ease;
+}
+
+.apple-hero-link:hover span:first-child {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.apple-hero-specs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--novip-subtle);
+  letter-spacing: 0.01em;
+}
+
+.apple-hero-dot {
+  opacity: 0.5;
+}
+
+/* 3. Upgraded Scenario Cards with Genuine iOS Squircle Icons */
+.novip-scenario-card .novip-scenario-icon {
+  background: transparent !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0;
+  border-radius: 0;
+}
+
+.novip-scenario-arrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: 980px;
+  background: rgba(0, 113, 227, 0.08);
+  color: #0071e3;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.novip-scenario-card:hover .novip-scenario-arrow {
+  background: #0071e3;
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+/* 4. iOS 18 Widget Expand Button & Springboard Page Dots */
+.ios-widget-expand-btn {
+  font-size: 12px;
+  font-weight: 600;
+  color: #007aff;
+  background: rgba(0, 122, 255, 0.08);
+  border: none;
+  border-radius: 9999px;
+  padding: 4px 11px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.ios-widget-expand-btn:hover {
+  background: rgba(0, 122, 255, 0.15);
+}
+
+.ios-widget-expand-btn:active {
+  transform: scale(0.96);
+}
+
+.ios-springboard-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 0.5px solid rgba(60, 60, 67, 0.1);
+}
+
+.ios-page-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 9999px;
+  background: rgba(118, 118, 128, 0.12);
+}
+
+.ios-page-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(60, 60, 67, 0.28);
+  transition: all 0.2s ease;
+}
+
+.ios-page-dot.active {
+  width: 16px;
+  border-radius: 9999px;
+  background: #007aff;
+}
+
+/* 5. Authentic iOS 18 App Icon Specular Rim & Desktop Subpage Nav Stacking */
+.ios-app-icon-squircle {
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.12),
+    0 2px 5px rgba(0, 0, 0, 0.07),
+    inset 0 1px 1px rgba(255, 255, 255, 0.48),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.14);
+}
+
+@media (min-width: 769px) {
+  .ios-subpage-nav {
+    top: 44px;
+  }
+}
+
+/* 6. iOS 18 Dark Mode Support for Cupertino & iPhone Surfaces */
+@media (prefers-color-scheme: dark) {
+  :root:where([data-novip-visual-mode]) {
+    --novip-bg: #000000;
+    --novip-bg-elevated: #1c1c1e;
+    --novip-surface: #1c1c1e;
+    --novip-surface-subtle: #2c2c2e;
+    --novip-surface-hover: #3a3a3c;
+    --novip-ink: #f5f5f7;
+    --novip-ink-secondary: #ebebf5;
+    --novip-muted: #98989d;
+    --novip-subtle: #8e8e93;
+    --novip-line: rgba(255, 255, 255, 0.1);
+    --novip-line-strong: rgba(255, 255, 255, 0.18);
+  }
+
+  :where(html[data-novip-visual-mode]) .tool-navigation,
+  :where(html[data-novip-visual-mode]) .header,
+  :where(html[data-novip-visual-mode]) .study-header,
+  :where(html[data-novip-visual-mode]) .convert-header,
+  :where(html[data-novip-visual-mode]) .zj-photo-site-header,
+  :where(html[data-novip-visual-mode]) .ios-subpage-nav {
+    background: rgba(28, 28, 30, 0.82) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  :where(html[data-novip-visual-mode]) .tool-navigation a {
+    color: rgba(245, 245, 247, 0.82) !important;
+  }
+
+  :where(html[data-novip-visual-mode]) .tool-navigation a.active,
+  :where(html[data-novip-visual-mode]) .tool-navigation a[aria-current="page"] {
+    background: #f5f5f7 !important;
+    color: #1c1c1e !important;
+  }
+
+  :where(html[data-novip-visual-mode]) .tool-main--home > h1 {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f7 55%, #ff453a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  :where(html[data-novip-visual-mode]) .ios-widget-card,
+  :where(html[data-novip-visual-mode]) .ios-springboard-card,
+  :where(html[data-novip-visual-mode]) .ios-grouped-card,
+  :where(html[data-novip-visual-mode]) .novip-scenario-card,
+  :where(html[data-novip-visual-mode]) .x-foryou-card,
+  :where(html[data-novip-visual-mode]) .novip-trust-card,
+  :where(html[data-novip-visual-mode]) .novip-beginner-box,
+  :where(html[data-novip-visual-mode]) .author-contact {
+    background: rgba(28, 28, 30, 0.92) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  :where(html[data-novip-visual-mode]) .ios-spotlight-quick-item,
+  :where(html[data-novip-visual-mode]) .ios-recent-item-mini,
+  :where(html[data-novip-visual-mode]) .ios-scenario-pill:not(.active),
+  :where(html[data-novip-visual-mode]) .ios-quick-chip {
+    background: rgba(44, 44, 46, 0.85) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    color: #f5f5f7 !important;
+  }
+
+  :where(html[data-novip-visual-mode]) .ios-segmented-btn.active,
+  :where(html[data-novip-visual-mode]) .x-feed-tab-btn.active {
+    background: #3a3a3c !important;
+    color: #ffffff !important;
+  }
+
+  :where(html[data-novip-visual-mode]) .ios-dock-bar {
+    background: rgba(28, 28, 30, 0.86) !important;
+    border-color: rgba(255, 255, 255, 0.14) !important;
+  }
+
+  :where(html[data-novip-visual-mode]) .ios-status-battery-body {
+    border-color: rgba(245, 245, 247, 0.5);
+  }
+
+  :where(html[data-novip-visual-mode]) .ios-status-battery-cap {
+    background: rgba(245, 245, 247, 0.5);
+  }
+}
+
+
+
+/* ==========================================================================
+   NOVIP 移动端与全站体验深度优化（微信/安卓适配、成绩/GPA、请假极速版、全站反馈）
+   ========================================================================== */
+
+/* 1. 移动端隐藏冗余顶部密集导航（使用原生底部 Dock 与首页场景替代） */
+@media (max-width: 768px) {
+  .tool-navigation {
+    display: none !important;
+  }
+  
+  /* 确保移动端底部内容不被 iOS Dock 栏遮挡 */
+  body, main, .study-main, .convert-main {
+    padding-bottom: 96px !important;
+  }
+
+  .ios-dock-bar {
+    padding-bottom: max(12px, env(safe-area-inset-bottom, 12px)) !important;
+  }
+}
+
+/* 2. GPA & 期末成绩反推组件样式 */
+.novip-grades-tabs {
+  display: flex;
+  gap: 8px;
+  background: #f1f5f9;
+  padding: 6px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+
+.novip-grades-tab {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 650;
+  color: #334155;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.novip-grades-tab.active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.novip-grades-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .novip-grades-tabs {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .novip-grades-tab {
+    padding: 10px;
+    font-size: 13px;
+  }
+  .novip-grades-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.novip-card-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.novip-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.novip-card-head h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.novip-icon-primary {
+  color: #0071e3;
+}
+
+.novip-icon-accent {
+  color: #f59e0b;
+}
+
+.novip-form-group {
+  margin-bottom: 16px;
+}
+
+.novip-form-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.novip-form-label-row label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.novip-badge-hint {
+  font-size: 11px;
+  color: #475569;
+  font-weight: 500;
+}
+
+.novip-input-field {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.novip-input-field:focus {
+  border-color: #0071e3;
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
+
+.novip-chip-selector {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.novip-chip-btn {
+  flex: 1;
+  min-width: 50px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.novip-chip-btn.selected {
+  background: #0071e3;
+  color: #ffffff;
+  border-color: #0071e3;
+}
+
+.novip-quick-targets {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  align-items: center;
+}
+
+.novip-quick-label {
+  font-size: 11px;
+  color: #334155;
+  font-weight: 600;
+}
+
+.novip-quick-target-btn {
+  font-size: 11px;
+  padding: 3px 8px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  color: #334155;
+  cursor: pointer;
+}
+
+.novip-quick-target-btn:hover {
+  background: #e2e8f0;
+}
+
+/* 英雄大分数卡片 */
+.novip-hero-score-badge {
+  text-align: center;
+  padding: 22px 18px;
+  border-radius: 14px;
+  margin-bottom: 18px;
+}
+
+.novip-hero-score-badge.easy {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+}
+
+.novip-hero-score-badge.moderate {
+  background: #fefce8;
+  border: 1.5px solid #fde047;
+}
+
+.novip-hero-score-badge.challenging {
+  background: #fff7ed;
+  border: 1.5px solid #fdba74;
+}
+
+.novip-hero-score-badge.extreme {
+  background: #fef2f2;
+  border: 1.5px solid #fca5a5;
+}
+
+.novip-hero-score-badge.impossible {
+  background: #fef2f2;
+  border: 1.5px solid #f87171;
+}
+
+.novip-hero-score-badge.already_enough {
+  background: #eff6ff;
+  border: 1.5px solid #93c5fd;
+}
+
+.novip-hero-score-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.novip-hero-score-num {
+  font-size: 32px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 6px 0;
+  font-feature-settings: "tnum";
+}
+
+.novip-hero-score-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #334155;
+}
+
+.novip-exam-metrics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #f8fafc;
+  padding: 14px 16px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+}
+
+.novip-metric-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.novip-metric-row span {
+  color: #334155;
+  font-weight: 500;
+}
+
+.novip-metric-row strong {
+  color: #1e293b;
+}
+
+/* GPA 模块与课程表 */
+.novip-gpa-settings-bar {
+  margin-bottom: 20px;
+}
+
+.novip-gpa-scale-select-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.novip-select-field {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #ffffff;
+  color: #1e293b;
+  outline: none;
+}
+
+.novip-scale-desc {
+  font-size: 12px;
+  color: #334155;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.novip-gpa-actions-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.novip-btn-compact {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.novip-btn-compact:hover {
+  background: #e2e8f0;
+}
+
+.novip-add-course-btn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0071e3;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.novip-courses-table-wrap {
+  overflow-x: auto;
+  margin-top: 8px;
+}
+
+.novip-courses-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.novip-courses-table th {
+  padding: 8px 6px;
+  text-align: left;
+  color: #0f172a;
+  font-weight: 700;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.novip-courses-table td {
+  padding: 6px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.novip-table-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #1e293b;
+}
+
+.novip-icon-del-btn {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.novip-icon-del-btn:hover {
+  background: #fee2e2;
+}
+
+/* GPA 成果大卡片 */
+.novip-gpa-hero-badge {
+  text-align: center;
+  background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+  border: 1.5px solid #bfdbfe;
+  border-radius: 14px;
+  padding: 22px 16px;
+  margin-bottom: 18px;
+}
+
+.novip-gpa-hero-label {
+  font-size: 13px;
+  font-weight: 650;
+  color: #334155;
+}
+
+.novip-gpa-hero-value {
+  font-size: 38px;
+  font-weight: 850;
+  color: #0f172a;
+  margin: 6px 0;
+  font-feature-settings: "tnum";
+}
+
+.novip-gpa-max-tag {
+  font-size: 16px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.novip-gpa-standing-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #0369a1;
+}
+
+.novip-gpa-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.novip-gpa-stat-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+
+.novip-stat-label {
+  display: block;
+  font-size: 11px;
+  color: #475569;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.novip-stat-num {
+  font-size: 18px;
+  font-weight: 750;
+  color: #0f172a;
+}
+
+/* 3. 请假助手极速场景与高频按钮 */
+.novip-leave-presets-card {
+  margin-bottom: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 14px 18px;
+  border-radius: 14px;
+}
+
+.novip-leave-presets-grid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.novip-preset-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  min-height: 40px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.novip-preset-chip-btn:hover {
+  border-color: #0071e3;
+  color: #0071e3;
+  background: #eff6ff;
+  transform: translateY(-1px);
+}
+
+.novip-quick-date-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.novip-quick-date-btn {
+  font-size: 12px;
+  padding: 4px 10px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  color: #334155;
+  cursor: pointer;
+}
+
+.novip-quick-date-btn:hover {
+  background: #e2e8f0;
+}
+
+/* 4. 全站通用意见反馈组件 */
+.novip-universal-feedback {
+  max-width: 1080px;
+  margin: 16px auto;
+}
+
+.novip-feedback-trigger-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.novip-feedback-trigger-bar:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.novip-feedback-trigger-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.novip-feedback-trigger-cta {
+  font-size: 12px;
+  color: #0071e3;
+  font-weight: 600;
+}
+
+.novip-feedback-card-body {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.novip-feedback-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.novip-feedback-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.novip-feedback-title h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.novip-feedback-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  color: #334155;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.novip-feedback-desc {
+  font-size: 12px;
+  color: #334155;
+  line-height: 1.5;
+  margin: 0 0 14px 0;
+}
+
+.novip-feedback-cat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 600px) {
+  .novip-feedback-cat-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.novip-feedback-cat-btn {
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #334155;
+  cursor: pointer;
+  text-align: left;
+}
+
+.novip-feedback-cat-btn.selected {
+  background: #eff6ff;
+  border-color: #0071e3;
+  color: #0071e3;
+}
+
+.novip-feedback-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+}
+
+.novip-feedback-textarea:focus {
+  border-color: #0071e3;
+}
+
+.novip-feedback-actions-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.novip-feedback-msg {
+  font-size: 12px;
+  color: #059669;
+  font-weight: 600;
+  margin: 10px 0 0;
+}
+/* NOVIP 2.0 Segmented Language Switcher (中文 | EN) */
+
+.novip-lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 9999px;
+  padding: 2px;
+  user-select: none;
+  touch-action: manipulation;
+  z-index: 10;
+  transition: border-color 0.16s ease, background-color 0.16s ease;
+}
+
+.novip-lang-segment {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.novip-lang-segment:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+.novip-lang-segment:hover:not(.active) {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.novip-lang-segment.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.novip-lang-divider {
+  width: 1px;
+  height: 14px;
+  background: rgba(148, 163, 184, 0.2);
+  margin: 0 1px;
+  pointer-events: none;
+}
+
+/* Compact variant for dense headers / bars */
+.novip-lang-switcher.is-compact .novip-lang-segment {
+  min-height: 38px;
+  min-width: 40px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+/* 1. 深空模式 (Deep-Space Immersion) */
+html[data-novip-visual-mode="immersive"] .novip-lang-switcher {
+  background: rgba(15, 23, 42, 0.55);
+  border-color: rgba(56, 189, 248, 0.25);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.08);
+}
+
+html[data-novip-visual-mode="immersive"] .novip-lang-segment.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.32), rgba(168, 85, 247, 0.32));
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* 2. 日光模式 (Daylight Mode) */
+html[data-novip-visual-mode="daylight"] .novip-lang-switcher {
+  background: rgba(241, 245, 249, 0.9);
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+html[data-novip-visual-mode="daylight"] .novip-lang-segment {
+  color: #475569;
+}
+
+html[data-novip-visual-mode="daylight"] .novip-lang-segment:hover:not(.active) {
+  color: #0f172a;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+html[data-novip-visual-mode="daylight"] .novip-lang-segment.active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+html[data-novip-visual-mode="daylight"] .novip-lang-divider {
+  background: #cbd5e1;
+}
+
+/* 3. 极简省电模式 (Eco Minimal) */
+html[data-novip-visual-mode="minimal"] .novip-lang-switcher {
+  background: #18181b;
+  border: 1px solid #3f3f46;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+html[data-novip-visual-mode="minimal"] .novip-lang-segment {
+  color: #a1a1aa;
+  transition: none;
+}
+
+html[data-novip-visual-mode="minimal"] .novip-lang-segment.active {
+  background: #27272a;
+  color: #fafafa;
+  box-shadow: none;
+  border: 1px solid #52525b;
+}
+
+html[data-novip-visual-mode="minimal"] .novip-lang-divider {
+  background: #3f3f46;
+}
+
+/* 4. 动画减弱偏好 (prefers-reduced-motion) */
+@media (prefers-reduced-motion: reduce) {
+  .novip-lang-switcher,
+  .novip-lang-segment {
+    transition: none !important;
+  }
+}
+
+/* 5. 移动端触摸屏宽度适配 (360px, 390px, 430px) */
+@media (max-width: 640px) {
+  .novip-lang-switcher {
+    padding: 1px;
+  }
+  .novip-lang-segment {
+    min-height: 44px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,47 @@
+NOVIP 第三方组件与开源许可说明（third-party-notices.txt）
+更新：2026-10-30｜依据：全面代码审计与生产构建产物检查
+
+一、本站自有代码
+NOVIP 站点自有前端代码与核心计算模块以 MIT 许可证开源。
+MIT License 文本见：https://opensource.org/licenses/MIT
+
+二、站内集成的第三方开源组件与库（版权归各自权利人所有）
+清单根据 package.json 依赖树与构建产物直接核验整理：
+
+| 组件 / 库名称 | 版本 | 用途 | 开源许可证 |
+|---|---|---|---|
+| React & react-dom | ^19.1.0 | 响应式前端框架与 DOM 渲染 | MIT |
+| pdfjs-dist（Mozilla） | ^6.2.108 | 浏览器端 PDF 渲染与解析 | Apache License 2.0 |
+| Tesseract.js（含 core 与语言包） | ^6.0.1 | 纯本地图片 OCR 文字提取 | Apache License 2.0 |
+| SheetJS（xlsx） | 0.20.3 | 浏览器端 Excel / CSV 表格清洗与合并 | Apache License 2.0 |
+| jsPDF | ^4.2.1 | 客户端 PDF 文档生成与导出 | MIT |
+| PptxGenJS | ^4.0.1 | 浏览器端 PPTX 幻灯片生成 | MIT |
+| pdf-lib | ^1.17.1 | PDF 页面合并、拆分、水印、页码、元数据清除 | MIT |
+| docx | ^9.5.1 | 论文与报告排版解析 | MIT |
+| fflate | ^0.8.2 | 高性能纯前端 ZIP 打包与解压 | MIT |
+| @xmldom/xmldom | ^0.8.11 | XML 文档 DOM 解析 | MIT |
+| lucide-react | ^0.468.0 | 矢量界面图标库 | ISC |
+| mermaid | ^12.2.0 | 流程图、甘特图与时序图渲染 | MIT |
+| elkjs | 0.9.3 | 流程图自动排版布局引擎（mermaid 间接依赖） | EPL-2.0 |
+| @pdfme/common, generator, schemas | ^6.2.8 | PDF 申请表在线填写与签名导出 | MIT |
+| gifenc | ^1.0.3 | 纯前端 GIF 动画编码器 | MIT |
+| @chromeos/android-package-signer | ^0.1.3 | 浏览器端 Android APK 数字证书签名 | Apache License 2.0 |
+| node-forge | 0.10.0 | 密码学工具库（signer 依赖，本站适用 BSD） | BSD-3-Clause OR GPL-2.0 |
+| dompurify | 3.4.17 | XSS 防御与安全 HTML 净化（本站适用 Apache） | MPL-2.0 OR Apache-2.0 |
+| html2canvas | 1.4.1 | 网页截屏与 Canvas 栅格化（jspdf 间接依赖） | MIT |
+| JSZip | 3.10.2 | ZIP 读写与打包（本站适用 MIT） | MIT OR GPL-3.0-or-later |
+| pako | 2.2.0 | Zlib 数据流压缩算法库 | MIT AND Zlib |
+| @breezystack/lamejs | ^1.2.7 | 浏览器端 MP3 音频编码 | LGPL-3.0 |
+| animejs | ^4.5.0 | 轻量级物理弹簧、时间轴与 SVG 微动效引擎 | MIT |
+| 站内字体资产 | 见 /fonts/NOTICE.txt | 手写生成器与界面排版字库 | SIL OFL 1.1 / 免费商用授权 |
+| 站内动效设计系统参考 | 2026-11-09 | 参考 Uiverse (MIT)、React Bits (MIT + Commons Clause 仅终端产品使用)、Aceternity UI 免费组件理念与 MotionSites 视觉规范自研重构 | MIT / 终端产品合规自研 |
+
+三、模板资产与待确认事项
+1. 网站转 APK 模板底包（public/templates/novip-webview-template.apk）：
+   该预置底包用于端侧极速生成测试 APK。其底层参考了社区 WebView 实现（mikespub-archive/android-webview），目前仓库未附带独立开源许可证文件，状态标记为「待人工确认」。
+   建议用户与开发者优先使用本站同步生成的「Android Studio 完整源码工程」（100% NOVIP 独立实现与 Apache 2.0 规范代码），直接在 Android Studio 中自主编译上架。
+
+四、说明与免责
+1. 本文件为技术审计整理的信息汇总，不构成正式法律意见；各组件的最终许可条款以其官方仓库源码及 LICENSE 文件为准。
+2. 本站所有文件转换、文本提取、音频转换、图片压缩均在用户浏览器本地完成，不向云端服务器上传任何用户文档与隐私数据。
+3. 如任何开源项目权利人对本站的使用或引用有任何疑问，请通过网站联系方式联系站长，我们将第一时间处理并修正。

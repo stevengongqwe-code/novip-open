@@ -1,0 +1,41 @@
+# NOVIP Dependabot 配置文件
+# 遵循原则：按周更新、限制并发 PR 数量、开发依赖分组聚合、杜绝未经测试的大版本混入。
+
+version: 2
+updates:
+  # 1. 前端与 Node 依赖管理
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "Asia/Shanghai"
+    open-pull-requests-limit: 5
+    # 对开发环境依赖进行分组，减少 PR 碎片化与 CI 分钟浪费
+    groups:
+      dev-dependencies:
+        patterns:
+          - "@types/*"
+          - "eslint*"
+          - "typescript*"
+          - "vite*"
+        update-types:
+          - "minor"
+          - "patch"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+
+  # 2. GitHub Actions 工作流依赖版本管理
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:30"
+      timezone: "Asia/Shanghai"
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "ci(actions)"
+      include: "scope"
