@@ -41,7 +41,7 @@
     "pptxgenjs": "^4.0.1",
     "qrcode": "^1.5.4",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react-dom": "^19.3.1",
     "tesseract.js": "^6.0.1",
     "xlsx": "file:vendor/xlsx-0.20.3.tgz"
   },
